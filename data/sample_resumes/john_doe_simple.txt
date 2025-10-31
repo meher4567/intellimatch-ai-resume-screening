@@ -1,0 +1,48 @@
+JOHN DOE
+Email: john.doe@email.com | Phone: (555) 123-4567 | LinkedIn: linkedin.com/in/johndoe
+Location: San Francisco, CA
+
+PROFESSIONAL SUMMARY
+Experienced Software Engineer with 5+ years of expertise in Python, machine learning, and cloud technologies. Proven track record of building scalable applications and leading technical teams.
+
+WORK EXPERIENCE
+
+Senior Software Engineer | Tech Innovations Inc. | Jan 2021 - Present
+• Led development of microservices architecture serving 1M+ users
+• Implemented CI/CD pipelines reducing deployment time by 60%
+• Mentored team of 5 junior engineers
+• Technologies: Python, FastAPI, Docker, Kubernetes, AWS
+
+Software Engineer | DataCorp Solutions | Jun 2018 - Dec 2020
+• Developed REST APIs for data processing platform
+• Built machine learning models for customer segmentation
+• Improved system performance by 40% through optimization
+• Technologies: Python, Django, PostgreSQL, Redis, TensorFlow
+
+Junior Developer | StartupXYZ | Jan 2017 - May 2018
+• Developed web applications using React and Node.js
+• Collaborated with product team on feature development
+• Participated in code reviews and agile ceremonies
+• Technologies: JavaScript, React, Node.js, MongoDB
+
+EDUCATION
+
+Bachelor of Science in Computer Science | Stanford University | 2013 - 2017
+GPA: 3.8/4.0
+Relevant Coursework: Algorithms, Machine Learning, Distributed Systems
+
+SKILLS
+
+Programming Languages: Python, JavaScript, Java, SQL, Go
+Frameworks & Libraries: FastAPI, Django, React, TensorFlow, PyTorch, scikit-learn
+Cloud & DevOps: AWS (EC2, S3, Lambda), Docker, Kubernetes, CI/CD, Terraform
+Databases: PostgreSQL, MySQL, MongoDB, Redis
+Tools: Git, JIRA, Jenkins, Datadog
+
+CERTIFICATIONS
+• AWS Certified Solutions Architect - Associate (2022)
+• Google Cloud Professional Data Engineer (2021)
+
+PROJECTS
+• Open Source Contributor: scikit-learn, FastAPI (500+ stars on GitHub)
+• Personal Project: Resume Parser AI - Built ML-powered resume screening tool

@@ -1,0 +1,47 @@
+MICHAEL RODRIGUEZ
+michael.rodriguez@email.com | (555) 456-7890 | New York, NY
+LinkedIn: linkedin.com/in/mrodriguez
+
+OBJECTIVE
+Results-driven Product Manager with 6+ years of experience leading cross-functional teams to deliver innovative products. Seeking senior PM role to drive product strategy and growth.
+
+EXPERIENCE
+
+Senior Product Manager | SaaS Startup Inc. | 2021 - Present
+• Led product roadmap for B2B SaaS platform with $5M ARR
+• Increased user engagement by 80% through feature improvements
+• Managed team of 8 engineers and 2 designers
+• Conducted user research and A/B testing to validate hypotheses
+• Launched 3 major features that increased revenue by 45%
+
+Product Manager | Enterprise Software Co. | 2018 - 2021
+• Owned product lifecycle from ideation to launch
+• Collaborated with sales and marketing on go-to-market strategy
+• Analyzed user metrics and created data-driven product decisions
+• Reduced customer churn by 30% through UX improvements
+• Managed $2M product budget
+
+Associate Product Manager | Tech Unicorn | 2017 - 2018
+• Assisted in product planning and sprint planning
+• Gathered requirements from stakeholders
+• Created user stories and acceptance criteria
+• Conducted competitive analysis
+
+EDUCATION
+
+MBA | Harvard Business School | 2015 - 2017
+Concentration: Technology & Entrepreneurship
+
+BS in Industrial Engineering | Georgia Tech | 2011 - 2015
+
+SKILLS
+
+Product Management: Roadmapping, User Research, A/B Testing, Analytics
+Tools: JIRA, Confluence, Figma, Mixpanel, Google Analytics, Amplitude
+Technical: SQL, Python (basic), API concepts, Agile/Scrum
+Business: Financial Modeling, Go-to-Market Strategy, Stakeholder Management
+
+ACHIEVEMENTS
+• Launched product that became #1 on Product Hunt
+• Speaker at ProductCon 2023
+• Featured in TechCrunch article on product innovation

@@ -1,0 +1,112 @@
+ALEX KUMAR
+alex.kumar@email.com | +1-555-234-5678 | San José, CA
+Portfolio: alexkumar.io | GitHub: @alexk | LinkedIn: /in/alex-kumar
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROFESSIONAL SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Full-stack developer with 7+ years building scalable web applications. Expert in JavaScript/TypeScript,
+React, Node.js, and cloud architecture. Led teams of 5-10 engineers. Passionate about clean code & UX.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TECHNICAL EXPERTISE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Languages:      JavaScript, TypeScript, Python, Java, Go, SQL
+Frontend:       React, Next.js, Vue.js, Angular, Redux, TailwindCSS, Material-UI
+Backend:        Node.js, Express, NestJS, Django, FastAPI, Spring Boot
+Databases:      PostgreSQL, MongoDB, Redis, MySQL, Elasticsearch, DynamoDB
+Cloud/DevOps:   AWS (Lambda, ECS, S3, CloudFront), Docker, Kubernetes, Terraform, Jenkins
+Tools:          Git, JIRA, Figma, Postman, GraphQL, REST APIs, WebSocket
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROFESSIONAL EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Lead Software Engineer | TechCorp Global Inc. | 2021 - Present
+San Francisco, CA
+
+► Led architecture redesign reducing API latency from 500ms → 80ms (84% improvement)
+► Managed team of 8 engineers across 3 time zones (US, Europe, Asia)
+► Implemented CI/CD pipeline increasing deployment frequency from weekly → daily
+► Built microservices architecture handling 10M+ requests/day
+► Tech: React, Node.js, PostgreSQL, Redis, AWS (ECS, Lambda, S3), Docker, Kubernetes
+
+Key Achievement: Designed real-time collaboration feature (like Google Docs) used by 100K+ users
+
+─────────────────────────────────────────────────────────────────────
+
+Senior Full-Stack Developer | StartupXYZ (Acquired by BigTech) | 2018 - 2021
+New York, NY
+
+► Core team member (employee #5) that grew product from 0 → 500K users
+► Built customer dashboard with 95% satisfaction score (measured via NPS)
+► Integrated payment system (Stripe) processing $2M+ monthly transactions
+► Optimized database queries reducing load time by 60%
+► Tech: Next.js, TypeScript, GraphQL, MongoDB, AWS (S3, CloudFront, Lambda)
+
+Key Achievement: Led development of MVP that secured $5M Series A funding
+
+─────────────────────────────────────────────────────────────────────
+
+Software Engineer | E-Commerce Giant | 2016 - 2018
+Seattle, WA
+
+► Developed product recommendation engine increasing conversion by 25%
+► Built A/B testing framework used by 20+ teams across organization
+► Mentored 3 junior engineers through code reviews & pair programming
+► Tech: React, Redux, Node.js, Java, MySQL, Redis, Elasticsearch
+
+─────────────────────────────────────────────────────────────────────
+
+Junior Developer | Digital Agency | 2015 - 2016
+Austin, TX
+
+► Developed responsive websites for 15+ clients (retail, healthcare, finance)
+► Collaborated with designers using Figma/Sketch for pixel-perfect implementation
+► Tech: HTML, CSS, JavaScript, jQuery, WordPress, PHP
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EDUCATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Master of Science in Computer Science | University of Texas at Austin | 2013 - 2015
+Specialization: Distributed Systems & Machine Learning | GPA: 3.9/4.0
+Thesis: "Optimizing Distributed Query Processing in Large-Scale Databases"
+
+Bachelor of Engineering in Computer Science | Indian Institute of Technology | 2009 - 2013
+GPA: 3.8/4.0 | Dean's List (all semesters)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CERTIFICATIONS & AWARDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ AWS Certified Solutions Architect - Professional (2023)
+✓ Google Cloud Professional Cloud Architect (2022)
+✓ Microsoft Certified: Azure Developer Associate (2021)
+✓ Certified Kubernetes Administrator (CKA) (2020)
+✓ "Top 1% Developer" - Stack Overflow (2019-2024)
+✓ 1st Place - TechCrunch Hackathon San Francisco (2019)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPEN SOURCE & SIDE PROJECTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• React-Query-Builder - NPM package with 50K+ weekly downloads (Maintainer)
+• Next.js Boilerplate - Starter template with 5K+ GitHub stars (Creator)
+• Contributor to: React.js, Node.js, TypeScript, Jest (100+ merged PRs)
+• Tech Blog: alexkumar.io/blog - 50K+ monthly readers on web development topics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGUAGES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+English (Native) | Spanish (Professional) | Hindi (Native) | Mandarin (Basic)

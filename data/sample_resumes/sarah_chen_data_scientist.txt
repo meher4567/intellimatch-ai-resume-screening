@@ -1,0 +1,57 @@
+SARAH CHEN
+sarah.chen@email.com | +1 (555) 987-6543 | Portfolio: sarahchen.dev
+GitHub: github.com/sarahchen | Boston, MA
+
+SUMMARY
+Data Scientist with 3 years of experience in machine learning, NLP, and predictive analytics. Passionate about turning data into actionable insights.
+
+PROFESSIONAL EXPERIENCE
+
+Data Scientist | FinTech Solutions Corp | Mar 2022 - Present
+• Developed fraud detection ML models with 95% accuracy
+• Built NLP pipeline for customer sentiment analysis
+• Created interactive dashboards using Plotly and Streamlit
+• Collaborated with engineering team to deploy models to production
+• Tech Stack: Python, scikit-learn, BERT, spaCy, SQL, Apache Spark
+
+Junior Data Analyst | E-commerce Giant | Jul 2020 - Feb 2022
+• Analyzed customer behavior data to improve conversion rates
+• Created SQL queries and ETL pipelines for data processing
+• Built predictive models for inventory management
+• Presented insights to stakeholders through visualizations
+• Tech Stack: Python, Pandas, SQL, Tableau, Excel
+
+Data Science Intern | Research Lab | Summer 2019
+• Conducted exploratory data analysis on healthcare datasets
+• Implemented machine learning algorithms for disease prediction
+• Wrote technical documentation and research papers
+• Tech Stack: Python, R, NumPy, Matplotlib
+
+EDUCATION
+
+Master of Science in Data Science | MIT | 2018 - 2020
+Thesis: "Deep Learning Approaches for Natural Language Understanding"
+GPA: 3.9/4.0
+
+Bachelor of Science in Statistics | UC Berkeley | 2014 - 2018
+Minor in Computer Science
+GPA: 3.7/4.0
+
+TECHNICAL SKILLS
+
+Languages: Python, R, SQL, Java
+ML/AI: scikit-learn, TensorFlow, PyTorch, Keras, XGBoost, LightGBM
+NLP: NLTK, spaCy, Transformers, BERT, GPT
+Data Tools: Pandas, NumPy, Spark, Airflow, dbt
+Visualization: Matplotlib, Seaborn, Plotly, Tableau, Power BI
+Cloud: AWS (SageMaker, S3, EC2), GCP (BigQuery, Vertex AI)
+Databases: PostgreSQL, MySQL, MongoDB, Snowflake
+
+PUBLICATIONS & AWARDS
+• Published paper at NeurIPS 2023: "Efficient Fine-tuning of Large Language Models"
+• Kaggle Expert (Top 2% in competitions)
+• MIT Data Science Hackathon - 1st Place (2019)
+
+CERTIFICATIONS
+• TensorFlow Developer Certificate (2023)
+• AWS Certified Machine Learning - Specialty (2022)
