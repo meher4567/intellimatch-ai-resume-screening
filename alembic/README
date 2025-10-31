@@ -1,0 +1,6 @@
+Alembic migration environment for IntelliMatch AI Resume Screening project.
+
+- Use `alembic revision --autogenerate -m "Initial migration"` to create migration scripts.
+- Use `alembic upgrade head` to apply migrations to the database.
+
+See Alembic documentation for details: https://alembic.sqlalchemy.org/en/latest/
