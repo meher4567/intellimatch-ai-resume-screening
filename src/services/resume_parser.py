@@ -12,6 +12,10 @@ from .docx_extractor import DOCXExtractor, extract_text_from_docx
 from .section_detector import SectionDetector
 from .contact_extractor import ContactExtractor
 from .name_extractor import NameExtractor
+from .quality_scorer import QualityScorer
+
+# Import ML-based extractors
+from ..ml import HybridNameExtractor, SkillEmbedder, OrganizationExtractor
 
 logger = logging.getLogger(__name__)
 
@@ -21,13 +25,27 @@ class ResumeParser:
     Main resume parser that handles multiple file formats
     """
     
-    def __init__(self, detect_sections: bool = True, extract_contact: bool = True, extract_name: bool = True):
+    def __init__(self, detect_sections: bool = True, extract_contact: bool = True, extract_name: bool = True, assess_quality: bool = True, use_ml: bool = True):
         """Initialize resume parser with extractors"""
         self.pdf_extractor = PDFExtractor()
         self.docx_extractor = DOCXExtractor()
         self.section_detector = SectionDetector() if detect_sections else None
         self.contact_extractor = ContactExtractor() if extract_contact else None
-        self.name_extractor = NameExtractor() if extract_name else None
+        
+        # Use ML-based extractors if enabled
+        self.use_ml = use_ml
+        if use_ml and extract_name:
+            logger.info("Using ML-based extractors (name, skills, organizations)")
+            self.name_extractor = HybridNameExtractor()
+            self.skill_extractor = SkillEmbedder()
+            self.org_extractor = OrganizationExtractor()
+        else:
+            logger.info("Using rule-based extractors only")
+            self.name_extractor = NameExtractor() if extract_name else None
+            self.skill_extractor = None
+            self.org_extractor = None
+        
+        self.quality_scorer = QualityScorer() if assess_quality else None
         
         self.supported_formats = {
             '.pdf': 'pdf',
@@ -117,8 +135,64 @@ class ResumeParser:
                 
                 # Extract name if enabled
                 if self.name_extractor:
-                    name = self.name_extractor.extract_name(result['text'])
-                    result['name'] = name
+                    if self.use_ml:
+                        # Use hybrid ML+rules extraction
+                        name_result = self.name_extractor.extract_with_details(result['text'])
+                        result['name'] = name_result['name']
+                        result['name_extraction'] = {
+                            'method': name_result['method'],
+                            'confidence': name_result.get('confidence'),
+                            'ml_enabled': True
+                        }
+                    else:
+                        # Use rule-based extraction
+                        name = self.name_extractor.extract_name(result['text'])
+                        result['name'] = name
+                        result['name_extraction'] = {
+                            'method': 'rules',
+                            'ml_enabled': False
+                        }
+                
+                # Extract skills using semantic matching if ML enabled
+                if self.use_ml and self.skill_extractor:
+                    skills_result = self.skill_extractor.extract_skills_hybrid(result['text'])
+                    categorized = self.skill_extractor.categorize_skills(skills_result)
+                    stats = self.skill_extractor.get_skill_stats(skills_result)
+                    
+                    result['skills'] = {
+                        'all_skills': [s.skill for s in skills_result],
+                        'by_category': categorized,  # Already in correct format: Dict[str, List[str]]
+                        'detailed': [{'skill': s.skill, 'confidence': s.confidence, 
+                                     'matched_text': s.matched_text, 'category': s.category} 
+                                    for s in skills_result],  # Convert to dict for JSON serialization
+                        'stats': stats,
+                        'extraction_method': 'hybrid_ml_semantic'
+                    }
+                
+                # Extract organizations/companies if ML enabled
+                if self.use_ml and self.org_extractor:
+                    # Sections are already dicts with 'content' key
+                    sections_dict = {name: section['content'] for name, section in result.get('sections', {}).items()} if 'sections' in result else None
+                    orgs_result = self.org_extractor.extract_organizations(result['text'], sections_dict)
+                    companies = self.org_extractor.extract_companies(result['text'], sections_dict)
+                    universities = self.org_extractor.extract_universities(result['text'], sections_dict)
+                    org_summary = self.org_extractor.get_organization_summary(orgs_result)
+                    
+                    result['organizations'] = {
+                        'all': [o.name for o in orgs_result],
+                        'companies': [c.name for c in companies],
+                        'universities': [u.name for u in universities],
+                        'detailed': [{'name': o.name, 'category': o.category, 
+                                     'confidence': o.confidence, 'section': o.section} 
+                                    for o in orgs_result],
+                        'summary': org_summary,
+                        'extraction_method': 'ner_ml'
+                    }
+                
+                # Assess quality if enabled (only for PDFs)
+                if self.quality_scorer and result.get('file_type') == 'pdf':
+                    quality = self.quality_scorer.assess_quality(str(file_path), result['text'])
+                    result['quality'] = quality.to_dict()
             
             return result
             

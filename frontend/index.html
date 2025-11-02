@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliMatch - AI Resume Screening</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab:hover {
+            color: #667eea;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            border: 3px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload:hover {
+            border-color: #667eea;
+            background: #f5f7ff;
+        }
+
+        .file-upload.dragover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .candidate-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .candidate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .candidate-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .score {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .tier-S { background: #ffd700; color: #000; }
+        .tier-A { background: #c0c0c0; color: #000; }
+        .tier-B { background: #cd7f32; color: #fff; }
+        .tier-C { background: #4caf50; color: #fff; }
+        .tier-D { background: #ff9800; color: #fff; }
+        .tier-F { background: #f44336; color: #fff; }
+
+        .match-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .match-stat {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .match-stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .match-stat-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .explanation {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 IntelliMatch</h1>
+            <p class="subtitle">AI-Powered Resume Screening & Candidate Matching</p>
+        </header>
+
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('upload')">📄 Upload Resumes</button>
+                <button class="tab" onclick="switchTab('job')">💼 Create Job</button>
+                <button class="tab" onclick="switchTab('match')">🔍 Find Matches</button>
+                <button class="tab" onclick="switchTab('stats')">📊 Statistics</button>
+            </div>
+
+            <!-- Upload Resumes Tab -->
+            <div id="upload-tab" class="tab-content active">
+                <h2>Upload Resumes</h2>
+                <div class="form-group">
+                    <div class="file-upload" id="dropZone">
+                        <p>📁 Drag and drop resume files here</p>
+                        <p style="margin: 10px 0;">or</p>
+                        <input type="file" id="resumeFiles" multiple accept=".pdf,.docx,.doc" style="display: none;">
+                        <button class="btn" onclick="document.getElementById('resumeFiles').click()">
+                            Choose Files
+                        </button>
+                    </div>
+                    <div id="fileList" style="margin-top: 20px;"></div>
+                </div>
+                <button class="btn" onclick="uploadResumes()" id="uploadBtn">
+                    Upload & Process
+                </button>
+                <div id="uploadResults"></div>
+            </div>
+
+            <!-- Create Job Tab -->
+            <div id="job-tab" class="tab-content">
+                <h2>Create Job Posting</h2>
+                <form id="jobForm">
+                    <div class="form-group">
+                        <label>Job Title *</label>
+                        <input type="text" id="jobTitle" required placeholder="e.g., Senior Software Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label>Company *</label>
+                        <input type="text" id="company" required placeholder="e.g., TechCorp Inc.">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Description *</label>
+                        <textarea id="jobDescription" required placeholder="Enter full job description..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Required Skills (comma-separated)</label>
+                        <input type="text" id="requiredSkills" placeholder="e.g., Python, Django, AWS">
+                    </div>
+                    <div class="form-group">
+                        <label>Minimum Experience (years)</label>
+                        <input type="number" id="minExperience" min="0" placeholder="e.g., 3">
+                    </div>
+                    <button type="submit" class="btn">Create Job</button>
+                </form>
+                <div id="jobResults"></div>
+            </div>
+
+            <!-- Find Matches Tab -->
+            <div id="match-tab" class="tab-content">
+                <h2>Find Matching Candidates</h2>
+                <div class="form-group">
+                    <label>Select Job</label>
+                    <select id="jobSelect">
+                        <option value="">Loading jobs...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Number of Candidates</label>
+                    <input type="number" id="topK" value="10" min="1" max="100">
+                </div>
+                <button class="btn" onclick="findMatches()">Find Matches</button>
+                <div id="matchResults" class="results"></div>
+            </div>
+
+            <!-- Statistics Tab -->
+            <div id="stats-tab" class="tab-content">
+                <h2>System Statistics</h2>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalResumes">-</div>
+                        <div class="stat-label">Total Resumes</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalJobs">-</div>
+                        <div class="stat-label">Total Jobs</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalMatches">-</div>
+                        <div class="stat-label">Total Matches</div>
+                    </div>
+                </div>
+                <button class="btn" onclick="loadStats()" style="margin-top: 20px;">Refresh Stats</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        let selectedFiles = [];
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+
+            if (tabName === 'match') {
+                loadJobs();
+            } else if (tabName === 'stats') {
+                loadStats();
+            }
+        }
+
+        // File upload
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('resumeFiles');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            selectedFiles = Array.from(e.dataTransfer.files);
+            updateFileList();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            selectedFiles = Array.from(e.target.files);
+            updateFileList();
+        });
+
+        function updateFileList() {
+            const fileList = document.getElementById('fileList');
+            if (selectedFiles.length === 0) {
+                fileList.innerHTML = '';
+                return;
+            }
+            
+            fileList.innerHTML = '<h3>Selected Files:</h3>' +
+                selectedFiles.map(f => `<div>📄 ${f.name}</div>`).join('');
+        }
+
+        async function uploadResumes() {
+            if (selectedFiles.length === 0) {
+                alert('Please select files to upload');
+                return;
+            }
+
+            const uploadBtn = document.getElementById('uploadBtn');
+            const resultsDiv = document.getElementById('uploadResults');
+            
+            uploadBtn.disabled = true;
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Uploading and processing resumes...</p></div>';
+
+            const formData = new FormData();
+            selectedFiles.forEach(file => {
+                formData.append('files', file);
+            });
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/resumes/batch-upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                resultsDiv.innerHTML = `
+                    <div class="success-message">
+                        ✅ Successfully processed ${data.successful} out of ${data.total} resumes!
+                    </div>
+                `;
+
+                selectedFiles = [];
+                updateFileList();
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error-message">❌ Error: ${error.message}</div>`;
+            } finally {
+                uploadBtn.disabled = false;
+            }
+        }
+
+        // Job creation
+        document.getElementById('jobForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const resultsDiv = document.getElementById('jobResults');
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Creating job...</p></div>';
+
+            const jobData = {
+                title: document.getElementById('jobTitle').value,
+                company: document.getElementById('company').value,
+                description: document.getElementById('jobDescription').value,
+                required_skills: document.getElementById('requiredSkills').value.split(',').map(s => s.trim()).filter(s => s),
+                min_experience_years: parseInt(document.getElementById('minExperience').value) || null
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/jobs/create`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(jobData)
+                });
+
+                const data = await response.json();
+                
+                resultsDiv.innerHTML = `
+                    <div class="success-message">
+                        ✅ Job created successfully!<br>
+                        Job ID: ${data.job_id}
+                    </div>
+                `;
+
+                document.getElementById('jobForm').reset();
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error-message">❌ Error: ${error.message}</div>`;
+            }
+        });
+
+        // Load jobs
+        async function loadJobs() {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/jobs`);
+                const jobs = await response.json();
+                
+                const select = document.getElementById('jobSelect');
+                select.innerHTML = '<option value="">Select a job...</option>' +
+                    jobs.map(job => `<option value="${job.job_id}">${job.title} - ${job.company}</option>`).join('');
+                    
+            } catch (error) {
+                console.error('Failed to load jobs:', error);
+            }
+        }
+
+        // Find matches
+        async function findMatches() {
+            const jobId = document.getElementById('jobSelect').value;
+            const topK = parseInt(document.getElementById('topK').value);
+            
+            if (!jobId) {
+                alert('Please select a job');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('matchResults');
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Finding matching candidates...</p></div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/matches/find`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ job_id: jobId, top_k: topK })
+                });
+
+                const candidates = await response.json();
+                
+                if (candidates.length === 0) {
+                    resultsDiv.innerHTML = '<p>No matching candidates found.</p>';
+                    return;
+                }
+
+                resultsDiv.innerHTML = `
+                    <h3>Top ${candidates.length} Candidates</h3>
+                    ${candidates.map((candidate, index) => `
+                        <div class="candidate-card">
+                            <div class="candidate-header">
+                                <div>
+                                    <span class="candidate-name">#${index + 1} ${candidate.name}</span>
+                                    <span class="tier-badge tier-${candidate.tier}">${candidate.tier}-Tier</span>
+                                </div>
+                                <span class="score">${candidate.score}/100</span>
+                            </div>
+                            <div class="match-details">
+                                <div class="match-stat">
+                                    <div class="match-stat-label">Skills Match</div>
+                                    <div class="match-stat-value">${candidate.skills_match}%</div>
+                                </div>
+                                <div class="match-stat">
+                                    <div class="match-stat-label">Experience Match</div>
+                                    <div class="match-stat-value">${candidate.experience_match}%</div>
+                                </div>
+                                <div class="match-stat">
+                                    <div class="match-stat-label">Education Match</div>
+                                    <div class="match-stat-value">${candidate.education_match}%</div>
+                                </div>
+                            </div>
+                            <div class="explanation">${candidate.explanation}</div>
+                        </div>
+                    `).join('')}
+                `;
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error-message">❌ Error: ${error.message}</div>`;
+            }
+        }
+
+        // Load stats
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/stats`);
+                const stats = await response.json();
+                
+                document.getElementById('totalResumes').textContent = stats.total_resumes;
+                document.getElementById('totalJobs').textContent = stats.total_jobs;
+                document.getElementById('totalMatches').textContent = stats.total_matches;
+                
+            } catch (error) {
+                console.error('Failed to load stats:', error);
+            }
+        }
+
+        // Load initial data
+        loadStats();
+    </script>
+</body>
+</html>

@@ -89,15 +89,44 @@ By building this platform, you'll master:
 
 ## 📖 Documentation
 
-- [Master Plan](PROJECT_MASTER_PLAN.md) - Complete project roadmap and technical specifications
-- [Phase 1 Features](PHASE1_ENHANCED_FEATURES.md) - Detailed feature list for Phase 1
+### Essential Docs
+- **[PHASE1B_STATUS_FOR_NEXT_SESSION.md](PHASE1B_STATUS_FOR_NEXT_SESSION.md)** - **READ THIS FIRST** - Current status and next steps
+- [PROJECT_MASTER_PLAN.md](PROJECT_MASTER_PLAN.md) - Complete project roadmap
+- [QUICKSTART.md](QUICKSTART.md) - Quick start guide
+- [tests/README.md](tests/README.md) - Test suite documentation
+
+### Phase Documentation
+- [PHASE1_ENHANCED_FEATURES.md](PHASE1_ENHANCED_FEATURES.md) - Phase 1 detailed specs
+- [PHASE1_DETAILED_PLAN.md](PHASE1_DETAILED_PLAN.md) - Phase 1 implementation plan
+- [PHASE2_DETAILED_PLAN.md](PHASE2_DETAILED_PLAN.md) - Phase 2 plan
+- [PHASE3_DETAILED_PLAN.md](PHASE3_DETAILED_PLAN.md) - Phase 3 plan
+- [PHASE4_DETAILED_PLAN.md](PHASE4_DETAILED_PLAN.md) - Phase 4 plan
+- [PHASE5_DETAILED_PLAN.md](PHASE5_DETAILED_PLAN.md) - Phase 5 plan
 
 ## 🗺️ Roadmap
 
-- [x] Project planning and architecture design
-- [ ] Phase 1: Core ML engine and basic API
-- [ ] Phase 2: Advanced features and UI
-- [ ] Phase 3: Production deployment and optimization
+### ✅ Phase 1: Core ML Engine (85% Complete)
+- [x] Document parsing (PDF/DOCX) - 98.6% success rate
+- [x] Hybrid ML+Rule extraction (NER + heuristics)
+- [x] Semantic skill matching - 700% improvement
+- [x] Resume quality scoring (1-10 scale)
+- [x] Experience level classifier (Entry/Mid/Senior/Expert)
+- [x] Multi-factor scoring system
+- [x] Candidate ranking (S/A/B/C/D tiers)
+- [x] Vector search with FAISS
+- [ ] Enhanced explanations (LIME/SHAP) - In Progress
+- [ ] Phase 1 API integration
+
+### 📋 Phase 2: Advanced Features
+- [ ] Frontend dashboard
+- [ ] Batch processing
+- [ ] Analytics & reporting
+- [ ] Email notifications
+
+### 🚀 Phase 3: Production
+- [ ] Docker deployment
+- [ ] Performance optimization
+- [ ] Monitoring & logging
 
 ## 🤝 Contributing
 
