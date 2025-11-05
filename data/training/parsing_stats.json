@@ -1,0 +1,127 @@
+{
+  "total": 2484,
+  "success": 2484,
+  "failed": 0,
+  "by_category": {
+    "ACCOUNTANT": {
+      "success": 118,
+      "failed": 0,
+      "errors": []
+    },
+    "ADVOCATE": {
+      "success": 118,
+      "failed": 0,
+      "errors": []
+    },
+    "AGRICULTURE": {
+      "success": 63,
+      "failed": 0,
+      "errors": []
+    },
+    "APPAREL": {
+      "success": 97,
+      "failed": 0,
+      "errors": []
+    },
+    "ARTS": {
+      "success": 103,
+      "failed": 0,
+      "errors": []
+    },
+    "AUTOMOBILE": {
+      "success": 36,
+      "failed": 0,
+      "errors": []
+    },
+    "AVIATION": {
+      "success": 117,
+      "failed": 0,
+      "errors": []
+    },
+    "BANKING": {
+      "success": 115,
+      "failed": 0,
+      "errors": []
+    },
+    "BPO": {
+      "success": 22,
+      "failed": 0,
+      "errors": []
+    },
+    "BUSINESS-DEVELOPMENT": {
+      "success": 120,
+      "failed": 0,
+      "errors": []
+    },
+    "CHEF": {
+      "success": 118,
+      "failed": 0,
+      "errors": []
+    },
+    "CONSTRUCTION": {
+      "success": 112,
+      "failed": 0,
+      "errors": []
+    },
+    "CONSULTANT": {
+      "success": 115,
+      "failed": 0,
+      "errors": []
+    },
+    "DESIGNER": {
+      "success": 107,
+      "failed": 0,
+      "errors": []
+    },
+    "DIGITAL-MEDIA": {
+      "success": 96,
+      "failed": 0,
+      "errors": []
+    },
+    "ENGINEERING": {
+      "success": 118,
+      "failed": 0,
+      "errors": []
+    },
+    "FINANCE": {
+      "success": 118,
+      "failed": 0,
+      "errors": []
+    },
+    "FITNESS": {
+      "success": 117,
+      "failed": 0,
+      "errors": []
+    },
+    "HEALTHCARE": {
+      "success": 115,
+      "failed": 0,
+      "errors": []
+    },
+    "HR": {
+      "success": 110,
+      "failed": 0,
+      "errors": []
+    },
+    "INFORMATION-TECHNOLOGY": {
+      "success": 120,
+      "failed": 0,
+      "errors": []
+    },
+    "PUBLIC-RELATIONS": {
+      "success": 111,
+      "failed": 0,
+      "errors": []
+    },
+    "SALES": {
+      "success": 116,
+      "failed": 0,
+      "errors": []
+    },
+    "TEACHER": {
+      "success": 102,
+      "failed": 0,
+      "errors": []
+    }
+  }
+}

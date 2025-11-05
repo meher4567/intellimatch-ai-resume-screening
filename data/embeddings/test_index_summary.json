@@ -1,0 +1,7 @@
+{
+  "name": "test_index",
+  "total_resumes": 5,
+  "embedding_dim": 384,
+  "metric": "cosine",
+  "saved_at": "2025-11-01T04:52:28.543250"
+}

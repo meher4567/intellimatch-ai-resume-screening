@@ -1,0 +1,193 @@
+{
+  "programming_languages": [
+    {"name": "Python", "aliases": ["python", "py"], "category": "programming"},
+    {"name": "Java", "aliases": ["java"], "category": "programming"},
+    {"name": "JavaScript", "aliases": ["javascript", "js", "node.js", "nodejs", "node"], "category": "programming"},
+    {"name": "TypeScript", "aliases": ["typescript", "ts"], "category": "programming"},
+    {"name": "C++", "aliases": ["c++", "cpp", "cplusplus"], "category": "programming"},
+    {"name": "C", "aliases": ["c"], "category": "programming"},
+    {"name": "C#", "aliases": ["c#", "csharp", "c-sharp"], "category": "programming"},
+    {"name": "Go", "aliases": ["go", "golang"], "category": "programming"},
+    {"name": "Rust", "aliases": ["rust"], "category": "programming"},
+    {"name": "Ruby", "aliases": ["ruby"], "category": "programming"},
+    {"name": "PHP", "aliases": ["php"], "category": "programming"},
+    {"name": "Swift", "aliases": ["swift"], "category": "programming"},
+    {"name": "Kotlin", "aliases": ["kotlin"], "category": "programming"},
+    {"name": "Scala", "aliases": ["scala"], "category": "programming"},
+    {"name": "R", "aliases": ["r", "r-lang"], "category": "programming"},
+    {"name": "MATLAB", "aliases": ["matlab"], "category": "programming"},
+    {"name": "Perl", "aliases": ["perl"], "category": "programming"},
+    {"name": "Shell Script", "aliases": ["bash", "shell", "sh", "zsh"], "category": "programming"},
+    {"name": "SQL", "aliases": ["sql"], "category": "programming"},
+    {"name": "Dart", "aliases": ["dart"], "category": "programming"},
+    {"name": "Objective-C", "aliases": ["objective-c", "objc"], "category": "programming"},
+    {"name": "Groovy", "aliases": ["groovy"], "category": "programming"},
+    {"name": "Lua", "aliases": ["lua"], "category": "programming"},
+    {"name": "Haskell", "aliases": ["haskell"], "category": "programming"},
+    {"name": "Elixir", "aliases": ["elixir"], "category": "programming"}
+  ],
+  
+  "web_frameworks": [
+    {"name": "React", "aliases": ["react", "reactjs", "react.js"], "category": "web_framework"},
+    {"name": "Angular", "aliases": ["angular", "angularjs"], "category": "web_framework"},
+    {"name": "Vue.js", "aliases": ["vue", "vue.js", "vuejs"], "category": "web_framework"},
+    {"name": "Django", "aliases": ["django"], "category": "web_framework"},
+    {"name": "Flask", "aliases": ["flask"], "category": "web_framework"},
+    {"name": "FastAPI", "aliases": ["fastapi", "fast api"], "category": "web_framework"},
+    {"name": "Spring", "aliases": ["spring", "spring boot", "springboot"], "category": "web_framework"},
+    {"name": "Express.js", "aliases": ["express", "express.js", "expressjs"], "category": "web_framework"},
+    {"name": "Next.js", "aliases": ["next", "next.js", "nextjs"], "category": "web_framework"},
+    {"name": "Nuxt.js", "aliases": ["nuxt", "nuxt.js", "nuxtjs"], "category": "web_framework"},
+    {"name": "Laravel", "aliases": ["laravel"], "category": "web_framework"},
+    {"name": "Ruby on Rails", "aliases": ["rails", "ruby on rails", "ror"], "category": "web_framework"},
+    {"name": "ASP.NET", "aliases": ["asp.net", "aspnet", "asp net"], "category": "web_framework"},
+    {"name": "Svelte", "aliases": ["svelte", "sveltejs"], "category": "web_framework"},
+    {"name": "Nest.js", "aliases": ["nest", "nestjs", "nest.js"], "category": "web_framework"}
+  ],
+  
+  "ml_frameworks": [
+    {"name": "TensorFlow", "aliases": ["tensorflow", "tf"], "category": "ml_framework"},
+    {"name": "PyTorch", "aliases": ["pytorch", "torch"], "category": "ml_framework"},
+    {"name": "Keras", "aliases": ["keras"], "category": "ml_framework"},
+    {"name": "Scikit-learn", "aliases": ["sklearn", "scikit-learn", "scikit learn"], "category": "ml_framework"},
+    {"name": "XGBoost", "aliases": ["xgboost", "xgb"], "category": "ml_framework"},
+    {"name": "LightGBM", "aliases": ["lightgbm", "lgbm"], "category": "ml_framework"},
+    {"name": "CatBoost", "aliases": ["catboost"], "category": "ml_framework"},
+    {"name": "Hugging Face", "aliases": ["huggingface", "hugging face", "transformers"], "category": "ml_framework"},
+    {"name": "spaCy", "aliases": ["spacy"], "category": "ml_framework"},
+    {"name": "NLTK", "aliases": ["nltk"], "category": "ml_framework"},
+    {"name": "OpenCV", "aliases": ["opencv", "cv2"], "category": "ml_framework"},
+    {"name": "Pandas", "aliases": ["pandas"], "category": "ml_framework"},
+    {"name": "NumPy", "aliases": ["numpy"], "category": "ml_framework"},
+    {"name": "Matplotlib", "aliases": ["matplotlib"], "category": "ml_framework"},
+    {"name": "Seaborn", "aliases": ["seaborn"], "category": "ml_framework"},
+    {"name": "Plotly", "aliases": ["plotly"], "category": "ml_framework"}
+  ],
+  
+  "databases": [
+    {"name": "PostgreSQL", "aliases": ["postgresql", "postgres", "psql"], "category": "database"},
+    {"name": "MySQL", "aliases": ["mysql"], "category": "database"},
+    {"name": "MongoDB", "aliases": ["mongodb", "mongo"], "category": "database"},
+    {"name": "Redis", "aliases": ["redis"], "category": "database"},
+    {"name": "SQLite", "aliases": ["sqlite"], "category": "database"},
+    {"name": "Oracle", "aliases": ["oracle", "oracle db"], "category": "database"},
+    {"name": "Microsoft SQL Server", "aliases": ["sql server", "mssql", "ms sql"], "category": "database"},
+    {"name": "Cassandra", "aliases": ["cassandra"], "category": "database"},
+    {"name": "DynamoDB", "aliases": ["dynamodb"], "category": "database"},
+    {"name": "Elasticsearch", "aliases": ["elasticsearch", "elastic"], "category": "database"},
+    {"name": "Neo4j", "aliases": ["neo4j"], "category": "database"},
+    {"name": "CouchDB", "aliases": ["couchdb"], "category": "database"},
+    {"name": "MariaDB", "aliases": ["mariadb"], "category": "database"},
+    {"name": "Firebase", "aliases": ["firebase"], "category": "database"}
+  ],
+  
+  "cloud_platforms": [
+    {"name": "AWS", "aliases": ["aws", "amazon web services"], "category": "cloud"},
+    {"name": "Azure", "aliases": ["azure", "microsoft azure"], "category": "cloud"},
+    {"name": "Google Cloud Platform", "aliases": ["gcp", "google cloud", "google cloud platform"], "category": "cloud"},
+    {"name": "Heroku", "aliases": ["heroku"], "category": "cloud"},
+    {"name": "DigitalOcean", "aliases": ["digitalocean", "digital ocean"], "category": "cloud"},
+    {"name": "Alibaba Cloud", "aliases": ["alibaba cloud", "aliyun"], "category": "cloud"},
+    {"name": "IBM Cloud", "aliases": ["ibm cloud"], "category": "cloud"}
+  ],
+  
+  "aws_services": [
+    {"name": "EC2", "aliases": ["ec2", "aws ec2"], "category": "aws_service"},
+    {"name": "S3", "aliases": ["s3", "aws s3"], "category": "aws_service"},
+    {"name": "Lambda", "aliases": ["lambda", "aws lambda"], "category": "aws_service"},
+    {"name": "RDS", "aliases": ["rds", "aws rds"], "category": "aws_service"},
+    {"name": "ECS", "aliases": ["ecs", "aws ecs"], "category": "aws_service"},
+    {"name": "EKS", "aliases": ["eks", "aws eks"], "category": "aws_service"},
+    {"name": "CloudFront", "aliases": ["cloudfront", "aws cloudfront"], "category": "aws_service"},
+    {"name": "SageMaker", "aliases": ["sagemaker", "aws sagemaker"], "category": "aws_service"},
+    {"name": "DynamoDB", "aliases": ["dynamodb", "aws dynamodb"], "category": "aws_service"}
+  ],
+  
+  "devops_tools": [
+    {"name": "Docker", "aliases": ["docker"], "category": "devops"},
+    {"name": "Kubernetes", "aliases": ["kubernetes", "k8s"], "category": "devops"},
+    {"name": "Jenkins", "aliases": ["jenkins"], "category": "devops"},
+    {"name": "GitHub Actions", "aliases": ["github actions", "gh actions"], "category": "devops"},
+    {"name": "GitLab CI", "aliases": ["gitlab ci", "gitlab", "gitlab ci/cd"], "category": "devops"},
+    {"name": "CircleCI", "aliases": ["circleci", "circle ci"], "category": "devops"},
+    {"name": "Travis CI", "aliases": ["travis", "travis ci"], "category": "devops"},
+    {"name": "Terraform", "aliases": ["terraform"], "category": "devops"},
+    {"name": "Ansible", "aliases": ["ansible"], "category": "devops"},
+    {"name": "Chef", "aliases": ["chef"], "category": "devops"},
+    {"name": "Puppet", "aliases": ["puppet"], "category": "devops"},
+    {"name": "Nginx", "aliases": ["nginx"], "category": "devops"},
+    {"name": "Apache", "aliases": ["apache"], "category": "devops"}
+  ],
+  
+  "version_control": [
+    {"name": "Git", "aliases": ["git"], "category": "version_control"},
+    {"name": "GitHub", "aliases": ["github"], "category": "version_control"},
+    {"name": "GitLab", "aliases": ["gitlab"], "category": "version_control"},
+    {"name": "Bitbucket", "aliases": ["bitbucket"], "category": "version_control"},
+    {"name": "SVN", "aliases": ["svn", "subversion"], "category": "version_control"}
+  ],
+  
+  "testing_tools": [
+    {"name": "Pytest", "aliases": ["pytest"], "category": "testing"},
+    {"name": "Jest", "aliases": ["jest"], "category": "testing"},
+    {"name": "JUnit", "aliases": ["junit"], "category": "testing"},
+    {"name": "Selenium", "aliases": ["selenium"], "category": "testing"},
+    {"name": "Cypress", "aliases": ["cypress"], "category": "testing"},
+    {"name": "TestNG", "aliases": ["testng"], "category": "testing"},
+    {"name": "Mocha", "aliases": ["mocha"], "category": "testing"},
+    {"name": "Chai", "aliases": ["chai"], "category": "testing"},
+    {"name": "Postman", "aliases": ["postman"], "category": "testing"}
+  ],
+  
+  "mobile_development": [
+    {"name": "React Native", "aliases": ["react native", "react-native"], "category": "mobile"},
+    {"name": "Flutter", "aliases": ["flutter"], "category": "mobile"},
+    {"name": "iOS Development", "aliases": ["ios", "ios dev", "ios development"], "category": "mobile"},
+    {"name": "Android Development", "aliases": ["android", "android dev", "android development"], "category": "mobile"},
+    {"name": "Xamarin", "aliases": ["xamarin"], "category": "mobile"},
+    {"name": "Ionic", "aliases": ["ionic"], "category": "mobile"}
+  ],
+  
+  "data_science": [
+    {"name": "Machine Learning", "aliases": ["machine learning", "ml"], "category": "data_science"},
+    {"name": "Deep Learning", "aliases": ["deep learning", "dl"], "category": "data_science"},
+    {"name": "Natural Language Processing", "aliases": ["nlp", "natural language processing"], "category": "data_science"},
+    {"name": "Computer Vision", "aliases": ["computer vision", "cv"], "category": "data_science"},
+    {"name": "Data Analysis", "aliases": ["data analysis"], "category": "data_science"},
+    {"name": "Data Visualization", "aliases": ["data visualization", "data viz"], "category": "data_science"},
+    {"name": "Statistical Analysis", "aliases": ["statistics", "statistical analysis", "stats"], "category": "data_science"},
+    {"name": "Time Series Analysis", "aliases": ["time series", "time series analysis"], "category": "data_science"},
+    {"name": "A/B Testing", "aliases": ["a/b testing", "ab testing"], "category": "data_science"}
+  ],
+  
+  "soft_skills": [
+    {"name": "Leadership", "aliases": ["leadership", "team lead", "leading"], "category": "soft_skill"},
+    {"name": "Communication", "aliases": ["communication", "communicating"], "category": "soft_skill"},
+    {"name": "Problem Solving", "aliases": ["problem solving", "problem-solving"], "category": "soft_skill"},
+    {"name": "Teamwork", "aliases": ["teamwork", "team work", "collaboration"], "category": "soft_skill"},
+    {"name": "Project Management", "aliases": ["project management", "pm"], "category": "soft_skill"},
+    {"name": "Agile", "aliases": ["agile", "scrum", "kanban"], "category": "soft_skill"},
+    {"name": "Critical Thinking", "aliases": ["critical thinking"], "category": "soft_skill"},
+    {"name": "Time Management", "aliases": ["time management"], "category": "soft_skill"},
+    {"name": "Mentoring", "aliases": ["mentoring", "mentorship", "coaching"], "category": "soft_skill"}
+  ],
+  
+  "other_tools": [
+    {"name": "VS Code", "aliases": ["vscode", "vs code", "visual studio code"], "category": "tool"},
+    {"name": "IntelliJ IDEA", "aliases": ["intellij", "intellij idea"], "category": "tool"},
+    {"name": "PyCharm", "aliases": ["pycharm"], "category": "tool"},
+    {"name": "Eclipse", "aliases": ["eclipse"], "category": "tool"},
+    {"name": "Vim", "aliases": ["vim"], "category": "tool"},
+    {"name": "Jira", "aliases": ["jira"], "category": "tool"},
+    {"name": "Confluence", "aliases": ["confluence"], "category": "tool"},
+    {"name": "Slack", "aliases": ["slack"], "category": "tool"},
+    {"name": "Jupyter Notebook", "aliases": ["jupyter", "jupyter notebook"], "category": "tool"},
+    {"name": "GraphQL", "aliases": ["graphql"], "category": "tool"},
+    {"name": "REST API", "aliases": ["rest", "rest api", "restful"], "category": "tool"},
+    {"name": "Microservices", "aliases": ["microservices", "micro-services"], "category": "tool"},
+    {"name": "Webpack", "aliases": ["webpack"], "category": "tool"},
+    {"name": "Babel", "aliases": ["babel"], "category": "tool"},
+    {"name": "ESLint", "aliases": ["eslint"], "category": "tool"},
+    {"name": "Prettier", "aliases": ["prettier"], "category": "tool"}
+  ]
+}

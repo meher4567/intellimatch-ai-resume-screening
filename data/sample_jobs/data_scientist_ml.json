@@ -1,0 +1,15 @@
+{
+  "job_id": "ds_001",
+  "title": "Data Scientist - Machine Learning",
+  "company": "AI Innovations Lab",
+  "description": "AI Innovations Lab is looking for a talented Data Scientist to join our ML team. You'll work on cutting-edge machine learning projects that drive business impact.\n\nResponsibilities:\n• Develop and deploy machine learning models for prediction and classification tasks\n• Analyze large datasets to extract actionable insights\n• Build data pipelines using Python, Pandas, and Spark\n• Collaborate with engineers to integrate ML models into production\n• Present findings to stakeholders and business teams\n• Conduct A/B tests to evaluate model performance\n• Stay up-to-date with latest ML research and techniques\n\nRequirements:\n• 3+ years of experience in data science or machine learning\n• Strong programming skills in Python (NumPy, Pandas, scikit-learn)\n• Experience with machine learning frameworks (TensorFlow or PyTorch)\n• Solid understanding of statistics and probability\n• Experience with SQL and data manipulation\n• Familiarity with cloud platforms (AWS, Azure, or GCP)\n• Master's degree in Computer Science, Statistics, or related field preferred\n• Strong analytical and problem-solving skills\n\nNice to Have:\n• PhD in Machine Learning, Statistics, or related field\n• Experience with deep learning (NLP, Computer Vision)\n• Knowledge of MLOps and model deployment\n• Experience with Spark and big data technologies\n• Published research papers or conference presentations\n\nBenefits:\n• Salary range: $130,000 - $170,000\n• Comprehensive health benefits\n• 401(k) with company match\n• Fully remote position\n• Annual learning and development stipend ($3,000)\n• Conference attendance opportunities\n• Equity compensation",
+  "location": "Remote",
+  "remote_policy": "remote",
+  "required_skills": ["Python", "Machine Learning", "TensorFlow", "PyTorch", "SQL", "Pandas", "scikit-learn"],
+  "optional_skills": ["Deep Learning", "NLP", "Computer Vision", "Spark", "AWS", "Azure", "GCP"],
+  "required_experience_years": 3,
+  "experience_level": "mid",
+  "education_level": "Master's",
+  "salary_min": 130000,
+  "salary_max": 170000
+}

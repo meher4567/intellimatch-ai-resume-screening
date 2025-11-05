@@ -15,7 +15,7 @@ from .name_extractor import NameExtractor
 from .quality_scorer import QualityScorer
 
 # Import ML-based extractors
-from ..ml import HybridNameExtractor, SkillEmbedder, OrganizationExtractor
+from ..ml import HybridNameExtractor, SkillEmbedder, OrganizationExtractor, DynamicSkillExtractor
 
 logger = logging.getLogger(__name__)
 
@@ -37,11 +37,14 @@ class ResumeParser:
         if use_ml and extract_name:
             logger.info("Using ML-based extractors (name, skills, organizations)")
             self.name_extractor = HybridNameExtractor()
-            self.skill_extractor = SkillEmbedder()
+            # Use both: Dynamic extractor for broad coverage + Semantic for matching
+            self.dynamic_skill_extractor = DynamicSkillExtractor()
+            self.skill_extractor = SkillEmbedder()  # Keep for semantic matching
             self.org_extractor = OrganizationExtractor()
         else:
             logger.info("Using rule-based extractors only")
             self.name_extractor = NameExtractor() if extract_name else None
+            self.dynamic_skill_extractor = None
             self.skill_extractor = None
             self.org_extractor = None
         
@@ -153,20 +156,22 @@ class ResumeParser:
                             'ml_enabled': False
                         }
                 
-                # Extract skills using semantic matching if ML enabled
-                if self.use_ml and self.skill_extractor:
-                    skills_result = self.skill_extractor.extract_skills_hybrid(result['text'])
-                    categorized = self.skill_extractor.categorize_skills(skills_result)
-                    stats = self.skill_extractor.get_skill_stats(skills_result)
+                # Extract skills using dynamic + semantic matching if ML enabled
+                if self.use_ml and self.dynamic_skill_extractor:
+                    # Use dynamic extractor for broad skill extraction
+                    sections_dict = {name: section['content'] for name, section in result.get('sections', {}).items()} if 'sections' in result else None
+                    dynamic_skills = self.dynamic_skill_extractor.extract_skills(result['text'], sections_dict)
                     
                     result['skills'] = {
-                        'all_skills': [s.skill for s in skills_result],
-                        'by_category': categorized,  # Already in correct format: Dict[str, List[str]]
-                        'detailed': [{'skill': s.skill, 'confidence': s.confidence, 
-                                     'matched_text': s.matched_text, 'category': s.category} 
-                                    for s in skills_result],  # Convert to dict for JSON serialization
-                        'stats': stats,
-                        'extraction_method': 'hybrid_ml_semantic'
+                        'all_skills': dynamic_skills['all_skills'],
+                        'by_category': {
+                            'technical': dynamic_skills.get('technical_skills', []),
+                            'soft': dynamic_skills.get('soft_skills', []),
+                            'tools': dynamic_skills.get('tools', []),
+                            'methodologies': dynamic_skills.get('methodologies', [])
+                        },
+                        'count': dynamic_skills['count'],
+                        'extraction_method': 'dynamic_ner_pattern'
                     }
                 
                 # Extract organizations/companies if ML enabled

@@ -26,6 +26,19 @@ ENV/
 env/
 .venv
 
+# Node.js / Frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json
+yarn.lock
+.npm
+.yarn
+dist/
+build/
+
 # IDEs
 .vscode/
 .idea/
@@ -35,10 +48,14 @@ env/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
 
-# ML Models & Data
-models/
+# ML Models & Data (keep some JSONs for reference)
+models/embeddings/
+models/*.h5
+models/*.pkl
+models/*.joblib
+models/*.pt
+models/*.pth
 *.h5
 *.pkl
 *.joblib
@@ -46,9 +63,17 @@ models/
 *.pth
 data/raw/
 data/processed/
-*.csv
-*.json
-*.parquet
+data/production/
+data/embeddings/*.faiss
+data/embeddings/*.npy
+data/data/
+# Allow specific important JSONs
+!data/skills/*.json
+!data/sample_jobs/*.json
+!data/embeddings/*.json
+
+# Large training data
+data/training/parsed_resumes_all.json
 
 # Logs
 *.log
@@ -71,3 +96,8 @@ htmlcov/
 # Database
 *.db
 *.sqlite3
+
+# Temporary files
+temp_scripts/
+*.tmp
+*.bak

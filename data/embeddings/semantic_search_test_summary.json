@@ -1,0 +1,7 @@
+{
+  "name": "semantic_search_test",
+  "total_resumes": 3,
+  "embedding_dim": 384,
+  "metric": "cosine",
+  "saved_at": "2025-11-01T04:54:14.139072"
+}

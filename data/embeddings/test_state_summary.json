@@ -1,0 +1,7 @@
+{
+  "name": "test_state",
+  "total_resumes": 1,
+  "embedding_dim": 384,
+  "metric": "cosine",
+  "saved_at": "2025-11-01T11:23:45.946090"
+}

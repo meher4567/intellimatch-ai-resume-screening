@@ -1,0 +1,7 @@
+{
+  "name": "production",
+  "total_resumes": 0,
+  "embedding_dim": 384,
+  "metric": "cosine",
+  "saved_at": "2025-11-03T19:26:03.270851"
+}

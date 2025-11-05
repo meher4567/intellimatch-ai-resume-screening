@@ -1,0 +1,15 @@
+{
+  "job_id": "se_001",
+  "title": "Senior Software Engineer - Backend",
+  "company": "TechCorp Inc.",
+  "description": "TechCorp Inc. is seeking an experienced Senior Software Engineer to join our backend team. You'll be working on building scalable microservices that power our platform used by millions of users.\n\nResponsibilities:\n• Design, develop, and maintain backend services using Python and Django\n• Build RESTful APIs consumed by web and mobile applications\n• Optimize database queries and improve system performance\n• Collaborate with frontend engineers on API design\n• Participate in code reviews and mentor junior developers\n• Write comprehensive unit and integration tests\n• Deploy and monitor applications in AWS cloud environment\n\nRequirements:\n• 5+ years of professional software development experience\n• Strong proficiency in Python and Django framework\n• Experience with PostgreSQL or other relational databases\n• Solid understanding of RESTful API design principles\n• Experience with AWS services (EC2, S3, RDS, Lambda)\n• Proficient with Git and version control\n• Bachelor's degree in Computer Science or related field\n• Excellent communication and teamwork skills\n\nNice to Have:\n• Experience with Docker and Kubernetes\n• Knowledge of microservices architecture\n• Familiarity with Redis and caching strategies\n• Experience with GraphQL\n• Contributions to open source projects\n\nBenefits:\n• Competitive salary range: $150,000 - $180,000\n• Health, dental, and vision insurance\n• 401(k) matching up to 4%\n• Flexible work hours\n• Remote-friendly (hybrid work model)\n• Professional development budget\n• Stock options",
+  "location": "San Francisco, CA",
+  "remote_policy": "hybrid",
+  "required_skills": ["Python", "Django", "PostgreSQL", "AWS", "Git", "REST API"],
+  "optional_skills": ["Docker", "Kubernetes", "Redis", "GraphQL", "Microservices"],
+  "required_experience_years": 5,
+  "experience_level": "senior",
+  "education_level": "Bachelor's",
+  "salary_min": 150000,
+  "salary_max": 180000
+}

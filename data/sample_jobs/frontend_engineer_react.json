@@ -1,0 +1,15 @@
+{
+  "job_id": "fe_001",
+  "title": "Frontend Engineer - React",
+  "company": "WebFlow Solutions",
+  "description": "WebFlow Solutions is hiring a Frontend Engineer to build beautiful, performant web applications using modern JavaScript frameworks.\n\nResponsibilities:\n• Build responsive web applications using React and TypeScript\n• Implement pixel-perfect designs from Figma mockups\n• Optimize frontend performance and bundle sizes\n• Write clean, maintainable, and testable code\n• Collaborate with designers and backend engineers\n• Conduct code reviews and share knowledge with team\n• Ensure cross-browser compatibility and accessibility\n\nRequirements:\n• 2-4 years of frontend development experience\n• Strong proficiency in React and modern JavaScript (ES6+)\n• Experience with TypeScript\n• Solid understanding of HTML5, CSS3, and responsive design\n• Familiarity with state management (Redux, Context API)\n• Experience with REST APIs and asynchronous JavaScript\n• Knowledge of build tools (webpack, Vite)\n• Bachelor's degree or equivalent experience\n\nNice to Have:\n• Experience with Next.js or other React frameworks\n• Knowledge of GraphQL and Apollo Client\n• Familiarity with testing libraries (Jest, React Testing Library)\n• Experience with CI/CD pipelines\n• Understanding of web performance optimization\n• Design skills and eye for UI/UX\n\nBenefits:\n• Competitive salary: $100,000 - $130,000\n• Health insurance and wellness programs\n• Flexible work schedule\n• Hybrid work model (2 days in office)\n• Stock options\n• Latest MacBook Pro and equipment\n• Yearly team retreats",
+  "location": "Austin, TX",
+  "remote_policy": "hybrid",
+  "required_skills": ["React", "JavaScript", "TypeScript", "HTML", "CSS", "REST API"],
+  "optional_skills": ["Next.js", "GraphQL", "Redux", "Jest", "webpack", "CI/CD"],
+  "required_experience_years": 2,
+  "experience_level": "mid",
+  "education_level": "Bachelor's",
+  "salary_min": 100000,
+  "salary_max": 130000
+}

@@ -6,6 +6,16 @@
 
 An AI-powered intelligent resume screening and candidate-job matching platform that automates recruitment workflows using state-of-the-art NLP and Deep Learning techniques.
 
+## 📢 Latest Update (Nov 5, 2025)
+
+**🎉 Major Polish Complete: Skill Extraction System!**
+- ✅ Integrated ESCO taxonomy validation (851 validated skills)
+- ✅ Reduced noise from 65,518 → 928 legitimate skills (98.6% improvement!)
+- ✅ Trained on 2,484 real resumes with validated skills
+- 🔄 GPU embedding generation in progress (Google Colab)
+
+**👉 [Read Complete Project Status](PROJECT_STATUS_NOV5_2025.md)** for full details on what we've built, current progress, and next steps.
+
 ## 🌟 Features
 
 ### Core Capabilities
@@ -36,14 +46,21 @@ An AI-powered intelligent resume screening and candidate-job matching platform t
 
 ```
 intellimatch-ai-resume-screening/
-├── PROJECT_MASTER_PLAN.md      # Complete technical roadmap
-├── PHASE1_ENHANCED_FEATURES.md # Phase 1 feature specifications
-├── src/                        # Source code (to be developed)
-├── models/                     # Trained ML models
-├── data/                       # Dataset storage
-├── tests/                      # Test suite
-├── docs/                       # Documentation
-└── requirements.txt            # Python dependencies
+├── PROJECT_STATUS_NOV5_2025.md    # 👈 START HERE - Complete project status & summary
+├── PROJECT_MASTER_PLAN.md         # Technical roadmap (5 phases)
+├── QUICKSTART.md                  # Quick setup & run guide
+├── QUICK_COMMANDS.md              # Common commands reference
+├── src/                           # Source code (ML/API/Services)
+│   ├── ml/                        # ML/NLP components (10 modules)
+│   ├── services/                  # Business logic (parsing, matching)
+│   └── api/                       # FastAPI endpoints
+├── data/
+│   ├── skills/                    # Validated skill taxonomy (851 skills)
+│   └── training/                  # Parsed resumes (2,484 resumes)
+├── models/embeddings/             # GPU-generated embeddings (in progress)
+├── notebooks/                     # Jupyter notebooks (Colab GPU training)
+├── tests/                         # Comprehensive test suite
+└── requirements.txt               # Python dependencies
 ```
 
 ## 🚀 Getting Started

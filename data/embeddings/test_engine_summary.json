@@ -1,0 +1,7 @@
+{
+  "name": "test_engine",
+  "total_resumes": 3,
+  "embedding_dim": 384,
+  "metric": "cosine",
+  "saved_at": "2025-11-01T14:53:17.543374"
+}

@@ -1,0 +1,213 @@
+{
+  "metadata": {
+    "file_name": "my_resume.pdf",
+    "file_type": "PDF",
+    "extraction_date": "2025-11-01T04:15:11.000272",
+    "extraction_method": "text",
+    "parser_version": "2.0",
+    "quality_score": 94.2,
+    "completeness": 75
+  },
+  "personal_info": {
+    "name": "Meher Venkat Raman",
+    "email": "venkatramanmeher@gmail.com",
+    "phone": "9059032160",
+    "location": {
+      "full": "Kolkata, India, Kubernetes, Flask",
+      "city": "Kolkata",
+      "state": "India",
+      "country": "Flask"
+    },
+    "urls": {
+      "github": "https://github.com/meher4567"
+    }
+  },
+  "summary": null,
+  "education": [
+    {
+      "degree": "MTech",
+      "institution": "Computer Science & Engineering",
+      "location": null,
+      "start_date": "2022-08-01",
+      "end_date": "2027-01-01",
+      "gpa": null,
+      "field_of_study": "Computer Science",
+      "honors": []
+    }
+  ],
+  "experience": [],
+  "skills": {
+    "total_count": 7,
+    "top_skills": [
+      {
+        "name": "C",
+        "category": "programming",
+        "confidence": 1.0,
+        "mentions": 2
+      },
+      {
+        "name": "Python",
+        "category": "programming",
+        "confidence": 1.0,
+        "mentions": 1
+      },
+      {
+        "name": "Java",
+        "category": "programming",
+        "confidence": 1.0,
+        "mentions": 1
+      },
+      {
+        "name": "JavaScript",
+        "category": "programming",
+        "confidence": 1.0,
+        "mentions": 1
+      },
+      {
+        "name": "SQL",
+        "category": "programming",
+        "confidence": 1.0,
+        "mentions": 1
+      },
+      {
+        "name": "GitHub",
+        "category": "version_control",
+        "confidence": 0.55,
+        "mentions": 3
+      },
+      {
+        "name": "Machine Learning",
+        "category": "data_science",
+        "confidence": 0.5,
+        "mentions": 1
+      }
+    ],
+    "by_category": {
+      "version_control": [
+        {
+          "name": "GitHub",
+          "confidence": 0.55,
+          "mentions": 3
+        }
+      ],
+      "programming": [
+        {
+          "name": "Python",
+          "confidence": 1.0,
+          "mentions": 1
+        },
+        {
+          "name": "Java",
+          "confidence": 1.0,
+          "mentions": 1
+        },
+        {
+          "name": "JavaScript",
+          "confidence": 1.0,
+          "mentions": 1
+        },
+        {
+          "name": "C",
+          "confidence": 1.0,
+          "mentions": 2
+        },
+        {
+          "name": "SQL",
+          "confidence": 1.0,
+          "mentions": 1
+        }
+      ],
+      "data_science": [
+        {
+          "name": "Machine Learning",
+          "confidence": 0.5,
+          "mentions": 1
+        }
+      ]
+    },
+    "all_skills": [
+      "GitHub",
+      "Python",
+      "Java",
+      "JavaScript",
+      "C",
+      "SQL",
+      "Machine Learning"
+    ]
+  },
+  "certifications": [],
+  "projects": [],
+  "publications": [
+    {
+      "title": "Indian Statistical Institute (ISI)"
+    },
+    {
+      "title": "Modified the Kyber post-quantum cryptographic scheme to support multiple \ncompression (du, dv) and noise (η₁, η₂) parameters."
+    }
+  ],
+  "awards": [
+    "Solved 450+ coding problems on GitHub, LeetCode & GFG.\nReceived fellowship from the University for topping the class three times.\nTop 1 percentile in Both JEE-Advanced and JEE-Mains."
+  ],
+  "volunteer": [],
+  "languages": [],
+  "sections_detected": [
+    {
+      "type": "education",
+      "confidence": 0.8999999999999999,
+      "length": 161
+    },
+    {
+      "type": "experience",
+      "confidence": 0.8999999999999999,
+      "length": 0
+    },
+    {
+      "type": "publications",
+      "confidence": 0.5,
+      "length": 162
+    },
+    {
+      "type": "references",
+      "confidence": 0.5,
+      "length": 322
+    },
+    {
+      "type": "skills",
+      "confidence": 0.8999999999999999,
+      "length": 49
+    },
+    {
+      "type": "projects",
+      "confidence": 0.8999999999999999,
+      "length": 0
+    },
+    {
+      "type": "achievements",
+      "confidence": 0.8999999999999999,
+      "length": 182
+    },
+    {
+      "type": "certifications",
+      "confidence": 0.8999999999999999,
+      "length": 121
+    }
+  ],
+  "quality_assessment": {
+    "overall_score": 94.2,
+    "extraction_quality": 100.0,
+    "completeness": 90.0,
+    "formatting_quality": 90.0,
+    "readability": 95.0,
+    "is_scanned": false,
+    "has_images": false,
+    "issues": [
+      "Missing professional summary",
+      "Resume is too lengthy",
+      "Inconsistent spacing"
+    ],
+    "recommendations": [
+      "Consider adding a professional summary",
+      "Consider condensing to 1-2 pages"
+    ]
+  }
+}

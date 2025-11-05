@@ -1,0 +1,6859 @@
+{
+  "version": "2.0",
+  "generated_at": "2025-11-05T16:09:36.516625",
+  "source": "2500+ real resumes across 24 industries",
+  "top_skills_global": [
+    {
+      "skill": "Communication",
+      "count": 1505
+    },
+    {
+      "skill": "Organization",
+      "count": 1331
+    },
+    {
+      "skill": "Leadership",
+      "count": 1028
+    },
+    {
+      "skill": "Excel",
+      "count": 769
+    },
+    {
+      "skill": "Presentation",
+      "count": 701
+    },
+    {
+      "skill": "Project Management",
+      "count": 549
+    },
+    {
+      "skill": "Microsoft Office",
+      "count": 426
+    },
+    {
+      "skill": "Problem Solving",
+      "count": 413
+    },
+    {
+      "skill": "Analytical",
+      "count": 412
+    },
+    {
+      "skill": "Time Management",
+      "count": 368
+    },
+    {
+      "skill": "PowerPoint",
+      "count": 363
+    },
+    {
+      "skill": "English",
+      "count": 346
+    },
+    {
+      "skill": "Windows",
+      "count": 332
+    },
+    {
+      "skill": "Negotiation",
+      "count": 306
+    },
+    {
+      "skill": "Word",
+      "count": 246
+    },
+    {
+      "skill": "Attention To Detail",
+      "count": 230
+    },
+    {
+      "skill": "Customer Service",
+      "count": 229
+    },
+    {
+      "skill": "Access",
+      "count": 209
+    },
+    {
+      "skill": "Outlook",
+      "count": 200
+    },
+    {
+      "skill": "customer service",
+      "count": 182
+    },
+    {
+      "skill": "Conflict Resolution",
+      "count": 166
+    },
+    {
+      "skill": "MS Office",
+      "count": 162
+    },
+    {
+      "skill": "Oracle",
+      "count": 161
+    },
+    {
+      "skill": "SQL",
+      "count": 155
+    },
+    {
+      "skill": "Critical Thinking",
+      "count": 154
+    },
+    {
+      "skill": "project management",
+      "count": 148
+    },
+    {
+      "skill": "Microsoft Office Suite",
+      "count": 145
+    },
+    {
+      "skill": "Spanish",
+      "count": 142
+    },
+    {
+      "skill": "SAP",
+      "count": 137
+    },
+    {
+      "skill": "HTML",
+      "count": 130
+    },
+    {
+      "skill": "leadership",
+      "count": 128
+    },
+    {
+      "skill": "Decision Making",
+      "count": 122
+    },
+    {
+      "skill": "Chef",
+      "count": 115
+    },
+    {
+      "skill": "Accounting",
+      "count": 109
+    },
+    {
+      "skill": "Teamwork",
+      "count": 106
+    },
+    {
+      "skill": "business development",
+      "count": 104
+    },
+    {
+      "skill": "Business Development",
+      "count": 104
+    },
+    {
+      "skill": "CHEF",
+      "count": 100
+    },
+    {
+      "skill": "CRM",
+      "count": 95
+    },
+    {
+      "skill": "Illustrator",
+      "count": 90
+    },
+    {
+      "skill": "Creativity",
+      "count": 90
+    },
+    {
+      "skill": "Public Speaking",
+      "count": 85
+    },
+    {
+      "skill": "accounting",
+      "count": 81
+    },
+    {
+      "skill": "Linux",
+      "count": 79
+    },
+    {
+      "skill": "Healthcare",
+      "count": 79
+    },
+    {
+      "skill": "SharePoint",
+      "count": 75
+    },
+    {
+      "skill": "retail",
+      "count": 74
+    },
+    {
+      "skill": "Photoshop",
+      "count": 71
+    },
+    {
+      "skill": "QuickBooks",
+      "count": 69
+    },
+    {
+      "skill": "time management",
+      "count": 69
+    },
+    {
+      "skill": "coaching",
+      "count": 69
+    },
+    {
+      "skill": "ERP",
+      "count": 68
+    },
+    {
+      "skill": "LAN",
+      "count": 66
+    },
+    {
+      "skill": "Java",
+      "count": 64
+    },
+    {
+      "skill": "Cisco",
+      "count": 62
+    },
+    {
+      "skill": "CSS",
+      "count": 61
+    },
+    {
+      "skill": "chef",
+      "count": 59
+    },
+    {
+      "skill": "windows",
+      "count": 59
+    },
+    {
+      "skill": "Quality Assurance",
+      "count": 55
+    },
+    {
+      "skill": "budgeting",
+      "count": 54
+    },
+    {
+      "skill": "data analysis",
+      "count": 54
+    },
+    {
+      "skill": "logistics",
+      "count": 53
+    },
+    {
+      "skill": "inventory management",
+      "count": 53
+    },
+    {
+      "skill": "Agile",
+      "count": 53
+    },
+    {
+      "skill": "Windows 7",
+      "count": 52
+    },
+    {
+      "skill": "forecasting",
+      "count": 51
+    },
+    {
+      "skill": "Budgeting",
+      "count": 51
+    },
+    {
+      "skill": "networking",
+      "count": 51
+    },
+    {
+      "skill": "access",
+      "count": 50
+    },
+    {
+      "skill": "financial analysis",
+      "count": 48
+    },
+    {
+      "skill": "C++",
+      "count": 48
+    },
+    {
+      "skill": "InDesign",
+      "count": 48
+    },
+    {
+      "skill": "Strategic Planning",
+      "count": 47
+    },
+    {
+      "skill": "Powerpoint",
+      "count": 47
+    },
+    {
+      "skill": "problem solving",
+      "count": 47
+    },
+    {
+      "skill": "SQL Server",
+      "count": 47
+    },
+    {
+      "skill": "JavaScript",
+      "count": 47
+    },
+    {
+      "skill": "AutoCAD",
+      "count": 47
+    },
+    {
+      "skill": "Customer service",
+      "count": 44
+    },
+    {
+      "skill": "Retail",
+      "count": 44
+    },
+    {
+      "skill": "UNIX",
+      "count": 43
+    },
+    {
+      "skill": "Microsoft Project",
+      "count": 43
+    },
+    {
+      "skill": "Logistics",
+      "count": 41
+    },
+    {
+      "skill": "Forecasting",
+      "count": 40
+    },
+    {
+      "skill": "Time management",
+      "count": 40
+    },
+    {
+      "skill": "PHP",
+      "count": 40
+    },
+    {
+      "skill": "Networking",
+      "count": 39
+    },
+    {
+      "skill": "Python",
+      "count": 39
+    },
+    {
+      "skill": "Unix",
+      "count": 39
+    },
+    {
+      "skill": "Project management",
+      "count": 38
+    },
+    {
+      "skill": "WAN",
+      "count": 38
+    },
+    {
+      "skill": "Coaching",
+      "count": 37
+    },
+    {
+      "skill": "quality assurance",
+      "count": 36
+    },
+    {
+      "skill": "Real Estate",
+      "count": 35
+    },
+    {
+      "skill": "Adaptability",
+      "count": 35
+    },
+    {
+      "skill": "SEO",
+      "count": 34
+    },
+    {
+      "skill": "POS",
+      "count": 34
+    },
+    {
+      "skill": "C#",
+      "count": 34
+    },
+    {
+      "skill": "Scrum",
+      "count": 33
+    },
+    {
+      "skill": "Data Analysis",
+      "count": 32
+    },
+    {
+      "skill": "mentoring",
+      "count": 31
+    },
+    {
+      "skill": "MySQL",
+      "count": 31
+    },
+    {
+      "skill": "Merchandising",
+      "count": 30
+    },
+    {
+      "skill": "Ms Office",
+      "count": 29
+    },
+    {
+      "skill": "Six Sigma",
+      "count": 29
+    },
+    {
+      "skill": "DHCP",
+      "count": 28
+    },
+    {
+      "skill": "DNS",
+      "count": 28
+    },
+    {
+      "skill": "API",
+      "count": 27
+    },
+    {
+      "skill": "Testing",
+      "count": 27
+    },
+    {
+      "skill": "Statistics",
+      "count": 26
+    },
+    {
+      "skill": "merchandising",
+      "count": 26
+    },
+    {
+      "skill": "Education",
+      "count": 25
+    },
+    {
+      "skill": "TCP/IP",
+      "count": 25
+    },
+    {
+      "skill": "HTML5",
+      "count": 25
+    },
+    {
+      "skill": "QA",
+      "count": 25
+    },
+    {
+      "skill": "agile",
+      "count": 24
+    },
+    {
+      "skill": "strategic planning",
+      "count": 24
+    },
+    {
+      "skill": "Tableau",
+      "count": 24
+    },
+    {
+      "skill": "statistics",
+      "count": 23
+    },
+    {
+      "skill": "SEM",
+      "count": 23
+    },
+    {
+      "skill": "Graphic Design",
+      "count": 23
+    },
+    {
+      "skill": "real estate",
+      "count": 22
+    },
+    {
+      "skill": "Quickbooks",
+      "count": 22
+    },
+    {
+      "skill": "attention to detail",
+      "count": 22
+    },
+    {
+      "skill": "decision making",
+      "count": 22
+    },
+    {
+      "skill": "AWS",
+      "count": 22
+    },
+    {
+      "skill": "XML",
+      "count": 22
+    },
+    {
+      "skill": "Windows 2000",
+      "count": 21
+    },
+    {
+      "skill": "JIRA",
+      "count": 21
+    },
+    {
+      "skill": "Salesforce",
+      "count": 20
+    },
+    {
+      "skill": "graphic design",
+      "count": 20
+    },
+    {
+      "skill": "negotiation",
+      "count": 19
+    },
+    {
+      "skill": "Compliance",
+      "count": 19
+    },
+    {
+      "skill": "teamwork",
+      "count": 19
+    },
+    {
+      "skill": "MATLAB",
+      "count": 19
+    },
+    {
+      "skill": "Digital Marketing",
+      "count": 19
+    },
+    {
+      "skill": "Arabic",
+      "count": 18
+    },
+    {
+      "skill": "Microsoft office",
+      "count": 18
+    },
+    {
+      "skill": "Conflict resolution",
+      "count": 18
+    },
+    {
+      "skill": "Mentoring",
+      "count": 18
+    },
+    {
+      "skill": "Sharepoint",
+      "count": 18
+    },
+    {
+      "skill": "VPN",
+      "count": 18
+    },
+    {
+      "skill": "Windows 95",
+      "count": 17
+    },
+    {
+      "skill": "Financial Analysis",
+      "count": 17
+    },
+    {
+      "skill": "Inventory Management",
+      "count": 17
+    },
+    {
+      "skill": "French",
+      "count": 17
+    },
+    {
+      "skill": "Attention to detail",
+      "count": 17
+    },
+    {
+      "skill": "conflict resolution",
+      "count": 17
+    },
+    {
+      "skill": "Javascript",
+      "count": 17
+    },
+    {
+      "skill": "Sql",
+      "count": 17
+    },
+    {
+      "skill": "CCNA",
+      "count": 17
+    },
+    {
+      "skill": "critical thinking",
+      "count": 16
+    },
+    {
+      "skill": "Waterfall",
+      "count": 16
+    },
+    {
+      "skill": "PMP",
+      "count": 16
+    },
+    {
+      "skill": "Supply Chain",
+      "count": 16
+    },
+    {
+      "skill": "Business Analysis",
+      "count": 16
+    },
+    {
+      "skill": "Property Management",
+      "count": 15
+    },
+    {
+      "skill": "Business development",
+      "count": 15
+    },
+    {
+      "skill": "Matlab",
+      "count": 15
+    },
+    {
+      "skill": "PL/SQL",
+      "count": 15
+    },
+    {
+      "skill": "Kanban",
+      "count": 15
+    },
+    {
+      "skill": "market research",
+      "count": 14
+    },
+    {
+      "skill": "Critical thinking",
+      "count": 14
+    },
+    {
+      "skill": "excel",
+      "count": 13
+    },
+    {
+      "skill": "Interpersonal Skills",
+      "count": 13
+    },
+    {
+      "skill": "Html",
+      "count": 13
+    },
+    {
+      "skill": "JSON",
+      "count": 13
+    },
+    {
+      "skill": "Windows 8",
+      "count": 13
+    },
+    {
+      "skill": "business analysis",
+      "count": 13
+    },
+    {
+      "skill": "ORACLE",
+      "count": 12
+    },
+    {
+      "skill": "property management",
+      "count": 12
+    },
+    {
+      "skill": "HIPAA",
+      "count": 12
+    },
+    {
+      "skill": "Market Research",
+      "count": 12
+    },
+    {
+      "skill": "Network Security",
+      "count": 12
+    },
+    {
+      "skill": "Jira",
+      "count": 12
+    },
+    {
+      "skill": "html",
+      "count": 11
+    },
+    {
+      "skill": "creativity",
+      "count": 11
+    },
+    {
+      "skill": "Chinese",
+      "count": 11
+    },
+    {
+      "skill": "Ubuntu",
+      "count": 11
+    },
+    {
+      "skill": "routing",
+      "count": 11
+    },
+    {
+      "skill": "unit testing",
+      "count": 11
+    },
+    {
+      "skill": "Azure",
+      "count": 11
+    },
+    {
+      "skill": "Web Design",
+      "count": 11
+    },
+    {
+      "skill": "Network Administration",
+      "count": 10
+    },
+    {
+      "skill": "Perl",
+      "count": 10
+    },
+    {
+      "skill": "CISCO",
+      "count": 10
+    },
+    {
+      "skill": "CSS3",
+      "count": 10
+    },
+    {
+      "skill": "curriculum development",
+      "count": 10
+    },
+    {
+      "skill": "public speaking",
+      "count": 10
+    },
+    {
+      "skill": "Indesign",
+      "count": 10
+    },
+    {
+      "skill": "instructional design",
+      "count": 10
+    },
+    {
+      "skill": "Jenkins",
+      "count": 10
+    },
+    {
+      "skill": "Bootstrap",
+      "count": 10
+    },
+    {
+      "skill": "Instructional Design",
+      "count": 9
+    },
+    {
+      "skill": "communication",
+      "count": 9
+    },
+    {
+      "skill": "interpersonal skills",
+      "count": 9
+    },
+    {
+      "skill": "Information Security",
+      "count": 9
+    },
+    {
+      "skill": "scrum",
+      "count": 9
+    },
+    {
+      "skill": "Git",
+      "count": 9
+    },
+    {
+      "skill": "Autocad",
+      "count": 9
+    },
+    {
+      "skill": "SDK",
+      "count": 9
+    },
+    {
+      "skill": "GitHub",
+      "count": 9
+    },
+    {
+      "skill": "Strategic planning",
+      "count": 8
+    },
+    {
+      "skill": "oracle",
+      "count": 8
+    },
+    {
+      "skill": "LINUX",
+      "count": 8
+    },
+    {
+      "skill": "Web Services",
+      "count": 8
+    },
+    {
+      "skill": "EXCEL",
+      "count": 8
+    },
+    {
+      "skill": "Windows 98",
+      "count": 8
+    },
+    {
+      "skill": "Qa",
+      "count": 8
+    },
+    {
+      "skill": "Sap",
+      "count": 8
+    },
+    {
+      "skill": "AJAX",
+      "count": 8
+    },
+    {
+      "skill": "SQL server",
+      "count": 8
+    },
+    {
+      "skill": "swift",
+      "count": 8
+    },
+    {
+      "skill": "Microsoft SQL",
+      "count": 8
+    },
+    {
+      "skill": "Video Editing",
+      "count": 7
+    },
+    {
+      "skill": "word",
+      "count": 7
+    },
+    {
+      "skill": "Russian",
+      "count": 7
+    },
+    {
+      "skill": "Data analysis",
+      "count": 7
+    },
+    {
+      "skill": "German",
+      "count": 7
+    },
+    {
+      "skill": "Interpersonal skills",
+      "count": 7
+    },
+    {
+      "skill": "Curriculum Development",
+      "count": 7
+    },
+    {
+      "skill": "JAVA",
+      "count": 7
+    },
+    {
+      "skill": "Sql Server",
+      "count": 7
+    },
+    {
+      "skill": "SalesForce",
+      "count": 7
+    },
+    {
+      "skill": "ENGLISH",
+      "count": 7
+    },
+    {
+      "skill": "integration testing",
+      "count": 7
+    },
+    {
+      "skill": "machine learning",
+      "count": 7
+    },
+    {
+      "skill": "BUSINESS DEVELOPMENT",
+      "count": 7
+    },
+    {
+      "skill": "Mysql",
+      "count": 7
+    },
+    {
+      "skill": "Php",
+      "count": 7
+    },
+    {
+      "skill": "SQL Database",
+      "count": 7
+    },
+    {
+      "skill": "JQuery",
+      "count": 7
+    },
+    {
+      "skill": "jQuery",
+      "count": 7
+    },
+    {
+      "skill": "Financial analysis",
+      "count": 6
+    },
+    {
+      "skill": "Quality assurance",
+      "count": 6
+    },
+    {
+      "skill": "compliance",
+      "count": 6
+    },
+    {
+      "skill": "Litigation",
+      "count": 6
+    },
+    {
+      "skill": "Financial Modeling",
+      "count": 6
+    },
+    {
+      "skill": "analytical",
+      "count": 6
+    },
+    {
+      "skill": "Medical Coding",
+      "count": 6
+    },
+    {
+      "skill": "outlook",
+      "count": 6
+    },
+    {
+      "skill": "HealthCare",
+      "count": 6
+    },
+    {
+      "skill": "Firewall",
+      "count": 6
+    },
+    {
+      "skill": "Red Hat",
+      "count": 6
+    },
+    {
+      "skill": "network security",
+      "count": 6
+    },
+    {
+      "skill": "Point Of Sale",
+      "count": 6
+    },
+    {
+      "skill": "Sketch",
+      "count": 6
+    },
+    {
+      "skill": "Google Docs",
+      "count": 6
+    },
+    {
+      "skill": "Machine Learning",
+      "count": 6
+    },
+    {
+      "skill": "Trello",
+      "count": 6
+    },
+    {
+      "skill": "Portuguese",
+      "count": 6
+    },
+    {
+      "skill": "Inventory management",
+      "count": 6
+    },
+    {
+      "skill": "Oracle SQL",
+      "count": 6
+    },
+    {
+      "skill": "Jquery",
+      "count": 6
+    },
+    {
+      "skill": "java",
+      "count": 6
+    },
+    {
+      "skill": "MS SQL",
+      "count": 6
+    },
+    {
+      "skill": "Oracle 10",
+      "count": 6
+    },
+    {
+      "skill": "DevOps",
+      "count": 6
+    },
+    {
+      "skill": "SCRUM",
+      "count": 6
+    },
+    {
+      "skill": "Integration Testing",
+      "count": 6
+    },
+    {
+      "skill": "Crm",
+      "count": 6
+    },
+    {
+      "skill": "web design",
+      "count": 6
+    },
+    {
+      "skill": "Css",
+      "count": 6
+    },
+    {
+      "skill": "financial modeling",
+      "count": 5
+    },
+    {
+      "skill": "Italian",
+      "count": 5
+    },
+    {
+      "skill": "WINDOWS",
+      "count": 5
+    },
+    {
+      "skill": "linux",
+      "count": 5
+    },
+    {
+      "skill": "Bash",
+      "count": 5
+    },
+    {
+      "skill": "Lan",
+      "count": 5
+    },
+    {
+      "skill": "Pandas",
+      "count": 5
+    },
+    {
+      "skill": "litigation",
+      "count": 5
+    },
+    {
+      "skill": "Social Media Marketing",
+      "count": 5
+    },
+    {
+      "skill": "sketch",
+      "count": 5
+    },
+    {
+      "skill": "Graphic design",
+      "count": 5
+    },
+    {
+      "skill": "Swift",
+      "count": 5
+    },
+    {
+      "skill": "Windows 10",
+      "count": 5
+    },
+    {
+      "skill": "Shell",
+      "count": 5
+    },
+    {
+      "skill": "Windows 2003",
+      "count": 5
+    },
+    {
+      "skill": "Oracle 9",
+      "count": 5
+    },
+    {
+      "skill": "Point of Sale",
+      "count": 5
+    },
+    {
+      "skill": "Problem solving",
+      "count": 5
+    },
+    {
+      "skill": "AGILE",
+      "count": 5
+    },
+    {
+      "skill": "Unit Testing",
+      "count": 5
+    },
+    {
+      "skill": "Selenium",
+      "count": 5
+    },
+    {
+      "skill": "POWERPOINT",
+      "count": 5
+    },
+    {
+      "skill": "AutoCad",
+      "count": 5
+    },
+    {
+      "skill": "REST API",
+      "count": 5
+    },
+    {
+      "skill": "json",
+      "count": 5
+    },
+    {
+      "skill": "CentOS",
+      "count": 4
+    },
+    {
+      "skill": "Dns",
+      "count": 4
+    },
+    {
+      "skill": "Ms Sql Server",
+      "count": 4
+    },
+    {
+      "skill": "Tcp/ip",
+      "count": 4
+    },
+    {
+      "skill": "Xml",
+      "count": 4
+    },
+    {
+      "skill": "react",
+      "count": 4
+    },
+    {
+      "skill": "Collaboration",
+      "count": 4
+    },
+    {
+      "skill": "GCP",
+      "count": 4
+    },
+    {
+      "skill": "CISSP",
+      "count": 4
+    },
+    {
+      "skill": "MongoDB",
+      "count": 4
+    },
+    {
+      "skill": "firewall",
+      "count": 4
+    },
+    {
+      "skill": "Pos",
+      "count": 4
+    },
+    {
+      "skill": "supply chain",
+      "count": 4
+    },
+    {
+      "skill": "Routing",
+      "count": 4
+    },
+    {
+      "skill": "WORD",
+      "count": 4
+    },
+    {
+      "skill": "Ruby",
+      "count": 4
+    },
+    {
+      "skill": "Data Warehousing",
+      "count": 4
+    },
+    {
+      "skill": "Oracle 11",
+      "count": 4
+    },
+    {
+      "skill": "PostgreSQL",
+      "count": 4
+    },
+    {
+      "skill": "ETL",
+      "count": 4
+    },
+    {
+      "skill": "Capital Markets",
+      "count": 4
+    },
+    {
+      "skill": "Hubspot",
+      "count": 4
+    },
+    {
+      "skill": "Manufacturing",
+      "count": 4
+    },
+    {
+      "skill": "SVN",
+      "count": 4
+    },
+    {
+      "skill": "Oracle ERP",
+      "count": 4
+    },
+    {
+      "skill": "MYSQL",
+      "count": 4
+    },
+    {
+      "skill": "API design",
+      "count": 4
+    },
+    {
+      "skill": "HEALTHCARE",
+      "count": 4
+    },
+    {
+      "skill": "Decision making",
+      "count": 3
+    },
+    {
+      "skill": "Aws",
+      "count": 3
+    },
+    {
+      "skill": "Cloud Computing",
+      "count": 3
+    },
+    {
+      "skill": "Dhcp",
+      "count": 3
+    },
+    {
+      "skill": "PERL",
+      "count": 3
+    },
+    {
+      "skill": "Vpn",
+      "count": 3
+    },
+    {
+      "skill": "penetration testing",
+      "count": 3
+    },
+    {
+      "skill": "MatLab",
+      "count": 3
+    },
+    {
+      "skill": "python",
+      "count": 3
+    },
+    {
+      "skill": "organization",
+      "count": 3
+    },
+    {
+      "skill": "video editing",
+      "count": 3
+    },
+    {
+      "skill": "Neural Networks",
+      "count": 3
+    },
+    {
+      "skill": "SQLite",
+      "count": 3
+    },
+    {
+      "skill": "Microsoft SQL Server",
+      "count": 3
+    },
+    {
+      "skill": "Unit testing",
+      "count": 3
+    },
+    {
+      "skill": "Windows 9",
+      "count": 3
+    },
+    {
+      "skill": "AUTOCAD",
+      "count": 3
+    },
+    {
+      "skill": "SWIFT",
+      "count": 3
+    },
+    {
+      "skill": "computer vision",
+      "count": 3
+    },
+    {
+      "skill": "Clinical Research",
+      "count": 3
+    },
+    {
+      "skill": "Sql Server 2005",
+      "count": 3
+    },
+    {
+      "skill": "MS office",
+      "count": 3
+    },
+    {
+      "skill": "php",
+      "count": 3
+    },
+    {
+      "skill": "capital expenditures",
+      "count": 3
+    },
+    {
+      "skill": "SQL Developer",
+      "count": 3
+    },
+    {
+      "skill": "JUnit",
+      "count": 3
+    },
+    {
+      "skill": "MySql",
+      "count": 3
+    },
+    {
+      "skill": "Puppet",
+      "count": 3
+    },
+    {
+      "skill": "Ajax",
+      "count": 3
+    },
+    {
+      "skill": "Web design",
+      "count": 3
+    },
+    {
+      "skill": "Entity Framework",
+      "count": 3
+    },
+    {
+      "skill": "waterfall",
+      "count": 3
+    },
+    {
+      "skill": "testing",
+      "count": 3
+    },
+    {
+      "skill": "Slack",
+      "count": 3
+    },
+    {
+      "skill": "SOA Created API",
+      "count": 3
+    },
+    {
+      "skill": "MicroSoft Office",
+      "count": 3
+    },
+    {
+      "skill": "Information Technology Infrastructure Library",
+      "count": 3
+    },
+    {
+      "skill": "Swedish",
+      "count": 2
+    },
+    {
+      "skill": "puppet",
+      "count": 2
+    },
+    {
+      "skill": "Attention to Detail",
+      "count": 2
+    },
+    {
+      "skill": "MAPICS",
+      "count": 2
+    },
+    {
+      "skill": "English 9",
+      "count": 2
+    },
+    {
+      "skill": "Working Capital",
+      "count": 2
+    },
+    {
+      "skill": "MapInfo",
+      "count": 2
+    },
+    {
+      "skill": "Data Science",
+      "count": 2
+    },
+    {
+      "skill": "Matplotlib",
+      "count": 2
+    },
+    {
+      "skill": "SQL 2000",
+      "count": 2
+    },
+    {
+      "skill": "Scikit-learn",
+      "count": 2
+    },
+    {
+      "skill": "TensorFlow",
+      "count": 2
+    },
+    {
+      "skill": "Tensorflow",
+      "count": 2
+    },
+    {
+      "skill": "APICS",
+      "count": 2
+    },
+    {
+      "skill": "QlikView",
+      "count": 2
+    },
+    {
+      "skill": "Grand Rapids",
+      "count": 2
+    },
+    {
+      "skill": "data warehousing",
+      "count": 2
+    },
+    {
+      "skill": "shell",
+      "count": 2
+    },
+    {
+      "skill": "Instructional design",
+      "count": 2
+    },
+    {
+      "skill": "information security",
+      "count": 2
+    },
+    {
+      "skill": "KANBAN",
+      "count": 2
+    },
+    {
+      "skill": "Docker",
+      "count": 2
+    },
+    {
+      "skill": "Landscaping",
+      "count": 2
+    },
+    {
+      "skill": "education",
+      "count": 2
+    },
+    {
+      "skill": "Network administration",
+      "count": 2
+    },
+    {
+      "skill": "Capital Expenditure",
+      "count": 2
+    },
+    {
+      "skill": "MS SQL Server",
+      "count": 2
+    },
+    {
+      "skill": "Venture Capital",
+      "count": 2
+    },
+    {
+      "skill": "Korean",
+      "count": 2
+    },
+    {
+      "skill": "capital",
+      "count": 2
+    },
+    {
+      "skill": "Pmp",
+      "count": 2
+    },
+    {
+      "skill": "LEADERSHIP",
+      "count": 2
+    },
+    {
+      "skill": "OUTLOOK",
+      "count": 2
+    },
+    {
+      "skill": "Social media marketing",
+      "count": 2
+    },
+    {
+      "skill": "clinical research",
+      "count": 2
+    },
+    {
+      "skill": "Big Data",
+      "count": 2
+    },
+    {
+      "skill": "PhotoShop",
+      "count": 2
+    },
+    {
+      "skill": "Microsoft Office 2010",
+      "count": 2
+    },
+    {
+      "skill": "PhP",
+      "count": 2
+    },
+    {
+      "skill": "Encryption",
+      "count": 2
+    },
+    {
+      "skill": "cisco",
+      "count": 2
+    },
+    {
+      "skill": "SQL Trace",
+      "count": 2
+    },
+    {
+      "skill": "GE Capital",
+      "count": 2
+    },
+    {
+      "skill": "Centos",
+      "count": 2
+    },
+    {
+      "skill": "CEH",
+      "count": 2
+    },
+    {
+      "skill": "Angular",
+      "count": 2
+    },
+    {
+      "skill": "Oracle and SQL",
+      "count": 2
+    },
+    {
+      "skill": "SQL Queries",
+      "count": 2
+    },
+    {
+      "skill": "Japanese",
+      "count": 2
+    },
+    {
+      "skill": "mySQL",
+      "count": 2
+    },
+    {
+      "skill": "R2",
+      "count": 2
+    },
+    {
+      "skill": "Machine learning",
+      "count": 2
+    },
+    {
+      "skill": "MSSQL",
+      "count": 2
+    },
+    {
+      "skill": "ERP 9",
+      "count": 2
+    },
+    {
+      "skill": "ACCESS",
+      "count": 2
+    },
+    {
+      "skill": "Information security",
+      "count": 2
+    },
+    {
+      "skill": "Class Library",
+      "count": 2
+    },
+    {
+      "skill": "Developed C# Class Library",
+      "count": 2
+    },
+    {
+      "skill": "MySql Operating System",
+      "count": 2
+    },
+    {
+      "skill": "Windows 8.1",
+      "count": 2
+    },
+    {
+      "skill": "Public speaking",
+      "count": 2
+    },
+    {
+      "skill": "Capitol Heights",
+      "count": 1
+    },
+    {
+      "skill": "the Homeless Prevention and Rapid Re-Housing",
+      "count": 1
+    },
+    {
+      "skill": "Capital Leases",
+      "count": 1
+    },
+    {
+      "skill": "Broward County Library",
+      "count": 1
+    },
+    {
+      "skill": "Capital Expenditures",
+      "count": 1
+    },
+    {
+      "skill": "SAP 6.20",
+      "count": 1
+    },
+    {
+      "skill": "Cash Forecasting Capitalization",
+      "count": 1
+    },
+    {
+      "skill": "Working Capital ManagementÂ",
+      "count": 1
+    },
+    {
+      "skill": "Real estate",
+      "count": 1
+    },
+    {
+      "skill": "Rust",
+      "count": 1
+    },
+    {
+      "skill": "MySQLÂ Hosting Consultant",
+      "count": 1
+    },
+    {
+      "skill": "R19.0",
+      "count": 1
+    },
+    {
+      "skill": "R21.0",
+      "count": 1
+    },
+    {
+      "skill": "Rapid Infusers",
+      "count": 1
+    },
+    {
+      "skill": "SQL Server and monitoring backu",
+      "count": 1
+    },
+    {
+      "skill": "respiratory therapists",
+      "count": 1
+    },
+    {
+      "skill": "therapies and desired outcomes",
+      "count": 1
+    },
+    {
+      "skill": "Six sigma",
+      "count": 1
+    },
+    {
+      "skill": "Physical Therapist Doctorate Program",
+      "count": 1
+    },
+    {
+      "skill": "Restorative Therapies Inc",
+      "count": 1
+    },
+    {
+      "skill": "Hipaa",
+      "count": 1
+    },
+    {
+      "skill": "Oracle. 01",
+      "count": 1
+    },
+    {
+      "skill": "Jamaica- Apiculture Extension",
+      "count": 1
+    },
+    {
+      "skill": "Microsoft Framework",
+      "count": 1
+    },
+    {
+      "skill": "Microsoft Solutions Framework",
+      "count": 1
+    },
+    {
+      "skill": "Capital School District",
+      "count": 1
+    },
+    {
+      "skill": "INTERNSHIPPhysiotherapist Rehabilitation",
+      "count": 1
+    },
+    {
+      "skill": "Recreational Therapist",
+      "count": 1
+    },
+    {
+      "skill": "Logical framework Analysis",
+      "count": 1
+    },
+    {
+      "skill": "Flask",
+      "count": 1
+    },
+    {
+      "skill": "Frameworks: .Net",
+      "count": 1
+    },
+    {
+      "skill": "Keras",
+      "count": 1
+    },
+    {
+      "skill": "Restful API",
+      "count": 1
+    },
+    {
+      "skill": "Restful API design",
+      "count": 1
+    },
+    {
+      "skill": "Search Engine Optimization Net API CSS",
+      "count": 1
+    },
+    {
+      "skill": "javascript",
+      "count": 1
+    },
+    {
+      "skill": "node.js",
+      "count": 1
+    },
+    {
+      "skill": "CSM",
+      "count": 1
+    },
+    {
+      "skill": "Outlook 97",
+      "count": 1
+    },
+    {
+      "skill": "social media marketing",
+      "count": 1
+    },
+    {
+      "skill": "LITIGATION",
+      "count": 1
+    },
+    {
+      "skill": "Nike Materials Library",
+      "count": 1
+    },
+    {
+      "skill": "HTML 5",
+      "count": 1
+    },
+    {
+      "skill": "the Danielson Framework",
+      "count": 1
+    },
+    {
+      "skill": "Delhi Public Library",
+      "count": 1
+    },
+    {
+      "skill": "United Way Grand Rapids",
+      "count": 1
+    },
+    {
+      "skill": "Grand Rapids Animal Shelter",
+      "count": 1
+    },
+    {
+      "skill": "Expressive Art Therapies",
+      "count": 1
+    },
+    {
+      "skill": "and Expressive therapies",
+      "count": 1
+    },
+    {
+      "skill": "Framework for Understanding Poverty",
+      "count": 1
+    },
+    {
+      "skill": "Carnegie Library Summer Activities",
+      "count": 1
+    },
+    {
+      "skill": "State Therapist Effectively",
+      "count": 1
+    },
+    {
+      "skill": "Qlab",
+      "count": 1
+    },
+    {
+      "skill": "medical coding",
+      "count": 1
+    },
+    {
+      "skill": "Lawndale Library",
+      "count": 1
+    },
+    {
+      "skill": "Current School Library Media Specialist",
+      "count": 1
+    },
+    {
+      "skill": "Library City",
+      "count": 1
+    },
+    {
+      "skill": "Library Media Specialist",
+      "count": 1
+    },
+    {
+      "skill": "Oklahoma Library Association",
+      "count": 1
+    },
+    {
+      "skill": "API Vision",
+      "count": 1
+    },
+    {
+      "skill": "Cisco 2",
+      "count": 1
+    },
+    {
+      "skill": "Cisco 3",
+      "count": 1
+    },
+    {
+      "skill": "rapid responders",
+      "count": 1
+    },
+    {
+      "skill": "South Regional Library",
+      "count": 1
+    },
+    {
+      "skill": "Excel 2003",
+      "count": 1
+    },
+    {
+      "skill": "Outlook 2003",
+      "count": 1
+    },
+    {
+      "skill": "Powerpoint 2003",
+      "count": 1
+    },
+    {
+      "skill": "Word 2003",
+      "count": 1
+    },
+    {
+      "skill": "Numpy",
+      "count": 1
+    },
+    {
+      "skill": "Computer Vision",
+      "count": 1
+    },
+    {
+      "skill": "BIGSQL",
+      "count": 1
+    },
+    {
+      "skill": "DB2/SQL",
+      "count": 1
+    },
+    {
+      "skill": "Hadoop",
+      "count": 1
+    },
+    {
+      "skill": "Framework/Concepts: Master Data Management",
+      "count": 1
+    },
+    {
+      "skill": "Integration testing",
+      "count": 1
+    },
+    {
+      "skill": "MS Vizio. SQL Navigator",
+      "count": 1
+    },
+    {
+      "skill": "SQL Loader",
+      "count": 1
+    },
+    {
+      "skill": "SQL Navigator",
+      "count": 1
+    },
+    {
+      "skill": "Struts Framework Unit",
+      "count": 1
+    },
+    {
+      "skill": "NoSQL",
+      "count": 1
+    },
+    {
+      "skill": "Perl, PostgreSQL",
+      "count": 1
+    },
+    {
+      "skill": "Landscaping, Mac, Mail Room",
+      "count": 1
+    },
+    {
+      "skill": "Pl/sql",
+      "count": 1
+    },
+    {
+      "skill": "unix",
+      "count": 1
+    },
+    {
+      "skill": "Â Sql",
+      "count": 1
+    },
+    {
+      "skill": "Pl/SQL",
+      "count": 1
+    }
+  ],
+  "skills_by_industry": {
+    "ACCOUNTANT": [
+      {
+        "skill": "Organization",
+        "count": 74
+      },
+      {
+        "skill": "Excel",
+        "count": 68
+      },
+      {
+        "skill": "Communication",
+        "count": 57
+      },
+      {
+        "skill": "Analytical",
+        "count": 45
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 34
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 28
+      },
+      {
+        "skill": "QuickBooks",
+        "count": 27
+      },
+      {
+        "skill": "Accounting",
+        "count": 25
+      },
+      {
+        "skill": "SAP",
+        "count": 25
+      },
+      {
+        "skill": "Leadership",
+        "count": 24
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 23
+      },
+      {
+        "skill": "Word",
+        "count": 23
+      },
+      {
+        "skill": "Time Management",
+        "count": 23
+      },
+      {
+        "skill": "Outlook",
+        "count": 22
+      },
+      {
+        "skill": "Access",
+        "count": 20
+      },
+      {
+        "skill": "Presentation",
+        "count": 20
+      },
+      {
+        "skill": "accounting",
+        "count": 20
+      },
+      {
+        "skill": "financial analysis",
+        "count": 19
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 17
+      },
+      {
+        "skill": "English",
+        "count": 14
+      },
+      {
+        "skill": "Oracle",
+        "count": 14
+      },
+      {
+        "skill": "Windows",
+        "count": 12
+      },
+      {
+        "skill": "ERP",
+        "count": 10
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 9
+      },
+      {
+        "skill": "MS Office",
+        "count": 9
+      },
+      {
+        "skill": "Project Management",
+        "count": 8
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 7
+      },
+      {
+        "skill": "Budgeting",
+        "count": 7
+      },
+      {
+        "skill": "Forecasting",
+        "count": 6
+      },
+      {
+        "skill": "Quickbooks",
+        "count": 6
+      },
+      {
+        "skill": "Customer Service",
+        "count": 5
+      },
+      {
+        "skill": "Real Estate",
+        "count": 5
+      },
+      {
+        "skill": "SQL",
+        "count": 5
+      },
+      {
+        "skill": "Negotiation",
+        "count": 5
+      },
+      {
+        "skill": "budgeting",
+        "count": 5
+      },
+      {
+        "skill": "forecasting",
+        "count": 5
+      },
+      {
+        "skill": "Teamwork",
+        "count": 4
+      },
+      {
+        "skill": "Customer service",
+        "count": 4
+      },
+      {
+        "skill": "customer service",
+        "count": 4
+      },
+      {
+        "skill": "leadership",
+        "count": 4
+      },
+      {
+        "skill": "problem solving",
+        "count": 4
+      },
+      {
+        "skill": "retail",
+        "count": 4
+      },
+      {
+        "skill": "time management",
+        "count": 3
+      },
+      {
+        "skill": "data analysis",
+        "count": 3
+      },
+      {
+        "skill": "Arabic",
+        "count": 3
+      },
+      {
+        "skill": "Quality Assurance",
+        "count": 3
+      },
+      {
+        "skill": "Microsoft office",
+        "count": 3
+      },
+      {
+        "skill": "Financial Analysis",
+        "count": 3
+      },
+      {
+        "skill": "Property Management",
+        "count": 2
+      }
+    ],
+    "ADVOCATE": [
+      {
+        "skill": "Communication",
+        "count": 78
+      },
+      {
+        "skill": "Organization",
+        "count": 68
+      },
+      {
+        "skill": "Leadership",
+        "count": 48
+      },
+      {
+        "skill": "Excel",
+        "count": 45
+      },
+      {
+        "skill": "Presentation",
+        "count": 34
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 28
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 26
+      },
+      {
+        "skill": "Time Management",
+        "count": 21
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 21
+      },
+      {
+        "skill": "Customer Service",
+        "count": 20
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 19
+      },
+      {
+        "skill": "customer service",
+        "count": 14
+      },
+      {
+        "skill": "Project Management",
+        "count": 14
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 13
+      },
+      {
+        "skill": "Decision Making",
+        "count": 13
+      },
+      {
+        "skill": "Analytical",
+        "count": 13
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 12
+      },
+      {
+        "skill": "Windows",
+        "count": 12
+      },
+      {
+        "skill": "leadership",
+        "count": 11
+      },
+      {
+        "skill": "MS Office",
+        "count": 10
+      },
+      {
+        "skill": "Access",
+        "count": 10
+      },
+      {
+        "skill": "Word",
+        "count": 10
+      },
+      {
+        "skill": "Negotiation",
+        "count": 10
+      },
+      {
+        "skill": "English",
+        "count": 8
+      },
+      {
+        "skill": "Outlook",
+        "count": 8
+      },
+      {
+        "skill": "mentoring",
+        "count": 6
+      },
+      {
+        "skill": "Spanish",
+        "count": 6
+      },
+      {
+        "skill": "Teamwork",
+        "count": 6
+      },
+      {
+        "skill": "coaching",
+        "count": 5
+      },
+      {
+        "skill": "Adaptability",
+        "count": 5
+      },
+      {
+        "skill": "Coaching",
+        "count": 5
+      },
+      {
+        "skill": "problem solving",
+        "count": 5
+      },
+      {
+        "skill": "windows",
+        "count": 5
+      },
+      {
+        "skill": "CRM",
+        "count": 5
+      },
+      {
+        "skill": "Customer service",
+        "count": 4
+      },
+      {
+        "skill": "SharePoint",
+        "count": 4
+      },
+      {
+        "skill": "time management",
+        "count": 4
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 4
+      },
+      {
+        "skill": "conflict resolution",
+        "count": 4
+      },
+      {
+        "skill": "Strategic Planning",
+        "count": 4
+      },
+      {
+        "skill": "SQL",
+        "count": 3
+      },
+      {
+        "skill": "Education",
+        "count": 3
+      },
+      {
+        "skill": "Mentoring",
+        "count": 3
+      },
+      {
+        "skill": "Business Development",
+        "count": 3
+      },
+      {
+        "skill": "Six Sigma",
+        "count": 3
+      },
+      {
+        "skill": "business development",
+        "count": 3
+      },
+      {
+        "skill": "linux",
+        "count": 3
+      },
+      {
+        "skill": "Time management",
+        "count": 3
+      },
+      {
+        "skill": "networking",
+        "count": 3
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 3
+      }
+    ],
+    "AGRICULTURE": [
+      {
+        "skill": "Organization",
+        "count": 40
+      },
+      {
+        "skill": "Communication",
+        "count": 39
+      },
+      {
+        "skill": "Leadership",
+        "count": 31
+      },
+      {
+        "skill": "Presentation",
+        "count": 20
+      },
+      {
+        "skill": "Excel",
+        "count": 19
+      },
+      {
+        "skill": "Analytical",
+        "count": 16
+      },
+      {
+        "skill": "Project Management",
+        "count": 13
+      },
+      {
+        "skill": "English",
+        "count": 12
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 11
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 8
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 7
+      },
+      {
+        "skill": "Word",
+        "count": 7
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 6
+      },
+      {
+        "skill": "Time Management",
+        "count": 6
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 6
+      },
+      {
+        "skill": "Access",
+        "count": 5
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 5
+      },
+      {
+        "skill": "Teamwork",
+        "count": 4
+      },
+      {
+        "skill": "MS Office",
+        "count": 4
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 4
+      },
+      {
+        "skill": "Customer Service",
+        "count": 4
+      },
+      {
+        "skill": "project management",
+        "count": 4
+      },
+      {
+        "skill": "Windows",
+        "count": 4
+      },
+      {
+        "skill": "teamwork",
+        "count": 3
+      },
+      {
+        "skill": "Agile",
+        "count": 3
+      },
+      {
+        "skill": "Oracle",
+        "count": 3
+      },
+      {
+        "skill": "Outlook",
+        "count": 3
+      },
+      {
+        "skill": "Business Development",
+        "count": 3
+      },
+      {
+        "skill": "SAP",
+        "count": 3
+      },
+      {
+        "skill": "Spanish",
+        "count": 3
+      },
+      {
+        "skill": "Creativity",
+        "count": 3
+      },
+      {
+        "skill": "Decision Making",
+        "count": 3
+      },
+      {
+        "skill": "HTML",
+        "count": 2
+      },
+      {
+        "skill": "Pandas",
+        "count": 2
+      },
+      {
+        "skill": "Python",
+        "count": 2
+      },
+      {
+        "skill": "SQL",
+        "count": 2
+      },
+      {
+        "skill": "accounting",
+        "count": 2
+      },
+      {
+        "skill": "Market Research",
+        "count": 2
+      },
+      {
+        "skill": "business development",
+        "count": 2
+      },
+      {
+        "skill": "JavaScript",
+        "count": 2
+      },
+      {
+        "skill": "Accounting",
+        "count": 2
+      },
+      {
+        "skill": "leadership",
+        "count": 2
+      },
+      {
+        "skill": "Negotiation",
+        "count": 2
+      },
+      {
+        "skill": "Statistics",
+        "count": 2
+      },
+      {
+        "skill": "decision making",
+        "count": 2
+      },
+      {
+        "skill": "strategic planning",
+        "count": 2
+      },
+      {
+        "skill": "windows",
+        "count": 2
+      },
+      {
+        "skill": "customer service",
+        "count": 2
+      },
+      {
+        "skill": "LAN",
+        "count": 1
+      },
+      {
+        "skill": "PMP",
+        "count": 1
+      }
+    ],
+    "APPAREL": [
+      {
+        "skill": "Communication",
+        "count": 62
+      },
+      {
+        "skill": "Organization",
+        "count": 48
+      },
+      {
+        "skill": "Leadership",
+        "count": 34
+      },
+      {
+        "skill": "Excel",
+        "count": 32
+      },
+      {
+        "skill": "Presentation",
+        "count": 32
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 18
+      },
+      {
+        "skill": "English",
+        "count": 16
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 16
+      },
+      {
+        "skill": "customer service",
+        "count": 15
+      },
+      {
+        "skill": "Time Management",
+        "count": 15
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 15
+      },
+      {
+        "skill": "Word",
+        "count": 14
+      },
+      {
+        "skill": "Customer Service",
+        "count": 14
+      },
+      {
+        "skill": "Analytical",
+        "count": 12
+      },
+      {
+        "skill": "Project Management",
+        "count": 12
+      },
+      {
+        "skill": "Negotiation",
+        "count": 12
+      },
+      {
+        "skill": "merchandising",
+        "count": 12
+      },
+      {
+        "skill": "Merchandising",
+        "count": 11
+      },
+      {
+        "skill": "MS Office",
+        "count": 10
+      },
+      {
+        "skill": "leadership",
+        "count": 9
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 8
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 8
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "Illustrator",
+        "count": 6
+      },
+      {
+        "skill": "Photoshop",
+        "count": 6
+      },
+      {
+        "skill": "Teamwork",
+        "count": 6
+      },
+      {
+        "skill": "Access",
+        "count": 6
+      },
+      {
+        "skill": "retail",
+        "count": 6
+      },
+      {
+        "skill": "Windows",
+        "count": 5
+      },
+      {
+        "skill": "Outlook",
+        "count": 5
+      },
+      {
+        "skill": "Creativity",
+        "count": 4
+      },
+      {
+        "skill": "windows",
+        "count": 4
+      },
+      {
+        "skill": "SAP",
+        "count": 4
+      },
+      {
+        "skill": "business development",
+        "count": 4
+      },
+      {
+        "skill": "Adaptability",
+        "count": 4
+      },
+      {
+        "skill": "project management",
+        "count": 4
+      },
+      {
+        "skill": "inventory management",
+        "count": 4
+      },
+      {
+        "skill": "coaching",
+        "count": 4
+      },
+      {
+        "skill": "Business Development",
+        "count": 3
+      },
+      {
+        "skill": "HTML",
+        "count": 3
+      },
+      {
+        "skill": "Coaching",
+        "count": 3
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 3
+      },
+      {
+        "skill": "budgeting",
+        "count": 3
+      },
+      {
+        "skill": "teamwork",
+        "count": 3
+      },
+      {
+        "skill": "Quality Assurance",
+        "count": 3
+      },
+      {
+        "skill": "Real Estate",
+        "count": 2
+      },
+      {
+        "skill": "Retail",
+        "count": 2
+      },
+      {
+        "skill": "Customer service",
+        "count": 2
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 2
+      },
+      {
+        "skill": "market research",
+        "count": 2
+      }
+    ],
+    "ARTS": [
+      {
+        "skill": "Communication",
+        "count": 63
+      },
+      {
+        "skill": "Organization",
+        "count": 52
+      },
+      {
+        "skill": "Leadership",
+        "count": 44
+      },
+      {
+        "skill": "Presentation",
+        "count": 30
+      },
+      {
+        "skill": "English",
+        "count": 29
+      },
+      {
+        "skill": "Excel",
+        "count": 24
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 23
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 17
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 15
+      },
+      {
+        "skill": "Time Management",
+        "count": 15
+      },
+      {
+        "skill": "Project Management",
+        "count": 15
+      },
+      {
+        "skill": "Analytical",
+        "count": 12
+      },
+      {
+        "skill": "Word",
+        "count": 11
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 11
+      },
+      {
+        "skill": "Access",
+        "count": 10
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 9
+      },
+      {
+        "skill": "Customer Service",
+        "count": 9
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 9
+      },
+      {
+        "skill": "Windows",
+        "count": 8
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 8
+      },
+      {
+        "skill": "Photoshop",
+        "count": 7
+      },
+      {
+        "skill": "Negotiation",
+        "count": 7
+      },
+      {
+        "skill": "Illustrator",
+        "count": 6
+      },
+      {
+        "skill": "project management",
+        "count": 6
+      },
+      {
+        "skill": "MS Office",
+        "count": 5
+      },
+      {
+        "skill": "Teamwork",
+        "count": 5
+      },
+      {
+        "skill": "HTML",
+        "count": 5
+      },
+      {
+        "skill": "SAP",
+        "count": 5
+      },
+      {
+        "skill": "Creativity",
+        "count": 5
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 5
+      },
+      {
+        "skill": "Chef",
+        "count": 4
+      },
+      {
+        "skill": "Outlook",
+        "count": 4
+      },
+      {
+        "skill": "Graphic Design",
+        "count": 3
+      },
+      {
+        "skill": "InDesign",
+        "count": 3
+      },
+      {
+        "skill": "problem solving",
+        "count": 3
+      },
+      {
+        "skill": "Logistics",
+        "count": 3
+      },
+      {
+        "skill": "Attention to detail",
+        "count": 3
+      },
+      {
+        "skill": "Customer service",
+        "count": 3
+      },
+      {
+        "skill": "inventory management",
+        "count": 3
+      },
+      {
+        "skill": "coaching",
+        "count": 3
+      },
+      {
+        "skill": "customer service",
+        "count": 3
+      },
+      {
+        "skill": "graphic design",
+        "count": 3
+      },
+      {
+        "skill": "Data Analysis",
+        "count": 3
+      },
+      {
+        "skill": "ENGLISH",
+        "count": 3
+      },
+      {
+        "skill": "LAN",
+        "count": 3
+      },
+      {
+        "skill": "Cisco",
+        "count": 3
+      },
+      {
+        "skill": "windows",
+        "count": 2
+      },
+      {
+        "skill": "time management",
+        "count": 2
+      },
+      {
+        "skill": "Spanish",
+        "count": 2
+      },
+      {
+        "skill": "Microsoft Project",
+        "count": 2
+      }
+    ],
+    "AUTOMOBILE": [
+      {
+        "skill": "Communication",
+        "count": 19
+      },
+      {
+        "skill": "Organization",
+        "count": 19
+      },
+      {
+        "skill": "Leadership",
+        "count": 12
+      },
+      {
+        "skill": "Excel",
+        "count": 12
+      },
+      {
+        "skill": "Time Management",
+        "count": 9
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 9
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 8
+      },
+      {
+        "skill": "Analytical",
+        "count": 7
+      },
+      {
+        "skill": "Project Management",
+        "count": 7
+      },
+      {
+        "skill": "Word",
+        "count": 6
+      },
+      {
+        "skill": "customer service",
+        "count": 6
+      },
+      {
+        "skill": "Customer Service",
+        "count": 6
+      },
+      {
+        "skill": "English",
+        "count": 6
+      },
+      {
+        "skill": "Presentation",
+        "count": 5
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 5
+      },
+      {
+        "skill": "Oracle",
+        "count": 5
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 5
+      },
+      {
+        "skill": "Negotiation",
+        "count": 5
+      },
+      {
+        "skill": "SQL",
+        "count": 5
+      },
+      {
+        "skill": "Windows",
+        "count": 5
+      },
+      {
+        "skill": "leadership",
+        "count": 4
+      },
+      {
+        "skill": "SQL Server",
+        "count": 4
+      },
+      {
+        "skill": "Outlook",
+        "count": 3
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 3
+      },
+      {
+        "skill": "MS Office",
+        "count": 3
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 2
+      },
+      {
+        "skill": "data analysis",
+        "count": 2
+      },
+      {
+        "skill": "time management",
+        "count": 2
+      },
+      {
+        "skill": "accounting",
+        "count": 2
+      },
+      {
+        "skill": "Decision Making",
+        "count": 2
+      },
+      {
+        "skill": "decision making",
+        "count": 2
+      },
+      {
+        "skill": "project management",
+        "count": 2
+      },
+      {
+        "skill": "retail",
+        "count": 2
+      },
+      {
+        "skill": "AutoCAD",
+        "count": 2
+      },
+      {
+        "skill": "Data Analysis",
+        "count": 2
+      },
+      {
+        "skill": "MATLAB",
+        "count": 2
+      },
+      {
+        "skill": "Python",
+        "count": 2
+      },
+      {
+        "skill": "Six Sigma",
+        "count": 2
+      },
+      {
+        "skill": "Java",
+        "count": 2
+      },
+      {
+        "skill": "coaching",
+        "count": 2
+      },
+      {
+        "skill": "Unix",
+        "count": 2
+      },
+      {
+        "skill": "Access",
+        "count": 2
+      },
+      {
+        "skill": "UNIX",
+        "count": 2
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 1
+      },
+      {
+        "skill": "Excel 2003",
+        "count": 1
+      },
+      {
+        "skill": "Ms Office",
+        "count": 1
+      },
+      {
+        "skill": "Outlook 2003",
+        "count": 1
+      },
+      {
+        "skill": "Powerpoint",
+        "count": 1
+      },
+      {
+        "skill": "Powerpoint 2003",
+        "count": 1
+      },
+      {
+        "skill": "Sharepoint",
+        "count": 1
+      }
+    ],
+    "AVIATION": [
+      {
+        "skill": "Organization",
+        "count": 62
+      },
+      {
+        "skill": "Communication",
+        "count": 59
+      },
+      {
+        "skill": "Leadership",
+        "count": 48
+      },
+      {
+        "skill": "Excel",
+        "count": 38
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 23
+      },
+      {
+        "skill": "Analytical",
+        "count": 22
+      },
+      {
+        "skill": "Project Management",
+        "count": 20
+      },
+      {
+        "skill": "Windows",
+        "count": 19
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 19
+      },
+      {
+        "skill": "Presentation",
+        "count": 19
+      },
+      {
+        "skill": "Word",
+        "count": 18
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 16
+      },
+      {
+        "skill": "Time Management",
+        "count": 16
+      },
+      {
+        "skill": "English",
+        "count": 14
+      },
+      {
+        "skill": "Negotiation",
+        "count": 14
+      },
+      {
+        "skill": "Outlook",
+        "count": 13
+      },
+      {
+        "skill": "Customer Service",
+        "count": 13
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 12
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 12
+      },
+      {
+        "skill": "Logistics",
+        "count": 11
+      },
+      {
+        "skill": "Access",
+        "count": 10
+      },
+      {
+        "skill": "inventory management",
+        "count": 10
+      },
+      {
+        "skill": "logistics",
+        "count": 9
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 9
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "Decision Making",
+        "count": 8
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 7
+      },
+      {
+        "skill": "accounting",
+        "count": 6
+      },
+      {
+        "skill": "project management",
+        "count": 6
+      },
+      {
+        "skill": "Quality Assurance",
+        "count": 6
+      },
+      {
+        "skill": "customer service",
+        "count": 6
+      },
+      {
+        "skill": "HTML",
+        "count": 5
+      },
+      {
+        "skill": "MS Office",
+        "count": 5
+      },
+      {
+        "skill": "Six Sigma",
+        "count": 5
+      },
+      {
+        "skill": "Powerpoint",
+        "count": 5
+      },
+      {
+        "skill": "C++",
+        "count": 5
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 5
+      },
+      {
+        "skill": "MATLAB",
+        "count": 4
+      },
+      {
+        "skill": "quality assurance",
+        "count": 4
+      },
+      {
+        "skill": "time management",
+        "count": 4
+      },
+      {
+        "skill": "SAP",
+        "count": 4
+      },
+      {
+        "skill": "Testing",
+        "count": 4
+      },
+      {
+        "skill": "Linux",
+        "count": 4
+      },
+      {
+        "skill": "Unix",
+        "count": 4
+      },
+      {
+        "skill": "windows",
+        "count": 4
+      },
+      {
+        "skill": "LAN",
+        "count": 4
+      },
+      {
+        "skill": "Java",
+        "count": 3
+      },
+      {
+        "skill": "Windows 7",
+        "count": 3
+      },
+      {
+        "skill": "CSS",
+        "count": 3
+      },
+      {
+        "skill": "Python",
+        "count": 3
+      }
+    ],
+    "BANKING": [
+      {
+        "skill": "Organization",
+        "count": 67
+      },
+      {
+        "skill": "Communication",
+        "count": 65
+      },
+      {
+        "skill": "Leadership",
+        "count": 57
+      },
+      {
+        "skill": "Excel",
+        "count": 44
+      },
+      {
+        "skill": "Presentation",
+        "count": 38
+      },
+      {
+        "skill": "Analytical",
+        "count": 36
+      },
+      {
+        "skill": "Project Management",
+        "count": 29
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 24
+      },
+      {
+        "skill": "Negotiation",
+        "count": 23
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 22
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 22
+      },
+      {
+        "skill": "customer service",
+        "count": 16
+      },
+      {
+        "skill": "English",
+        "count": 15
+      },
+      {
+        "skill": "Time Management",
+        "count": 14
+      },
+      {
+        "skill": "SQL",
+        "count": 14
+      },
+      {
+        "skill": "Windows",
+        "count": 13
+      },
+      {
+        "skill": "Word",
+        "count": 13
+      },
+      {
+        "skill": "Customer Service",
+        "count": 13
+      },
+      {
+        "skill": "Access",
+        "count": 12
+      },
+      {
+        "skill": "Oracle",
+        "count": 12
+      },
+      {
+        "skill": "Outlook",
+        "count": 10
+      },
+      {
+        "skill": "business development",
+        "count": 10
+      },
+      {
+        "skill": "retail",
+        "count": 9
+      },
+      {
+        "skill": "Accounting",
+        "count": 9
+      },
+      {
+        "skill": "coaching",
+        "count": 9
+      },
+      {
+        "skill": "Real Estate",
+        "count": 8
+      },
+      {
+        "skill": "MS Office",
+        "count": 8
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "CRM",
+        "count": 7
+      },
+      {
+        "skill": "leadership",
+        "count": 7
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 7
+      },
+      {
+        "skill": "time management",
+        "count": 6
+      },
+      {
+        "skill": "Retail",
+        "count": 6
+      },
+      {
+        "skill": "accounting",
+        "count": 6
+      },
+      {
+        "skill": "Business Development",
+        "count": 6
+      },
+      {
+        "skill": "Healthcare",
+        "count": 6
+      },
+      {
+        "skill": "financial analysis",
+        "count": 6
+      },
+      {
+        "skill": "project management",
+        "count": 6
+      },
+      {
+        "skill": "HTML",
+        "count": 6
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 6
+      },
+      {
+        "skill": "Decision Making",
+        "count": 6
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 5
+      },
+      {
+        "skill": "SharePoint",
+        "count": 5
+      },
+      {
+        "skill": "problem solving",
+        "count": 5
+      },
+      {
+        "skill": "Creativity",
+        "count": 5
+      },
+      {
+        "skill": "SAP",
+        "count": 5
+      },
+      {
+        "skill": "Teamwork",
+        "count": 5
+      },
+      {
+        "skill": "Compliance",
+        "count": 5
+      },
+      {
+        "skill": "networking",
+        "count": 5
+      },
+      {
+        "skill": "data analysis",
+        "count": 5
+      }
+    ],
+    "BPO": [
+      {
+        "skill": "Communication",
+        "count": 13
+      },
+      {
+        "skill": "Organization",
+        "count": 13
+      },
+      {
+        "skill": "Leadership",
+        "count": 12
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 8
+      },
+      {
+        "skill": "Excel",
+        "count": 7
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 5
+      },
+      {
+        "skill": "Windows",
+        "count": 5
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 4
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 4
+      },
+      {
+        "skill": "Project Management",
+        "count": 4
+      },
+      {
+        "skill": "English",
+        "count": 4
+      },
+      {
+        "skill": "LAN",
+        "count": 4
+      },
+      {
+        "skill": "SAP",
+        "count": 4
+      },
+      {
+        "skill": "Negotiation",
+        "count": 4
+      },
+      {
+        "skill": "SQL",
+        "count": 3
+      },
+      {
+        "skill": "Analytical",
+        "count": 3
+      },
+      {
+        "skill": "CCNA",
+        "count": 3
+      },
+      {
+        "skill": "Cisco",
+        "count": 3
+      },
+      {
+        "skill": "Microsoft office",
+        "count": 3
+      },
+      {
+        "skill": "Presentation",
+        "count": 3
+      },
+      {
+        "skill": "business development",
+        "count": 3
+      },
+      {
+        "skill": "customer service",
+        "count": 3
+      },
+      {
+        "skill": "Time Management",
+        "count": 3
+      },
+      {
+        "skill": "leadership",
+        "count": 3
+      },
+      {
+        "skill": "Java",
+        "count": 2
+      },
+      {
+        "skill": "windows",
+        "count": 2
+      },
+      {
+        "skill": "DHCP",
+        "count": 2
+      },
+      {
+        "skill": "DNS",
+        "count": 2
+      },
+      {
+        "skill": "WAN",
+        "count": 2
+      },
+      {
+        "skill": "Windows 8",
+        "count": 2
+      },
+      {
+        "skill": "access",
+        "count": 2
+      },
+      {
+        "skill": "quality assurance",
+        "count": 2
+      },
+      {
+        "skill": "strategic planning",
+        "count": 2
+      },
+      {
+        "skill": "Outlook",
+        "count": 2
+      },
+      {
+        "skill": "QA",
+        "count": 2
+      },
+      {
+        "skill": "coaching",
+        "count": 2
+      },
+      {
+        "skill": "time management",
+        "count": 2
+      },
+      {
+        "skill": "SQL server",
+        "count": 2
+      },
+      {
+        "skill": "oracle",
+        "count": 2
+      },
+      {
+        "skill": "chef",
+        "count": 1
+      },
+      {
+        "skill": "JIRA",
+        "count": 1
+      },
+      {
+        "skill": "project management",
+        "count": 1
+      },
+      {
+        "skill": "CISCO",
+        "count": 1
+      },
+      {
+        "skill": "ERP",
+        "count": 1
+      },
+      {
+        "skill": "Networking",
+        "count": 1
+      },
+      {
+        "skill": "Routing",
+        "count": 1
+      },
+      {
+        "skill": "Ubuntu",
+        "count": 1
+      },
+      {
+        "skill": "Windows7",
+        "count": 1
+      },
+      {
+        "skill": "outlook",
+        "count": 1
+      },
+      {
+        "skill": "CRM",
+        "count": 1
+      }
+    ],
+    "BUSINESS-DEVELOPMENT": [
+      {
+        "skill": "Organization",
+        "count": 76
+      },
+      {
+        "skill": "Communication",
+        "count": 71
+      },
+      {
+        "skill": "Leadership",
+        "count": 66
+      },
+      {
+        "skill": "Presentation",
+        "count": 57
+      },
+      {
+        "skill": "Business Development",
+        "count": 51
+      },
+      {
+        "skill": "Negotiation",
+        "count": 38
+      },
+      {
+        "skill": "business development",
+        "count": 34
+      },
+      {
+        "skill": "Project Management",
+        "count": 29
+      },
+      {
+        "skill": "Excel",
+        "count": 26
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 22
+      },
+      {
+        "skill": "Analytical",
+        "count": 21
+      },
+      {
+        "skill": "CRM",
+        "count": 21
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 16
+      },
+      {
+        "skill": "English",
+        "count": 15
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 13
+      },
+      {
+        "skill": "Time Management",
+        "count": 12
+      },
+      {
+        "skill": "Outlook",
+        "count": 11
+      },
+      {
+        "skill": "customer service",
+        "count": 10
+      },
+      {
+        "skill": "Decision Making",
+        "count": 10
+      },
+      {
+        "skill": "Word",
+        "count": 10
+      },
+      {
+        "skill": "project management",
+        "count": 9
+      },
+      {
+        "skill": "networking",
+        "count": 9
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 8
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 8
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 7
+      },
+      {
+        "skill": "Strategic Planning",
+        "count": 7
+      },
+      {
+        "skill": "Windows",
+        "count": 7
+      },
+      {
+        "skill": "Customer Service",
+        "count": 7
+      },
+      {
+        "skill": "leadership",
+        "count": 7
+      },
+      {
+        "skill": "Oracle",
+        "count": 7
+      },
+      {
+        "skill": "SAP",
+        "count": 7
+      },
+      {
+        "skill": "Teamwork",
+        "count": 7
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 7
+      },
+      {
+        "skill": "Forecasting",
+        "count": 6
+      },
+      {
+        "skill": "Salesforce",
+        "count": 6
+      },
+      {
+        "skill": "BUSINESS DEVELOPMENT",
+        "count": 6
+      },
+      {
+        "skill": "Six Sigma",
+        "count": 6
+      },
+      {
+        "skill": "Creativity",
+        "count": 5
+      },
+      {
+        "skill": "MS Office",
+        "count": 5
+      },
+      {
+        "skill": "Budgeting",
+        "count": 5
+      },
+      {
+        "skill": "access",
+        "count": 5
+      },
+      {
+        "skill": "SharePoint",
+        "count": 5
+      },
+      {
+        "skill": "Healthcare",
+        "count": 5
+      },
+      {
+        "skill": "accounting",
+        "count": 5
+      },
+      {
+        "skill": "inventory management",
+        "count": 4
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 4
+      },
+      {
+        "skill": "Coaching",
+        "count": 4
+      },
+      {
+        "skill": "Illustrator",
+        "count": 4
+      },
+      {
+        "skill": "forecasting",
+        "count": 4
+      }
+    ],
+    "CHEF": [
+      {
+        "skill": "Chef",
+        "count": 103
+      },
+      {
+        "skill": "CHEF",
+        "count": 99
+      },
+      {
+        "skill": "Presentation",
+        "count": 53
+      },
+      {
+        "skill": "chef",
+        "count": 50
+      },
+      {
+        "skill": "Organization",
+        "count": 46
+      },
+      {
+        "skill": "Leadership",
+        "count": 46
+      },
+      {
+        "skill": "Communication",
+        "count": 45
+      },
+      {
+        "skill": "Excel",
+        "count": 26
+      },
+      {
+        "skill": "English",
+        "count": 19
+      },
+      {
+        "skill": "Time Management",
+        "count": 17
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 14
+      },
+      {
+        "skill": "Negotiation",
+        "count": 13
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 13
+      },
+      {
+        "skill": "Project Management",
+        "count": 11
+      },
+      {
+        "skill": "Creativity",
+        "count": 11
+      },
+      {
+        "skill": "customer service",
+        "count": 10
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 9
+      },
+      {
+        "skill": "Customer Service",
+        "count": 9
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 9
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 7
+      },
+      {
+        "skill": "Windows",
+        "count": 7
+      },
+      {
+        "skill": "Analytical",
+        "count": 6
+      },
+      {
+        "skill": "Access",
+        "count": 6
+      },
+      {
+        "skill": "Retail",
+        "count": 5
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 5
+      },
+      {
+        "skill": "Outlook",
+        "count": 5
+      },
+      {
+        "skill": "Word",
+        "count": 5
+      },
+      {
+        "skill": "leadership",
+        "count": 5
+      },
+      {
+        "skill": "retail",
+        "count": 5
+      },
+      {
+        "skill": "inventory management",
+        "count": 4
+      },
+      {
+        "skill": "Budgeting",
+        "count": 4
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 4
+      },
+      {
+        "skill": "logistics",
+        "count": 4
+      },
+      {
+        "skill": "POS",
+        "count": 3
+      },
+      {
+        "skill": "Inventory Management",
+        "count": 3
+      },
+      {
+        "skill": "Customer service",
+        "count": 3
+      },
+      {
+        "skill": "Decision Making",
+        "count": 3
+      },
+      {
+        "skill": "French",
+        "count": 3
+      },
+      {
+        "skill": "project management",
+        "count": 3
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 3
+      },
+      {
+        "skill": "time management",
+        "count": 3
+      },
+      {
+        "skill": "forecasting",
+        "count": 3
+      },
+      {
+        "skill": "coaching",
+        "count": 3
+      },
+      {
+        "skill": "Arabic",
+        "count": 2
+      },
+      {
+        "skill": "QuickBooks",
+        "count": 2
+      },
+      {
+        "skill": "Teamwork",
+        "count": 2
+      },
+      {
+        "skill": "Photoshop",
+        "count": 2
+      },
+      {
+        "skill": "budgeting",
+        "count": 2
+      },
+      {
+        "skill": "Coaching",
+        "count": 2
+      }
+    ],
+    "CONSTRUCTION": [
+      {
+        "skill": "Communication",
+        "count": 70
+      },
+      {
+        "skill": "Project Management",
+        "count": 45
+      },
+      {
+        "skill": "Leadership",
+        "count": 44
+      },
+      {
+        "skill": "Organization",
+        "count": 42
+      },
+      {
+        "skill": "Negotiation",
+        "count": 32
+      },
+      {
+        "skill": "Excel",
+        "count": 29
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 22
+      },
+      {
+        "skill": "Time Management",
+        "count": 19
+      },
+      {
+        "skill": "Presentation",
+        "count": 16
+      },
+      {
+        "skill": "MS Office",
+        "count": 15
+      },
+      {
+        "skill": "project management",
+        "count": 14
+      },
+      {
+        "skill": "Analytical",
+        "count": 13
+      },
+      {
+        "skill": "English",
+        "count": 12
+      },
+      {
+        "skill": "Microsoft Project",
+        "count": 12
+      },
+      {
+        "skill": "Windows",
+        "count": 11
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 11
+      },
+      {
+        "skill": "Outlook",
+        "count": 11
+      },
+      {
+        "skill": "Decision Making",
+        "count": 10
+      },
+      {
+        "skill": "Word",
+        "count": 10
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 10
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 10
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 9
+      },
+      {
+        "skill": "AutoCAD",
+        "count": 8
+      },
+      {
+        "skill": "windows",
+        "count": 8
+      },
+      {
+        "skill": "customer service",
+        "count": 7
+      },
+      {
+        "skill": "Access",
+        "count": 5
+      },
+      {
+        "skill": "Spanish",
+        "count": 5
+      },
+      {
+        "skill": "QuickBooks",
+        "count": 5
+      },
+      {
+        "skill": "Teamwork",
+        "count": 4
+      },
+      {
+        "skill": "budgeting",
+        "count": 4
+      },
+      {
+        "skill": "QA",
+        "count": 4
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 4
+      },
+      {
+        "skill": "leadership",
+        "count": 4
+      },
+      {
+        "skill": "Project management",
+        "count": 4
+      },
+      {
+        "skill": "Networking",
+        "count": 3
+      },
+      {
+        "skill": "Retail",
+        "count": 3
+      },
+      {
+        "skill": "Customer service",
+        "count": 3
+      },
+      {
+        "skill": "API",
+        "count": 3
+      },
+      {
+        "skill": "business development",
+        "count": 3
+      },
+      {
+        "skill": "Real Estate",
+        "count": 3
+      },
+      {
+        "skill": "Budgeting",
+        "count": 3
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 3
+      },
+      {
+        "skill": "decision making",
+        "count": 3
+      },
+      {
+        "skill": "Customer Service",
+        "count": 3
+      },
+      {
+        "skill": "SAP",
+        "count": 3
+      },
+      {
+        "skill": "AWS",
+        "count": 2
+      },
+      {
+        "skill": "access",
+        "count": 2
+      },
+      {
+        "skill": "interpersonal skills",
+        "count": 2
+      },
+      {
+        "skill": "Business Development",
+        "count": 2
+      },
+      {
+        "skill": "Property Management",
+        "count": 2
+      }
+    ],
+    "CONSULTANT": [
+      {
+        "skill": "Communication",
+        "count": 68
+      },
+      {
+        "skill": "Organization",
+        "count": 65
+      },
+      {
+        "skill": "Project Management",
+        "count": 47
+      },
+      {
+        "skill": "Leadership",
+        "count": 44
+      },
+      {
+        "skill": "Presentation",
+        "count": 38
+      },
+      {
+        "skill": "Excel",
+        "count": 38
+      },
+      {
+        "skill": "Windows",
+        "count": 37
+      },
+      {
+        "skill": "Analytical",
+        "count": 31
+      },
+      {
+        "skill": "SQL",
+        "count": 25
+      },
+      {
+        "skill": "Oracle",
+        "count": 18
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 17
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 16
+      },
+      {
+        "skill": "HTML",
+        "count": 15
+      },
+      {
+        "skill": "Access",
+        "count": 15
+      },
+      {
+        "skill": "Negotiation",
+        "count": 14
+      },
+      {
+        "skill": "English",
+        "count": 13
+      },
+      {
+        "skill": "project management",
+        "count": 13
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 13
+      },
+      {
+        "skill": "Time Management",
+        "count": 12
+      },
+      {
+        "skill": "SQL Server",
+        "count": 12
+      },
+      {
+        "skill": "Linux",
+        "count": 11
+      },
+      {
+        "skill": "Customer Service",
+        "count": 10
+      },
+      {
+        "skill": "Agile",
+        "count": 10
+      },
+      {
+        "skill": "JavaScript",
+        "count": 10
+      },
+      {
+        "skill": "Cisco",
+        "count": 9
+      },
+      {
+        "skill": "LAN",
+        "count": 9
+      },
+      {
+        "skill": "MySQL",
+        "count": 9
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 9
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 9
+      },
+      {
+        "skill": "leadership",
+        "count": 9
+      },
+      {
+        "skill": "access",
+        "count": 9
+      },
+      {
+        "skill": "MS Office",
+        "count": 9
+      },
+      {
+        "skill": "Java",
+        "count": 9
+      },
+      {
+        "skill": "PHP",
+        "count": 8
+      },
+      {
+        "skill": "Windows 7",
+        "count": 8
+      },
+      {
+        "skill": "Word",
+        "count": 8
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 8
+      },
+      {
+        "skill": "CRM",
+        "count": 8
+      },
+      {
+        "skill": "ERP",
+        "count": 8
+      },
+      {
+        "skill": "Accounting",
+        "count": 8
+      },
+      {
+        "skill": "Unix",
+        "count": 8
+      },
+      {
+        "skill": "Windows 2000",
+        "count": 7
+      },
+      {
+        "skill": "Networking",
+        "count": 7
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 7
+      },
+      {
+        "skill": "Business Development",
+        "count": 7
+      },
+      {
+        "skill": "Scrum",
+        "count": 7
+      },
+      {
+        "skill": "VPN",
+        "count": 7
+      },
+      {
+        "skill": "TCP/IP",
+        "count": 7
+      },
+      {
+        "skill": "UNIX",
+        "count": 7
+      },
+      {
+        "skill": "C++",
+        "count": 6
+      }
+    ],
+    "DESIGNER": [
+      {
+        "skill": "Communication",
+        "count": 54
+      },
+      {
+        "skill": "Presentation",
+        "count": 45
+      },
+      {
+        "skill": "Organization",
+        "count": 36
+      },
+      {
+        "skill": "Leadership",
+        "count": 32
+      },
+      {
+        "skill": "Excel",
+        "count": 29
+      },
+      {
+        "skill": "Illustrator",
+        "count": 28
+      },
+      {
+        "skill": "Project Management",
+        "count": 22
+      },
+      {
+        "skill": "English",
+        "count": 21
+      },
+      {
+        "skill": "HTML",
+        "count": 20
+      },
+      {
+        "skill": "Photoshop",
+        "count": 18
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 16
+      },
+      {
+        "skill": "Windows",
+        "count": 16
+      },
+      {
+        "skill": "Time Management",
+        "count": 16
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 15
+      },
+      {
+        "skill": "InDesign",
+        "count": 15
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 12
+      },
+      {
+        "skill": "Word",
+        "count": 11
+      },
+      {
+        "skill": "Graphic Design",
+        "count": 11
+      },
+      {
+        "skill": "CSS",
+        "count": 11
+      },
+      {
+        "skill": "AutoCAD",
+        "count": 10
+      },
+      {
+        "skill": "Customer Service",
+        "count": 10
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 10
+      },
+      {
+        "skill": "Spanish",
+        "count": 10
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 9
+      },
+      {
+        "skill": "SQL",
+        "count": 8
+      },
+      {
+        "skill": "graphic design",
+        "count": 8
+      },
+      {
+        "skill": "Analytical",
+        "count": 7
+      },
+      {
+        "skill": "Creativity",
+        "count": 7
+      },
+      {
+        "skill": "Outlook",
+        "count": 6
+      },
+      {
+        "skill": "retail",
+        "count": 6
+      },
+      {
+        "skill": "MS Office",
+        "count": 6
+      },
+      {
+        "skill": "Oracle",
+        "count": 5
+      },
+      {
+        "skill": "project management",
+        "count": 5
+      },
+      {
+        "skill": "customer service",
+        "count": 5
+      },
+      {
+        "skill": "Agile",
+        "count": 5
+      },
+      {
+        "skill": "Linux",
+        "count": 4
+      },
+      {
+        "skill": "SharePoint",
+        "count": 4
+      },
+      {
+        "skill": "Sketch",
+        "count": 4
+      },
+      {
+        "skill": "Web Design",
+        "count": 4
+      },
+      {
+        "skill": "time management",
+        "count": 4
+      },
+      {
+        "skill": "Negotiation",
+        "count": 4
+      },
+      {
+        "skill": "HTML5",
+        "count": 4
+      },
+      {
+        "skill": "POS",
+        "count": 4
+      },
+      {
+        "skill": "Decision Making",
+        "count": 3
+      },
+      {
+        "skill": "C#",
+        "count": 3
+      },
+      {
+        "skill": "Instructional Design",
+        "count": 3
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 3
+      },
+      {
+        "skill": "Chinese",
+        "count": 3
+      },
+      {
+        "skill": "Access",
+        "count": 3
+      },
+      {
+        "skill": "sketch",
+        "count": 3
+      }
+    ],
+    "DIGITAL-MEDIA": [
+      {
+        "skill": "Communication",
+        "count": 64
+      },
+      {
+        "skill": "Organization",
+        "count": 44
+      },
+      {
+        "skill": "Leadership",
+        "count": 35
+      },
+      {
+        "skill": "Presentation",
+        "count": 33
+      },
+      {
+        "skill": "Excel",
+        "count": 28
+      },
+      {
+        "skill": "Project Management",
+        "count": 27
+      },
+      {
+        "skill": "HTML",
+        "count": 20
+      },
+      {
+        "skill": "SEO",
+        "count": 17
+      },
+      {
+        "skill": "Analytical",
+        "count": 16
+      },
+      {
+        "skill": "English",
+        "count": 15
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 14
+      },
+      {
+        "skill": "CSS",
+        "count": 13
+      },
+      {
+        "skill": "Illustrator",
+        "count": 13
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 12
+      },
+      {
+        "skill": "Digital Marketing",
+        "count": 12
+      },
+      {
+        "skill": "Negotiation",
+        "count": 11
+      },
+      {
+        "skill": "Windows",
+        "count": 11
+      },
+      {
+        "skill": "Photoshop",
+        "count": 11
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 10
+      },
+      {
+        "skill": "Time Management",
+        "count": 10
+      },
+      {
+        "skill": "Word",
+        "count": 9
+      },
+      {
+        "skill": "InDesign",
+        "count": 9
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "JavaScript",
+        "count": 8
+      },
+      {
+        "skill": "CRM",
+        "count": 8
+      },
+      {
+        "skill": "project management",
+        "count": 8
+      },
+      {
+        "skill": "SQL",
+        "count": 7
+      },
+      {
+        "skill": "SEM",
+        "count": 7
+      },
+      {
+        "skill": "networking",
+        "count": 7
+      },
+      {
+        "skill": "Outlook",
+        "count": 6
+      },
+      {
+        "skill": "Teamwork",
+        "count": 6
+      },
+      {
+        "skill": "PHP",
+        "count": 6
+      },
+      {
+        "skill": "business development",
+        "count": 6
+      },
+      {
+        "skill": "Access",
+        "count": 5
+      },
+      {
+        "skill": "Agile",
+        "count": 5
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 5
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 5
+      },
+      {
+        "skill": "Business Development",
+        "count": 5
+      },
+      {
+        "skill": "Salesforce",
+        "count": 5
+      },
+      {
+        "skill": "time management",
+        "count": 4
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 4
+      },
+      {
+        "skill": "customer service",
+        "count": 4
+      },
+      {
+        "skill": "MySQL",
+        "count": 4
+      },
+      {
+        "skill": "budgeting",
+        "count": 4
+      },
+      {
+        "skill": "Oracle",
+        "count": 4
+      },
+      {
+        "skill": "Creativity",
+        "count": 4
+      },
+      {
+        "skill": "MS Office",
+        "count": 4
+      },
+      {
+        "skill": "agile",
+        "count": 4
+      },
+      {
+        "skill": "JIRA",
+        "count": 4
+      },
+      {
+        "skill": "Customer Service",
+        "count": 3
+      }
+    ],
+    "ENGINEERING": [
+      {
+        "skill": "Communication",
+        "count": 63
+      },
+      {
+        "skill": "Leadership",
+        "count": 44
+      },
+      {
+        "skill": "Organization",
+        "count": 41
+      },
+      {
+        "skill": "Project Management",
+        "count": 40
+      },
+      {
+        "skill": "Excel",
+        "count": 30
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 28
+      },
+      {
+        "skill": "Windows",
+        "count": 28
+      },
+      {
+        "skill": "Analytical",
+        "count": 22
+      },
+      {
+        "skill": "AutoCAD",
+        "count": 21
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 19
+      },
+      {
+        "skill": "Presentation",
+        "count": 19
+      },
+      {
+        "skill": "C++",
+        "count": 18
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 15
+      },
+      {
+        "skill": "Java",
+        "count": 14
+      },
+      {
+        "skill": "Access",
+        "count": 14
+      },
+      {
+        "skill": "Word",
+        "count": 14
+      },
+      {
+        "skill": "Linux",
+        "count": 13
+      },
+      {
+        "skill": "Time Management",
+        "count": 13
+      },
+      {
+        "skill": "Outlook",
+        "count": 13
+      },
+      {
+        "skill": "Oracle",
+        "count": 12
+      },
+      {
+        "skill": "SQL",
+        "count": 12
+      },
+      {
+        "skill": "C#",
+        "count": 12
+      },
+      {
+        "skill": "Python",
+        "count": 11
+      },
+      {
+        "skill": "Scrum",
+        "count": 11
+      },
+      {
+        "skill": "Agile",
+        "count": 10
+      },
+      {
+        "skill": "project management",
+        "count": 10
+      },
+      {
+        "skill": "LAN",
+        "count": 10
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 9
+      },
+      {
+        "skill": "MS Office",
+        "count": 9
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 9
+      },
+      {
+        "skill": "SharePoint",
+        "count": 9
+      },
+      {
+        "skill": "MATLAB",
+        "count": 9
+      },
+      {
+        "skill": "HTML5",
+        "count": 8
+      },
+      {
+        "skill": "windows",
+        "count": 8
+      },
+      {
+        "skill": "Microsoft Project",
+        "count": 8
+      },
+      {
+        "skill": "SAP",
+        "count": 8
+      },
+      {
+        "skill": "HTML",
+        "count": 7
+      },
+      {
+        "skill": "JavaScript",
+        "count": 7
+      },
+      {
+        "skill": "Jenkins",
+        "count": 7
+      },
+      {
+        "skill": "English",
+        "count": 7
+      },
+      {
+        "skill": "leadership",
+        "count": 7
+      },
+      {
+        "skill": "API",
+        "count": 7
+      },
+      {
+        "skill": "JSON",
+        "count": 7
+      },
+      {
+        "skill": "Project management",
+        "count": 7
+      },
+      {
+        "skill": "ERP",
+        "count": 7
+      },
+      {
+        "skill": "Matlab",
+        "count": 7
+      },
+      {
+        "skill": "data analysis",
+        "count": 6
+      },
+      {
+        "skill": "SDK",
+        "count": 6
+      },
+      {
+        "skill": "XML",
+        "count": 6
+      },
+      {
+        "skill": "Kanban",
+        "count": 6
+      }
+    ],
+    "FINANCE": [
+      {
+        "skill": "Organization",
+        "count": 84
+      },
+      {
+        "skill": "Communication",
+        "count": 61
+      },
+      {
+        "skill": "Excel",
+        "count": 54
+      },
+      {
+        "skill": "Leadership",
+        "count": 51
+      },
+      {
+        "skill": "Analytical",
+        "count": 41
+      },
+      {
+        "skill": "Presentation",
+        "count": 31
+      },
+      {
+        "skill": "Accounting",
+        "count": 30
+      },
+      {
+        "skill": "Time Management",
+        "count": 26
+      },
+      {
+        "skill": "Project Management",
+        "count": 26
+      },
+      {
+        "skill": "Negotiation",
+        "count": 25
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 23
+      },
+      {
+        "skill": "Oracle",
+        "count": 22
+      },
+      {
+        "skill": "Access",
+        "count": 19
+      },
+      {
+        "skill": "SAP",
+        "count": 18
+      },
+      {
+        "skill": "forecasting",
+        "count": 18
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 17
+      },
+      {
+        "skill": "English",
+        "count": 16
+      },
+      {
+        "skill": "financial analysis",
+        "count": 16
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 14
+      },
+      {
+        "skill": "Word",
+        "count": 14
+      },
+      {
+        "skill": "Windows",
+        "count": 12
+      },
+      {
+        "skill": "accounting",
+        "count": 12
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 12
+      },
+      {
+        "skill": "Decision Making",
+        "count": 11
+      },
+      {
+        "skill": "project management",
+        "count": 11
+      },
+      {
+        "skill": "Budgeting",
+        "count": 11
+      },
+      {
+        "skill": "ERP",
+        "count": 11
+      },
+      {
+        "skill": "Forecasting",
+        "count": 10
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 9
+      },
+      {
+        "skill": "QuickBooks",
+        "count": 9
+      },
+      {
+        "skill": "leadership",
+        "count": 9
+      },
+      {
+        "skill": "Outlook",
+        "count": 8
+      },
+      {
+        "skill": "budgeting",
+        "count": 8
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 7
+      },
+      {
+        "skill": "MS Office",
+        "count": 6
+      },
+      {
+        "skill": "Retail",
+        "count": 6
+      },
+      {
+        "skill": "Arabic",
+        "count": 6
+      },
+      {
+        "skill": "SQL",
+        "count": 5
+      },
+      {
+        "skill": "customer service",
+        "count": 5
+      },
+      {
+        "skill": "coaching",
+        "count": 5
+      },
+      {
+        "skill": "decision making",
+        "count": 5
+      },
+      {
+        "skill": "Spanish",
+        "count": 5
+      },
+      {
+        "skill": "business analysis",
+        "count": 4
+      },
+      {
+        "skill": "Quickbooks",
+        "count": 4
+      },
+      {
+        "skill": "Six Sigma",
+        "count": 4
+      },
+      {
+        "skill": "negotiation",
+        "count": 4
+      },
+      {
+        "skill": "time management",
+        "count": 4
+      },
+      {
+        "skill": "Adaptability",
+        "count": 4
+      },
+      {
+        "skill": "strategic planning",
+        "count": 4
+      },
+      {
+        "skill": "Supply Chain",
+        "count": 3
+      }
+    ],
+    "FITNESS": [
+      {
+        "skill": "Communication",
+        "count": 71
+      },
+      {
+        "skill": "Organization",
+        "count": 65
+      },
+      {
+        "skill": "Leadership",
+        "count": 56
+      },
+      {
+        "skill": "Excel",
+        "count": 25
+      },
+      {
+        "skill": "Presentation",
+        "count": 24
+      },
+      {
+        "skill": "Customer Service",
+        "count": 22
+      },
+      {
+        "skill": "Time Management",
+        "count": 18
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 17
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 15
+      },
+      {
+        "skill": "customer service",
+        "count": 14
+      },
+      {
+        "skill": "Project Management",
+        "count": 13
+      },
+      {
+        "skill": "English",
+        "count": 12
+      },
+      {
+        "skill": "Negotiation",
+        "count": 11
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 11
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 11
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 10
+      },
+      {
+        "skill": "Outlook",
+        "count": 9
+      },
+      {
+        "skill": "Teamwork",
+        "count": 9
+      },
+      {
+        "skill": "MS Office",
+        "count": 8
+      },
+      {
+        "skill": "Spanish",
+        "count": 7
+      },
+      {
+        "skill": "Word",
+        "count": 7
+      },
+      {
+        "skill": "Analytical",
+        "count": 7
+      },
+      {
+        "skill": "accounting",
+        "count": 6
+      },
+      {
+        "skill": "leadership",
+        "count": 5
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 5
+      },
+      {
+        "skill": "Windows",
+        "count": 5
+      },
+      {
+        "skill": "coaching",
+        "count": 5
+      },
+      {
+        "skill": "statistics",
+        "count": 4
+      },
+      {
+        "skill": "Decision Making",
+        "count": 4
+      },
+      {
+        "skill": "Customer service",
+        "count": 4
+      },
+      {
+        "skill": "business development",
+        "count": 4
+      },
+      {
+        "skill": "Creativity",
+        "count": 3
+      },
+      {
+        "skill": "budgeting",
+        "count": 3
+      },
+      {
+        "skill": "project management",
+        "count": 3
+      },
+      {
+        "skill": "Oracle",
+        "count": 3
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 3
+      },
+      {
+        "skill": "access",
+        "count": 3
+      },
+      {
+        "skill": "teamwork",
+        "count": 3
+      },
+      {
+        "skill": "conflict resolution",
+        "count": 3
+      },
+      {
+        "skill": "inventory management",
+        "count": 2
+      },
+      {
+        "skill": "Healthcare",
+        "count": 2
+      },
+      {
+        "skill": "Strategic Planning",
+        "count": 2
+      },
+      {
+        "skill": "data analysis",
+        "count": 2
+      },
+      {
+        "skill": "problem solving",
+        "count": 2
+      },
+      {
+        "skill": "Accounting",
+        "count": 2
+      },
+      {
+        "skill": "logistics",
+        "count": 2
+      },
+      {
+        "skill": "CRM",
+        "count": 2
+      },
+      {
+        "skill": "Strategic planning",
+        "count": 2
+      },
+      {
+        "skill": "Access",
+        "count": 2
+      },
+      {
+        "skill": "Budgeting",
+        "count": 2
+      }
+    ],
+    "HEALTHCARE": [
+      {
+        "skill": "Communication",
+        "count": 77
+      },
+      {
+        "skill": "Organization",
+        "count": 68
+      },
+      {
+        "skill": "Leadership",
+        "count": 57
+      },
+      {
+        "skill": "Healthcare",
+        "count": 42
+      },
+      {
+        "skill": "Excel",
+        "count": 28
+      },
+      {
+        "skill": "Presentation",
+        "count": 28
+      },
+      {
+        "skill": "Project Management",
+        "count": 23
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 21
+      },
+      {
+        "skill": "Time Management",
+        "count": 21
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 20
+      },
+      {
+        "skill": "Customer Service",
+        "count": 18
+      },
+      {
+        "skill": "Analytical",
+        "count": 15
+      },
+      {
+        "skill": "Windows",
+        "count": 14
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 14
+      },
+      {
+        "skill": "Access",
+        "count": 13
+      },
+      {
+        "skill": "English",
+        "count": 13
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 12
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 12
+      },
+      {
+        "skill": "Negotiation",
+        "count": 11
+      },
+      {
+        "skill": "Decision Making",
+        "count": 10
+      },
+      {
+        "skill": "Word",
+        "count": 9
+      },
+      {
+        "skill": "Quality Assurance",
+        "count": 9
+      },
+      {
+        "skill": "business development",
+        "count": 8
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 8
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 8
+      },
+      {
+        "skill": "CRM",
+        "count": 7
+      },
+      {
+        "skill": "Spanish",
+        "count": 7
+      },
+      {
+        "skill": "Time management",
+        "count": 7
+      },
+      {
+        "skill": "leadership",
+        "count": 7
+      },
+      {
+        "skill": "Data Analysis",
+        "count": 7
+      },
+      {
+        "skill": "Business Development",
+        "count": 6
+      },
+      {
+        "skill": "SQL",
+        "count": 6
+      },
+      {
+        "skill": "access",
+        "count": 6
+      },
+      {
+        "skill": "customer service",
+        "count": 6
+      },
+      {
+        "skill": "data analysis",
+        "count": 6
+      },
+      {
+        "skill": "Teamwork",
+        "count": 5
+      },
+      {
+        "skill": "Outlook",
+        "count": 5
+      },
+      {
+        "skill": "project management",
+        "count": 5
+      },
+      {
+        "skill": "SharePoint",
+        "count": 5
+      },
+      {
+        "skill": "MS Office",
+        "count": 4
+      },
+      {
+        "skill": "HEALTHCARE",
+        "count": 4
+      },
+      {
+        "skill": "networking",
+        "count": 4
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 3
+      },
+      {
+        "skill": "Budgeting",
+        "count": 3
+      },
+      {
+        "skill": "Coaching",
+        "count": 3
+      },
+      {
+        "skill": "accounting",
+        "count": 3
+      },
+      {
+        "skill": "Oracle",
+        "count": 3
+      },
+      {
+        "skill": "problem solving",
+        "count": 3
+      },
+      {
+        "skill": "strategic planning",
+        "count": 3
+      },
+      {
+        "skill": "HIPAA",
+        "count": 3
+      }
+    ],
+    "HR": [
+      {
+        "skill": "Organization",
+        "count": 89
+      },
+      {
+        "skill": "Communication",
+        "count": 75
+      },
+      {
+        "skill": "Excel",
+        "count": 56
+      },
+      {
+        "skill": "Leadership",
+        "count": 53
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 34
+      },
+      {
+        "skill": "Presentation",
+        "count": 31
+      },
+      {
+        "skill": "Project Management",
+        "count": 29
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 24
+      },
+      {
+        "skill": "Outlook",
+        "count": 21
+      },
+      {
+        "skill": "SAP",
+        "count": 20
+      },
+      {
+        "skill": "Negotiation",
+        "count": 19
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 18
+      },
+      {
+        "skill": "Word",
+        "count": 17
+      },
+      {
+        "skill": "Analytical",
+        "count": 17
+      },
+      {
+        "skill": "Time Management",
+        "count": 16
+      },
+      {
+        "skill": "Access",
+        "count": 16
+      },
+      {
+        "skill": "Customer Service",
+        "count": 15
+      },
+      {
+        "skill": "English",
+        "count": 15
+      },
+      {
+        "skill": "MS Office",
+        "count": 15
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 15
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 15
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 11
+      },
+      {
+        "skill": "coaching",
+        "count": 11
+      },
+      {
+        "skill": "leadership",
+        "count": 11
+      },
+      {
+        "skill": "Oracle",
+        "count": 10
+      },
+      {
+        "skill": "Teamwork",
+        "count": 10
+      },
+      {
+        "skill": "customer service",
+        "count": 8
+      },
+      {
+        "skill": "Spanish",
+        "count": 8
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 7
+      },
+      {
+        "skill": "Windows",
+        "count": 7
+      },
+      {
+        "skill": "SharePoint",
+        "count": 7
+      },
+      {
+        "skill": "Accounting",
+        "count": 6
+      },
+      {
+        "skill": "project management",
+        "count": 5
+      },
+      {
+        "skill": "Decision Making",
+        "count": 4
+      },
+      {
+        "skill": "access",
+        "count": 4
+      },
+      {
+        "skill": "data analysis",
+        "count": 4
+      },
+      {
+        "skill": "QuickBooks",
+        "count": 4
+      },
+      {
+        "skill": "Powerpoint",
+        "count": 3
+      },
+      {
+        "skill": "Interpersonal Skills",
+        "count": 3
+      },
+      {
+        "skill": "business development",
+        "count": 3
+      },
+      {
+        "skill": "conflict resolution",
+        "count": 3
+      },
+      {
+        "skill": "budgeting",
+        "count": 3
+      },
+      {
+        "skill": "Healthcare",
+        "count": 3
+      },
+      {
+        "skill": "SQL",
+        "count": 3
+      },
+      {
+        "skill": "Strategic Planning",
+        "count": 3
+      },
+      {
+        "skill": "teamwork",
+        "count": 3
+      },
+      {
+        "skill": "Coaching",
+        "count": 3
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 3
+      },
+      {
+        "skill": "Sharepoint",
+        "count": 3
+      },
+      {
+        "skill": "InDesign",
+        "count": 3
+      }
+    ],
+    "INFORMATION-TECHNOLOGY": [
+      {
+        "skill": "Communication",
+        "count": 88
+      },
+      {
+        "skill": "Windows",
+        "count": 73
+      },
+      {
+        "skill": "Organization",
+        "count": 72
+      },
+      {
+        "skill": "Project Management",
+        "count": 59
+      },
+      {
+        "skill": "Leadership",
+        "count": 53
+      },
+      {
+        "skill": "SQL",
+        "count": 42
+      },
+      {
+        "skill": "Linux",
+        "count": 30
+      },
+      {
+        "skill": "LAN",
+        "count": 27
+      },
+      {
+        "skill": "Oracle",
+        "count": 25
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 24
+      },
+      {
+        "skill": "Cisco",
+        "count": 24
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 24
+      },
+      {
+        "skill": "Windows 7",
+        "count": 22
+      },
+      {
+        "skill": "Excel",
+        "count": 22
+      },
+      {
+        "skill": "Analytical",
+        "count": 22
+      },
+      {
+        "skill": "HTML",
+        "count": 21
+      },
+      {
+        "skill": "Presentation",
+        "count": 20
+      },
+      {
+        "skill": "WAN",
+        "count": 19
+      },
+      {
+        "skill": "Access",
+        "count": 18
+      },
+      {
+        "skill": "SharePoint",
+        "count": 18
+      },
+      {
+        "skill": "CRM",
+        "count": 17
+      },
+      {
+        "skill": "project management",
+        "count": 15
+      },
+      {
+        "skill": "ERP",
+        "count": 14
+      },
+      {
+        "skill": "UNIX",
+        "count": 14
+      },
+      {
+        "skill": "Negotiation",
+        "count": 14
+      },
+      {
+        "skill": "Java",
+        "count": 13
+      },
+      {
+        "skill": "SQL Server",
+        "count": 13
+      },
+      {
+        "skill": "CSS",
+        "count": 12
+      },
+      {
+        "skill": "DHCP",
+        "count": 12
+      },
+      {
+        "skill": "DNS",
+        "count": 12
+      },
+      {
+        "skill": "PHP",
+        "count": 12
+      },
+      {
+        "skill": "Unix",
+        "count": 11
+      },
+      {
+        "skill": "TCP/IP",
+        "count": 10
+      },
+      {
+        "skill": "CCNA",
+        "count": 10
+      },
+      {
+        "skill": "SAP",
+        "count": 10
+      },
+      {
+        "skill": "JavaScript",
+        "count": 9
+      },
+      {
+        "skill": "MS Office",
+        "count": 9
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 8
+      },
+      {
+        "skill": "Windows 2000",
+        "count": 8
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 7
+      },
+      {
+        "skill": "Scrum",
+        "count": 7
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 7
+      },
+      {
+        "skill": "MySQL",
+        "count": 7
+      },
+      {
+        "skill": "PL/SQL",
+        "count": 7
+      },
+      {
+        "skill": "Time Management",
+        "count": 7
+      },
+      {
+        "skill": "agile",
+        "count": 7
+      },
+      {
+        "skill": "VPN",
+        "count": 7
+      },
+      {
+        "skill": "Network Administration",
+        "count": 6
+      },
+      {
+        "skill": "Ubuntu",
+        "count": 6
+      },
+      {
+        "skill": "Microsoft SQL",
+        "count": 6
+      }
+    ],
+    "PUBLIC-RELATIONS": [
+      {
+        "skill": "Communication",
+        "count": 100
+      },
+      {
+        "skill": "Organization",
+        "count": 70
+      },
+      {
+        "skill": "Leadership",
+        "count": 57
+      },
+      {
+        "skill": "Presentation",
+        "count": 54
+      },
+      {
+        "skill": "Excel",
+        "count": 39
+      },
+      {
+        "skill": "Project Management",
+        "count": 36
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 26
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 24
+      },
+      {
+        "skill": "English",
+        "count": 24
+      },
+      {
+        "skill": "Analytical",
+        "count": 16
+      },
+      {
+        "skill": "Negotiation",
+        "count": 14
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 14
+      },
+      {
+        "skill": "Word",
+        "count": 13
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 13
+      },
+      {
+        "skill": "customer service",
+        "count": 11
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 11
+      },
+      {
+        "skill": "Time Management",
+        "count": 11
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 11
+      },
+      {
+        "skill": "Customer Service",
+        "count": 10
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 10
+      },
+      {
+        "skill": "project management",
+        "count": 10
+      },
+      {
+        "skill": "Access",
+        "count": 9
+      },
+      {
+        "skill": "Outlook",
+        "count": 8
+      },
+      {
+        "skill": "Illustrator",
+        "count": 8
+      },
+      {
+        "skill": "Decision Making",
+        "count": 8
+      },
+      {
+        "skill": "InDesign",
+        "count": 7
+      },
+      {
+        "skill": "logistics",
+        "count": 7
+      },
+      {
+        "skill": "Spanish",
+        "count": 7
+      },
+      {
+        "skill": "retail",
+        "count": 7
+      },
+      {
+        "skill": "Photoshop",
+        "count": 7
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 6
+      },
+      {
+        "skill": "Windows",
+        "count": 6
+      },
+      {
+        "skill": "business development",
+        "count": 5
+      },
+      {
+        "skill": "leadership",
+        "count": 5
+      },
+      {
+        "skill": "MS Office",
+        "count": 5
+      },
+      {
+        "skill": "Oracle",
+        "count": 4
+      },
+      {
+        "skill": "SEO",
+        "count": 4
+      },
+      {
+        "skill": "Business Development",
+        "count": 4
+      },
+      {
+        "skill": "Strategic Planning",
+        "count": 4
+      },
+      {
+        "skill": "Powerpoint",
+        "count": 4
+      },
+      {
+        "skill": "Creativity",
+        "count": 4
+      },
+      {
+        "skill": "Budgeting",
+        "count": 4
+      },
+      {
+        "skill": "networking",
+        "count": 3
+      },
+      {
+        "skill": "Accounting",
+        "count": 3
+      },
+      {
+        "skill": "POS",
+        "count": 3
+      },
+      {
+        "skill": "Graphic Design",
+        "count": 3
+      },
+      {
+        "skill": "Networking",
+        "count": 3
+      },
+      {
+        "skill": "Logistics",
+        "count": 3
+      },
+      {
+        "skill": "HTML",
+        "count": 3
+      },
+      {
+        "skill": "Digital Marketing",
+        "count": 3
+      }
+    ],
+    "SALES": [
+      {
+        "skill": "Communication",
+        "count": 81
+      },
+      {
+        "skill": "Organization",
+        "count": 51
+      },
+      {
+        "skill": "Leadership",
+        "count": 41
+      },
+      {
+        "skill": "Time Management",
+        "count": 31
+      },
+      {
+        "skill": "Excel",
+        "count": 30
+      },
+      {
+        "skill": "Presentation",
+        "count": 29
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 21
+      },
+      {
+        "skill": "Customer Service",
+        "count": 20
+      },
+      {
+        "skill": "customer service",
+        "count": 20
+      },
+      {
+        "skill": "English",
+        "count": 18
+      },
+      {
+        "skill": "Project Management",
+        "count": 17
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 16
+      },
+      {
+        "skill": "Negotiation",
+        "count": 13
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 12
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 11
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 10
+      },
+      {
+        "skill": "Windows",
+        "count": 10
+      },
+      {
+        "skill": "Merchandising",
+        "count": 9
+      },
+      {
+        "skill": "Outlook",
+        "count": 8
+      },
+      {
+        "skill": "Analytical",
+        "count": 8
+      },
+      {
+        "skill": "Spanish",
+        "count": 7
+      },
+      {
+        "skill": "MS Office",
+        "count": 7
+      },
+      {
+        "skill": "inventory management",
+        "count": 7
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 7
+      },
+      {
+        "skill": "time management",
+        "count": 7
+      },
+      {
+        "skill": "retail",
+        "count": 7
+      },
+      {
+        "skill": "Word",
+        "count": 7
+      },
+      {
+        "skill": "Microsoft Office Suite",
+        "count": 6
+      },
+      {
+        "skill": "Customer service",
+        "count": 6
+      },
+      {
+        "skill": "Creativity",
+        "count": 6
+      },
+      {
+        "skill": "Teamwork",
+        "count": 6
+      },
+      {
+        "skill": "leadership",
+        "count": 6
+      },
+      {
+        "skill": "POS",
+        "count": 5
+      },
+      {
+        "skill": "HTML",
+        "count": 5
+      },
+      {
+        "skill": "project management",
+        "count": 5
+      },
+      {
+        "skill": "Decision Making",
+        "count": 5
+      },
+      {
+        "skill": "Illustrator",
+        "count": 4
+      },
+      {
+        "skill": "SQL",
+        "count": 4
+      },
+      {
+        "skill": "merchandising",
+        "count": 4
+      },
+      {
+        "skill": "Time management",
+        "count": 4
+      },
+      {
+        "skill": "windows",
+        "count": 3
+      },
+      {
+        "skill": "Adaptability",
+        "count": 3
+      },
+      {
+        "skill": "Point Of Sale",
+        "count": 3
+      },
+      {
+        "skill": "CRM",
+        "count": 3
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 3
+      },
+      {
+        "skill": "SAP",
+        "count": 3
+      },
+      {
+        "skill": "Business development",
+        "count": 2
+      },
+      {
+        "skill": "data analysis",
+        "count": 2
+      },
+      {
+        "skill": "Ms Office",
+        "count": 2
+      },
+      {
+        "skill": "Pos",
+        "count": 2
+      }
+    ],
+    "TEACHER": [
+      {
+        "skill": "Communication",
+        "count": 62
+      },
+      {
+        "skill": "Organization",
+        "count": 39
+      },
+      {
+        "skill": "Leadership",
+        "count": 39
+      },
+      {
+        "skill": "English",
+        "count": 23
+      },
+      {
+        "skill": "Presentation",
+        "count": 22
+      },
+      {
+        "skill": "Microsoft Office",
+        "count": 21
+      },
+      {
+        "skill": "Excel",
+        "count": 20
+      },
+      {
+        "skill": "Problem Solving",
+        "count": 20
+      },
+      {
+        "skill": "PowerPoint",
+        "count": 18
+      },
+      {
+        "skill": "Time Management",
+        "count": 17
+      },
+      {
+        "skill": "Critical Thinking",
+        "count": 14
+      },
+      {
+        "skill": "Creativity",
+        "count": 9
+      },
+      {
+        "skill": "Outlook",
+        "count": 8
+      },
+      {
+        "skill": "Conflict Resolution",
+        "count": 8
+      },
+      {
+        "skill": "Word",
+        "count": 7
+      },
+      {
+        "skill": "Attention To Detail",
+        "count": 7
+      },
+      {
+        "skill": "Windows",
+        "count": 5
+      },
+      {
+        "skill": "customer service",
+        "count": 5
+      },
+      {
+        "skill": "Customer Service",
+        "count": 5
+      },
+      {
+        "skill": "Spanish",
+        "count": 5
+      },
+      {
+        "skill": "Teamwork",
+        "count": 5
+      },
+      {
+        "skill": "Education",
+        "count": 5
+      },
+      {
+        "skill": "Public Speaking",
+        "count": 5
+      },
+      {
+        "skill": "time management",
+        "count": 5
+      },
+      {
+        "skill": "Access",
+        "count": 4
+      },
+      {
+        "skill": "instructional design",
+        "count": 4
+      },
+      {
+        "skill": "Analytical",
+        "count": 4
+      },
+      {
+        "skill": "MS Office",
+        "count": 4
+      },
+      {
+        "skill": "critical thinking",
+        "count": 3
+      },
+      {
+        "skill": "Time management",
+        "count": 3
+      },
+      {
+        "skill": "Customer service",
+        "count": 3
+      },
+      {
+        "skill": "Project Management",
+        "count": 3
+      },
+      {
+        "skill": "problem solving",
+        "count": 3
+      },
+      {
+        "skill": "Instructional Design",
+        "count": 2
+      },
+      {
+        "skill": "Photoshop",
+        "count": 2
+      },
+      {
+        "skill": "Critical thinking",
+        "count": 2
+      },
+      {
+        "skill": "leadership",
+        "count": 2
+      },
+      {
+        "skill": "Accounting",
+        "count": 2
+      },
+      {
+        "skill": "Coaching",
+        "count": 2
+      },
+      {
+        "skill": "curriculum development",
+        "count": 2
+      },
+      {
+        "skill": "attention to detail",
+        "count": 2
+      },
+      {
+        "skill": "coaching",
+        "count": 2
+      },
+      {
+        "skill": "windows",
+        "count": 2
+      },
+      {
+        "skill": "ENGLISH",
+        "count": 2
+      },
+      {
+        "skill": "communication",
+        "count": 2
+      },
+      {
+        "skill": "Compliance",
+        "count": 2
+      },
+      {
+        "skill": "merchandising",
+        "count": 2
+      },
+      {
+        "skill": "Curriculum Development",
+        "count": 2
+      },
+      {
+        "skill": "Decision Making",
+        "count": 2
+      },
+      {
+        "skill": "QA",
+        "count": 1
+      }
+    ]
+  },
+  "total_unique_skills": 928,
+  "total_skill_mentions": 18957
+}
