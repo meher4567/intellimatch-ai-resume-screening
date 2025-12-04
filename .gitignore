@@ -56,16 +56,21 @@ models/*.pkl
 models/*.joblib
 models/*.pt
 models/*.pth
+models/*.safetensors
+models/**/*.safetensors
 *.h5
 *.pkl
 *.joblib
 *.pt
 *.pth
+*.safetensors
+*.zip
 data/raw/
 data/processed/
 data/production/
 data/embeddings/*.faiss
 data/embeddings/*.npy
+data/embeddings/*.bin
 data/data/
 # Allow specific important JSONs
 !data/skills/*.json
@@ -74,6 +79,13 @@ data/data/
 
 # Large training data
 data/training/parsed_resumes_all.json
+
+# Large model files
+notebooks/intellimatch_gpu_models.zip
+notebooks/**/*.safetensors
+notebooks/results/
+notebooks/resume_embeddings.npy
+notebooks/*.bin
 
 # Logs
 *.log
