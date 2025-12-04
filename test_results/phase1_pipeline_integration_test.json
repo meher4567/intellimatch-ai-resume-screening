@@ -1,0 +1,316 @@
+{
+  "quality": {
+    "overall_score": 2.7,
+    "grade": "F (Poor)",
+    "factors": {
+      "formatting": 5.0,
+      "completeness": 0.0,
+      "clarity": 5.0,
+      "quantification": 0.0,
+      "relevance": 5.0,
+      "length": 2.0
+    },
+    "weights": {
+      "formatting": 0.15,
+      "completeness": 0.25,
+      "clarity": 0.15,
+      "quantification": 0.15,
+      "relevance": 0.2,
+      "length": 0.1
+    },
+    "recommendations": [
+      "Improve formatting: Add clear section headings and consistent structure",
+      "Add missing sections: experience, education, skills",
+      "Improve clarity: Use bullet points and remove first-person pronouns",
+      "Add quantification: Include numbers, metrics, and measurable achievements",
+      "Increase relevance: Focus on professional experience and technical skills",
+      "Adjust length: Aim for 400-800 words (1-2 pages)"
+    ],
+    "strengths": [],
+    "weaknesses": [
+      "Missing essential sections",
+      "Lacks metrics and achievements",
+      "Inappropriate length"
+    ]
+  },
+  "skills": {
+    "skills_with_context": [
+      {
+        "skill": "Django",
+        "usage_level": "primary",
+        "experiences": [
+          {
+            "title": "Software Engineer",
+            "company": "StartupXYZ",
+            "start_date": "June 2017",
+            "end_date": "December 2019"
+          },
+          {
+            "title": "Junior Developer",
+            "company": "WebSolutions Ltd",
+            "start_date": "July 2015",
+            "end_date": "May 2017"
+          }
+        ],
+        "projects": [],
+        "achievements": [],
+        "time_periods": [
+          "June 2017",
+          "July 2015"
+        ],
+        "context_score": 0.6000000000000001
+      },
+      {
+        "skill": "Flask",
+        "usage_level": "unknown",
+        "experiences": [
+          {
+            "title": "Software Engineer",
+            "company": "StartupXYZ",
+            "start_date": "June 2017",
+            "end_date": "December 2019"
+          }
+        ],
+        "projects": [],
+        "achievements": [],
+        "time_periods": [
+          "June 2017"
+        ],
+        "context_score": 0.15
+      }
+    ],
+    "insights": {
+      "primary_skills": [
+        "Django"
+      ],
+      "secondary_skills": [],
+      "skills_with_achievements": [],
+      "recent_skills": [
+        "Django",
+        "Flask"
+      ],
+      "long_term_skills": [
+        "Django"
+      ],
+      "avg_context_score": 0.38
+    },
+    "skill_count": 2
+  },
+  "timeline": {
+    "total_experience_years": 10.2,
+    "gaps": [],
+    "gap_count": 0,
+    "total_gap_months": 0,
+    "progression": {
+      "trajectory": "mixed",
+      "direction": "1 upward, 0 lateral, 1 downward",
+      "progression_score": 0.5,
+      "details": [
+        {
+          "from": "Junior Developer at WebSolutions Ltd",
+          "to": "Software Engineer at StartupXYZ",
+          "direction": "downward",
+          "year": 2017
+        },
+        {
+          "from": "Software Engineer at StartupXYZ",
+          "to": "Senior Software Engineer at TechCorp Inc",
+          "direction": "upward",
+          "year": 2020
+        }
+      ]
+    },
+    "job_hopping_score": 0.2,
+    "tenure_stats": {
+      "average_tenure_years": 3.4,
+      "median_tenure_years": 2.5,
+      "shortest_tenure_years": 1.8,
+      "longest_tenure_years": 5.8
+    },
+    "timeline_events": [
+      {
+        "type": "job",
+        "date": "2020-01-24 00:00:00",
+        "title": "Senior Software Engineer",
+        "company": "TechCorp Inc",
+        "duration_years": 5.8,
+        "is_current": true
+      },
+      {
+        "type": "job",
+        "date": "2017-06-24 00:00:00",
+        "title": "Software Engineer",
+        "company": "StartupXYZ",
+        "duration_years": 2.5,
+        "is_current": false
+      },
+      {
+        "type": "job",
+        "date": "2015-07-24 00:00:00",
+        "title": "Junior Developer",
+        "company": "WebSolutions Ltd",
+        "duration_years": 1.8,
+        "is_current": false
+      }
+    ],
+    "job_count": 3,
+    "analysis_confidence": 0.84
+  },
+  "interview_questions": {
+    "job_title": null,
+    "counts": {
+      "behavioral": 3,
+      "technical": 12,
+      "projects": 0,
+      "role_fit": 0
+    },
+    "questions": {
+      "behavioral": [
+        {
+          "question": "Tell me about a time when a time you worked as Senior Software Engineer at TechCorp Inc: what was the situation, what actions did you take, and what was the outcome?",
+          "intent": "leadership/problem_solving",
+          "difficulty": 2,
+          "follow_ups": []
+        },
+        {
+          "question": "What was a challenge you faced with a time you worked as Software Engineer at StartupXYZ: what was the situation, what actions did you take, and what was the outcome?",
+          "intent": "leadership/problem_solving",
+          "difficulty": 2,
+          "follow_ups": []
+        },
+        {
+          "question": "Describe a situation where a time you worked as Junior Developer at WebSolutions Ltd: what was the situation, what actions did you take, and what was the outcome?",
+          "intent": "leadership/problem_solving",
+          "difficulty": 2,
+          "follow_ups": []
+        }
+      ],
+      "technical": [
+        {
+          "question": "Explain your experience with python. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "implementation",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with python?",
+            "What trade-offs did you consider when choosing python for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with java. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "implementation",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with java?",
+            "What trade-offs did you consider when choosing java for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with javascript. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "frontend",
+          "difficulty": 3,
+          "follow_ups": [
+            "How did you measure success for your work with javascript?",
+            "What trade-offs did you consider when choosing javascript for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with django. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "knowledge",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with django?",
+            "What trade-offs did you consider when choosing django for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with flask. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "knowledge",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with flask?",
+            "What trade-offs did you consider when choosing flask for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with spring boot. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "knowledge",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with spring boot?",
+            "What trade-offs did you consider when choosing spring boot for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with aws. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "infrastructure",
+          "difficulty": 3,
+          "follow_ups": [
+            "How did you measure success for your work with aws?",
+            "What trade-offs did you consider when choosing aws for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with docker. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "infrastructure",
+          "difficulty": 3,
+          "follow_ups": [
+            "How did you measure success for your work with docker?",
+            "What trade-offs did you consider when choosing docker for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with kubernetes. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "platform_expertise",
+          "difficulty": 4,
+          "follow_ups": [
+            "How did you measure success for your work with kubernetes?",
+            "What trade-offs did you consider when choosing kubernetes for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with postgresql. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "knowledge",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with postgresql?",
+            "What trade-offs did you consider when choosing postgresql for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with mongodb. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "knowledge",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with mongodb?",
+            "What trade-offs did you consider when choosing mongodb for that solution?"
+          ]
+        },
+        {
+          "question": "Explain your experience with redis. Describe a concrete example where you used it, the challenges you faced and the results.",
+          "intent": "knowledge",
+          "difficulty": 2,
+          "follow_ups": [
+            "How did you measure success for your work with redis?",
+            "What trade-offs did you consider when choosing redis for that solution?"
+          ]
+        }
+      ],
+      "projects": [],
+      "role_fit": []
+    }
+  },
+  "bias_flags": {
+    "flags": [],
+    "rewrites": [],
+    "guidance": [
+      "Avoid gendered or overly aggressive words (e.g., \"rockstar\", \"ninja\"). Use neutral descriptors like \"experienced\" or list skills explicitly.",
+      "When possible, allow \"equivalent experience\" instead of strict degree requirements to avoid excluding skilled candidates without degrees.",
+      "Avoid age-specific phrasing such as \"recent graduate\" or references to age ranges.",
+      "Do not require \"native\" language speakers unless the role legitimately requires local cultural knowledge; prefer \"proficiency in <language>\".",
+      "Replace vague culture-fit requirements with specific behaviors and competencies (e.g., collaboration, communication, ownership).",
+      "Consider adding an accommodations statement to show willingness to support candidates with disabilities."
+    ]
+  },
+  "language": "en",
+  "warnings": []
+}

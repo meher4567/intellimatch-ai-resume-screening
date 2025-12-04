@@ -46,6 +46,15 @@ class SemanticSearch:
         print(f"   Embedding dim: {self.embedding_gen.embedding_dim}")
         print(f"   Resumes indexed: {self.vector_store.size()}")
     
+    def _safe_extract_skills(self, resume_data: Dict[str, Any]) -> List[str]:
+        """Extract skills safely from resume data (handles both dict and list formats)"""
+        skills_data = resume_data.get('skills', [])
+        if isinstance(skills_data, dict):
+            return skills_data.get('all_skills', skills_data.get('top_skills', []))
+        elif isinstance(skills_data, list):
+            return skills_data
+        return []
+    
     def index_resume(self, resume_data: Dict[str, Any]) -> str:
         """
         Index a single resume for searching
@@ -59,30 +68,19 @@ class SemanticSearch:
         # Generate embedding
         embeddings = self.embedding_gen.encode_resume(resume_data)
         full_embedding = embeddings['full_text']
-    
-    def _safe_extract_skills(self, resume_data: Dict[str, Any]) -> List[str]:
-        """Extract skills safely from resume data (handles both dict and list formats)"""
-        skills_data = resume_data.get('skills', [])
-        if isinstance(skills_data, dict):
-            return skills_data.get('all_skills', skills_data.get('top_skills', []))
-        elif isinstance(skills_data, list):
-            return skills_data
-        return []
         
         # Extract metadata for quick access
         resume_id = resume_data.get('metadata', {}).get('file_name', f"resume_{self.vector_store.size()}")
         
         metadata = {
             'resume_id': resume_id,
-            'name': resume_data.get('personal_info', {}).get('name', 'Unknown'),
-            'email': resume_data.get('personal_info', {}).get('email', ''),
+            'name': resume_data.get('personal_info', {}).get('name', resume_data.get('name', 'Unknown')),
+            'email': resume_data.get('personal_info', {}).get('email', resume_data.get('email', '')),
             'skills': self._safe_extract_skills(resume_data)[:20],  # Top 20 skills
             'experience_years': self._calculate_experience_years(resume_data),
             'education': [edu.get('degree', '') for edu in resume_data.get('education', [])],
             'quality_score': resume_data.get('metadata', {}).get('quality_score', 0),
             'top_skills': self._safe_extract_skills(resume_data)[:10],
-            'name': resume_data.get('personal_info', {}).get('name', resume_data.get('name', 'Unknown')),
-            'email': resume_data.get('personal_info', {}).get('email', resume_data.get('email', '')),
         }
         
         # Add to vector store
@@ -200,19 +198,28 @@ class SemanticSearch:
         # For now, return empty list
         return []
     
-    def _calculate_experience_years(self, resume_data: Dict[str, Any]) -> int:
+    def _calculate_experience_years(self, resume_data: Dict[str, Any]) -> float:
         """Calculate total years of experience from resume"""
+        # Try direct field first
+        if 'total_years_experience' in resume_data:
+            return float(resume_data['total_years_experience'])
+        
+        if 'experience_years' in resume_data:
+            return float(resume_data['experience_years'])
+        
+        # Try calculating from experience list
         experiences = resume_data.get('experience', [])
         if not experiences:
-            return 0
+            return 0.0
         
         total_months = 0
         for exp in experiences:
-            duration = exp.get('duration_months', 0)
+            # Try different duration field names
+            duration = exp.get('duration_months', 0) or exp.get('months', 0)
             if duration:
                 total_months += duration
         
-        return total_months // 12
+        return round(total_months / 12, 1) if total_months > 0 else 0.0
     
     def _create_filter_function(self, filters: Dict[str, Any]) -> callable:
         """Create filter function from filter criteria"""

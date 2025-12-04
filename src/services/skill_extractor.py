@@ -47,7 +47,8 @@ class SkillExtractor:
             'tensorflow', 'pytorch', 'keras', 'scikit-learn', 'sklearn',
             'pandas', 'numpy', 'scipy', 'matplotlib', 'seaborn', 'plotly',
             'opencv', 'nltk', 'spacy', 'huggingface', 'transformers',
-            'xgboost', 'lightgbm', 'catboost',
+            'xgboost', 'lightgbm', 'catboost', 'mlflow', 'wandb', 'tensorboard',
+            'sagemaker', 'vertex ai', 'databricks', 'ray', 'dask', 'rapids',
             
             # Testing
             'jest', 'mocha', 'jasmine', 'pytest', 'unittest', 'junit',
@@ -85,7 +86,8 @@ class SkillExtractor:
         self.data_tools = {
             'spark', 'apache spark', 'hadoop', 'hive', 'pig', 'kafka', 'airflow',
             'dbt', 'tableau', 'power bi', 'powerbi', 'looker', 'qlik', 'excel',
-            'google analytics', 'mixpanel', 'amplitude', 'segment'
+            'google analytics', 'mixpanel', 'amplitude', 'segment', 'streamlit',
+            'gradio', 'dash', 'prefect', 'dagster', 'metabase', 'superset'
         }
         
         # Methodologies & Practices

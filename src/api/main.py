@@ -17,6 +17,7 @@ from contextlib import asynccontextmanager
 
 # Import routers
 from src.api import (
+    auth,
     resumes,
     jobs,
     matches,
@@ -108,6 +109,7 @@ matching_engine = None
 resume_parser = None
 
 # Include API routers
+app.include_router(auth.router, prefix=settings.API_V1_PREFIX, tags=["Authentication"])
 app.include_router(resumes.router, prefix=settings.API_V1_PREFIX, tags=["Resumes"])
 app.include_router(jobs.router, prefix=settings.API_V1_PREFIX, tags=["Jobs"])
 app.include_router(matches.router, prefix=settings.API_V1_PREFIX, tags=["Matches"])

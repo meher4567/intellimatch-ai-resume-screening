@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     APP_NAME: str = "IntelliMatch AI"
     APP_VERSION: str = "1.0.0"
     ENVIRONMENT: str = "development"
-    DEBUG: bool = True
+    DEBUG: bool = False  # Default to False for security (override with env var)
     
     # Server
     HOST: str = "0.0.0.0"

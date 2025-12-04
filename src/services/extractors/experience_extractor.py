@@ -169,18 +169,33 @@ class ExperienceExtractor:
         Returns:
             List of text blocks (one per job)
         """
-        # Try to split by double newlines or obvious separators
         blocks = []
         
-        # First, try to split by dates (common separator)
-        # Pattern: look for date ranges which usually indicate new job
-        date_pattern = r'\n(?=.*\d{4}\s*[-–—]\s*(?:\d{4}|Present|Current))'
+        # Strategy 1: Look for job title indicators (bullet + capitalized title + date pattern below)
+        # Pattern: bullet/marker followed by title, then date range on next line
+        job_start_pattern = r'(?:^|\n)(?:•|\-|\*|\d+\.)?\s*([A-Z][^\n]+(?:Intern|Engineer|Developer|Manager|Analyst|Scientist|Researcher|Assistant|Consultant|Specialist|Architect|Designer)[^\n]*)\s*\n\s*([A-Za-z]{3}\s+\d{4}\s*[-–—]\s*(?:[A-Za-z]{3}\s+\d{4}|Present|Current))'
+        
+        matches = list(re.finditer(job_start_pattern, text, re.MULTILINE))
+        
+        if len(matches) > 1:
+            # Split at each match
+            blocks = []
+            for i, match in enumerate(matches):
+                start_pos = match.start()
+                end_pos = matches[i+1].start() if i < len(matches) - 1 else len(text)
+                block = text[start_pos:end_pos].strip()
+                if len(block) > 50:
+                    blocks.append(block)
+            return blocks
+        
+        # Strategy 2: Try to split by date patterns (common separator)
+        date_pattern = r'\n(?=[A-Za-z]{3}\s+\d{4}\s*[-–—]\s*(?:[A-Za-z]{3}\s+\d{4}|Present|Current))'
         potential_blocks = re.split(date_pattern, text)
         
         if len(potential_blocks) > 1:
             return [b.strip() for b in potential_blocks if len(b.strip()) > 50]
         
-        # Fallback: split by double newlines
+        # Strategy 3: Fallback - split by double newlines
         blocks = text.split('\n\n')
         return [b.strip() for b in blocks if len(b.strip()) > 50]
     
@@ -204,7 +219,7 @@ class ExperienceExtractor:
                 title = lines[0].strip()
         
         # Extract company name
-        company = "Unknown Company"
+        company = None
         if company_names:
             text_lower = text.lower()
             for comp in company_names:
@@ -212,12 +227,41 @@ class ExperienceExtractor:
                     company = comp
                     break
         
-        # If still unknown, look for "at Company" or "Company Name"
-        if company == "Unknown Company":
+        # If still not found, look for company patterns
+        if not company:
+            # Look for capitalized company names (usually after job title and dates)
+            lines = text.split('\n')
+            for line in lines[:10]:  # Check first 10 lines
+                line = line.strip()
+                # Company names are usually:
+                # 1. Capitalized
+                # 2. Not too long (< 50 chars)
+                # 3. Come after dates or job titles
+                # 4. May have Inc, Ltd, Corp, etc.
+                
+                if len(line) > 3 and len(line) < 80:
+                    # Check for company indicators
+                    if any(indicator in line for indicator in ['Inc.', 'Ltd', 'Corp', 'LLC', 'Institute', 'University', 'Laboratory']):
+                        company = line.strip('•-,')
+                        break
+                    # Or just a capitalized name after dates
+                    elif line and line[0].isupper() and not any(c.isdigit() for c in line[:10]):
+                        words = line.split()
+                        if 2 <= len(words) <= 6:  # Company names usually 2-6 words
+                            capitalized_words = sum(1 for w in words if w and w[0].isupper())
+                            if capitalized_words >= len(words) * 0.7:  # Mostly capitalized
+                                company = line.strip('•-,')
+                                break
+        
+        # Last resort: look for "at Company" pattern
+        if not company:
             at_pattern = r'\bat\s+([A-Z][A-Za-z\s&,.]+?)(?:\s*[,\n]|\s+\d{4})'
             match = re.search(at_pattern, text)
             if match:
                 company = match.group(1).strip()
+        
+        if not company:
+            company = "Unknown Company"
         
         # Extract dates
         start_date, end_date, is_current = self.date_parser.parse_date_range(text)

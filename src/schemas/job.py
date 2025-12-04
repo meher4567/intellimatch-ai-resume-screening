@@ -12,6 +12,26 @@ class JobCreate(BaseModel):
     requirements_json: Optional[dict] = None
     custom_weights_json: Optional[dict] = None
     screening_questions_json: Optional[dict] = None
+    
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "title": "Senior Python Engineer",
+                    "description": "We're looking for an experienced Python engineer to join our backend team. You'll work on building scalable APIs and microservices using FastAPI and PostgreSQL.",
+                    "company": "TechCorp Inc",
+                    "location": "Remote",
+                    "priority": "high",
+                    "requirements_json": {
+                        "required_skills": ["Python", "FastAPI", "PostgreSQL", "Docker"],
+                        "nice_to_have": ["Kubernetes", "AWS", "Redis"],
+                        "min_experience": 5,
+                        "education": "Bachelor's in Computer Science or equivalent"
+                    }
+                }
+            ]
+        }
+    }
 
 class JobUpdate(BaseModel):
     title: Optional[str] = None

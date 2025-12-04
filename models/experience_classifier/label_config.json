@@ -1,0 +1,20 @@
+{
+  "label_map": {
+    "entry": 0,
+    "mid": 1,
+    "senior": 2,
+    "expert": 3
+  },
+  "id2label": {
+    "0": "entry",
+    "1": "mid",
+    "2": "senior",
+    "3": "expert"
+  },
+  "label2id": {
+    "entry": 0,
+    "mid": 1,
+    "senior": 2,
+    "expert": 3
+  }
+}

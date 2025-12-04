@@ -74,6 +74,12 @@ class OrganizationExtractor:
             'aws', 'azure', 'gcp', 'docker', 'kubernetes', 'jenkins',
             'mysql', 'postgresql', 'mongodb', 'redis', 'cassandra',
             'git', 'svn', 'github', 'gitlab', 'bitbucket',
+            # Technical concepts often misclassified
+            'distributed systems', 'cloud computing', 'data structures algorithms',
+            'data structures', 'bash ml frameworks', 'diffusion models',
+            'network intrusion detection system', 'network intrusion detection',
+            'leetcode', 'services selection board', 'competitive programming',
+            'ml frameworks', 'ml concepts', 'mlops', 'data engineering',
             # Generic action words
             'conducted', 'implemented', 'developed', 'created', 'built',
             'designed', 'managed', 'led', 'presented', 'analyzed',

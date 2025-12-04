@@ -224,11 +224,20 @@ class MatchingEngine:
             )
             
             # Combine candidate data with match result
+            # Extract skills safely (handles both dict and list formats)
+            skills_data = candidate.get('skills', [])
+            if isinstance(skills_data, dict):
+                skills_list = skills_data.get('all_skills', skills_data.get('top_skills', []))
+            elif isinstance(skills_data, list):
+                skills_list = skills_data
+            else:
+                skills_list = []
+            
             scored_candidate = {
                 'resume_id': candidate['resume_id'],
                 'name': candidate.get('name', 'Unknown'),
                 'email': candidate.get('email', ''),
-                'skills': candidate.get('skills', []),
+                'skills': skills_list,
                 'experience_years': candidate.get('experience_years', 0),
                 'experience_level': experience_pred.get('level'),
                 'experience_confidence': experience_pred.get('confidence', 0.0),

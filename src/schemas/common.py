@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, Dict, Any, List
 from datetime import datetime
 
 
@@ -10,6 +10,9 @@ class ResumeResponse(BaseModel):
     source: Optional[str]
     upload_date: datetime
     status: str
+    skills_with_proficiency: Optional[List[Dict[str, Any]]] = Field(None, description="Skills with proficiency levels")
+    proficiency_summary: Optional[Dict[str, int]] = Field(None, description="Count by proficiency level")
+    career_timeline: Optional[Dict[str, Any]] = Field(None, description="Career progression analysis")
     
     class Config:
         from_attributes = True

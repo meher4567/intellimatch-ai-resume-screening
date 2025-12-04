@@ -3,8 +3,19 @@ PDF Text Extractor
 Extracts text content from PDF files using PyMuPDF (fitz) and pdfplumber
 """
 
-import fitz  # PyMuPDF
-import pdfplumber
+# Try imports with fallback
+try:
+    import fitz  # PyMuPDF
+    HAS_PYMUPDF = True
+except ImportError:
+    HAS_PYMUPDF = False
+
+try:
+    import pdfplumber
+    HAS_PDFPLUMBER = True
+except ImportError:
+    HAS_PDFPLUMBER = False
+
 from pathlib import Path
 from typing import Optional, Dict
 import logging
@@ -30,6 +41,9 @@ class PDFExtractor:
         Returns:
             Extracted text content
         """
+        if not HAS_PYMUPDF:
+            raise ImportError("PyMuPDF not available. Install with: pip install PyMuPDF")
+        
         try:
             text_content = []
             
@@ -63,6 +77,9 @@ class PDFExtractor:
         Returns:
             Extracted text content
         """
+        if not HAS_PDFPLUMBER:
+            raise ImportError("pdfplumber not available. Install with: pip install pdfplumber")
+        
         try:
             text_content = []
             

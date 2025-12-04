@@ -12,6 +12,13 @@ from src.ml.scorers.skill_matcher import SkillMatcher
 from src.ml.scorers.experience_matcher import ExperienceMatcher
 from src.ml.scorers.education_matcher import EducationMatcher
 from src.ml.classifiers.experience_classifier import ExperienceLevelClassifier
+from src.ml.trained_experience_classifier import TrainedExperienceClassifier
+from src.ml.advanced_match_explainer import explain_match
+from src.ml.match_data_adapter import (
+    adapt_candidate_data_for_explainer,
+    adapt_job_data_for_explainer,
+    prepare_match_scores_for_explainer
+)
 
 
 class MatchScorer:
@@ -54,7 +61,8 @@ class MatchScorer:
     def calculate_match(self,
                        candidate_data: Dict[str, Any],
                        job_data: Dict[str, Any],
-                       semantic_score: Optional[float] = None) -> Dict[str, Any]:
+                       semantic_score: Optional[float] = None,
+                       include_explanation: bool = True) -> Dict[str, Any]:
         """
         Calculate comprehensive match score
         
@@ -62,6 +70,7 @@ class MatchScorer:
             candidate_data: Resume data with skills, experience, education
             job_data: Job data with requirements
             semantic_score: Pre-calculated semantic similarity (0-100)
+            include_explanation: Whether to generate natural language explanation
             
         Returns:
             Dict with final score and detailed breakdown
@@ -100,7 +109,7 @@ class MatchScorer:
         strengths = self._identify_strengths(scores, details)
         weaknesses = self._identify_weaknesses(scores, details)
         
-        return {
+        result = {
             'final_score': round(final_score, 2),
             'scores': scores,
             'weights': self.weights,
@@ -109,10 +118,38 @@ class MatchScorer:
             'strengths': strengths,
             'weaknesses': weaknesses
         }
+        
+        # Add natural language explanation if requested
+        if include_explanation:
+            # Adapt data to format expected by explainer
+            adapted_candidate = adapt_candidate_data_for_explainer(candidate_data)
+            adapted_job = adapt_job_data_for_explainer(job_data)
+            
+            # Prepare match scores dict for explainer
+            match_scores_dict = prepare_match_scores_for_explainer(
+                final_score, scores, details
+            )
+            
+            explanation = explain_match(
+                candidate_data=adapted_candidate,
+                job_requirements=adapted_job,
+                match_scores=match_scores_dict
+            )
+            result['explanation'] = explanation
+        
+        return result
     
     def _score_skills(self, candidate_data: Dict, job_data: Dict) -> Dict[str, Any]:
         """Score skill match"""
-        candidate_skills = candidate_data.get('skills', [])
+        # Handle both list and dict formats for skills
+        candidate_skills_raw = candidate_data.get('skills', [])
+        if isinstance(candidate_skills_raw, dict):
+            # New format: {'all_skills': [...], 'by_category': {...}}
+            candidate_skills = candidate_skills_raw.get('all_skills', [])
+        else:
+            # Legacy format: simple list
+            candidate_skills = candidate_skills_raw
+        
         required_skills = job_data.get('required_skills', [])
         optional_skills = job_data.get('optional_skills', [])
         
@@ -160,27 +197,30 @@ class MatchScorer:
         )
     
     def _classify_experience_level(self, candidate_data: Dict) -> str:
-        """Classify experience level using ML classifier (with rule-based fallback)"""
-        # Lazy load classifier to avoid startup delay
+        """Classify experience level using trained BERT model (with rule-based fallback)"""
+        # Lazy load trained classifier to avoid startup delay
         if self._experience_classifier is None:
             try:
-                self._experience_classifier = ExperienceLevelClassifier(
-                    model_name='bert-base-uncased',
-                    use_pretrained=False
+                # Try to load the trained BERT model first
+                self._experience_classifier = TrainedExperienceClassifier(
+                    model_path='models/experience_classifier'
                 )
+                print("✅ Using trained BERT experience classifier")
             except Exception as e:
-                # Fallback to rule-based if classifier fails to load
-                print(f"⚠️  Warning: Failed to load experience classifier: {e}")
+                # Fallback to rule-based if trained model fails to load
+                print(f"⚠️  Warning: Failed to load trained experience classifier: {e}")
                 print("   Using rule-based classification...")
                 return self._infer_experience_level_fallback(candidate_data)
         
-        # Classify using ML (hybrid mode with rule-based fallback)
+        # Classify using trained ML model
         try:
-            result = self._experience_classifier.classify(
-                candidate_data,
-                use_hybrid=True,
-                confidence_threshold=0.7
-            )
+            result = self._experience_classifier.classify(candidate_data)
+            
+            # Use rule-based fallback if confidence is too low
+            if result['confidence'] < 0.7:
+                print(f"⚠️  Low confidence ({result['confidence']:.2f}), using rule-based fallback")
+                return self._infer_experience_level_fallback(candidate_data)
+            
             return result['level']
         except Exception as e:
             print(f"⚠️  Warning: Experience classification failed: {e}")

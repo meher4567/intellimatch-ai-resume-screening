@@ -13,9 +13,12 @@ from .section_detector import SectionDetector
 from .contact_extractor import ContactExtractor
 from .name_extractor import NameExtractor
 from .quality_scorer import QualityScorer
+from .extractors.experience_extractor import ExperienceExtractor
 
 # Import ML-based extractors
 from ..ml import HybridNameExtractor, SkillEmbedder, OrganizationExtractor, DynamicSkillExtractor
+from ..ml.enhanced_skill_extractor import EnhancedSkillExtractor
+from ..ml.experience_timeline import analyze_career_timeline
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +34,7 @@ class ResumeParser:
         self.docx_extractor = DOCXExtractor()
         self.section_detector = SectionDetector() if detect_sections else None
         self.contact_extractor = ContactExtractor() if extract_contact else None
+        self.experience_extractor = ExperienceExtractor()
         
         # Use ML-based extractors if enabled
         self.use_ml = use_ml
@@ -41,12 +45,15 @@ class ResumeParser:
             self.dynamic_skill_extractor = DynamicSkillExtractor()
             self.skill_extractor = SkillEmbedder()  # Keep for semantic matching
             self.org_extractor = OrganizationExtractor()
+            # Add enhanced extractors
+            self.enhanced_skill_extractor = EnhancedSkillExtractor()
         else:
             logger.info("Using rule-based extractors only")
             self.name_extractor = NameExtractor() if extract_name else None
             self.dynamic_skill_extractor = None
             self.skill_extractor = None
             self.org_extractor = None
+            self.enhanced_skill_extractor = None
         
         self.quality_scorer = QualityScorer() if assess_quality else None
         
@@ -136,6 +143,43 @@ class ResumeParser:
                     contact_info = self.contact_extractor.extract_contact_info(result['text'])
                     result['contact_info'] = contact_info.to_dict()
                 
+                # Extract experience from experience section AND publications section
+                # (publications often contains research positions)
+                experience_entries = []
+                if self.experience_extractor and 'sections' in result:
+                    # Get company names from organizations if available
+                    company_names = None
+                    if 'organizations' in result and 'companies' in result['organizations']:
+                        company_names = result['organizations']['companies']
+                    
+                    # Extract from experience section
+                    if 'experience' in result['sections']:
+                        exp_section_text = result['sections']['experience']['content']
+                        entries = self.experience_extractor.extract_from_section(
+                            exp_section_text, 
+                            company_names
+                        )
+                        experience_entries.extend(entries)
+                    
+                    # Also check publications section (often contains research experience)
+                    if 'publications' in result['sections']:
+                        pub_section_text = result['sections']['publications']['content']
+                        # Check if it has experience-like content (dates, companies)
+                        if '202' in pub_section_text or '201' in pub_section_text:  # Year indicators
+                            pub_entries = self.experience_extractor.extract_from_section(
+                                pub_section_text, 
+                                company_names
+                            )
+                            experience_entries.extend(pub_entries)
+                    
+                    result['experience'] = [exp.to_dict() for exp in experience_entries]
+                    result['total_years_experience'] = sum(
+                        exp.duration_months or 0 for exp in experience_entries
+                    ) / 12.0
+                else:
+                    result['experience'] = []
+                    result['total_years_experience'] = 0
+                
                 # Extract name if enabled
                 if self.name_extractor:
                     if self.use_ml:
@@ -173,6 +217,34 @@ class ResumeParser:
                         'count': dynamic_skills['count'],
                         'extraction_method': 'dynamic_ner_pattern'
                     }
+                    
+                    # Add enhanced skill extraction with proficiency levels
+                    if self.enhanced_skill_extractor:
+                        # Prepare resume data structure for enhanced extractor
+                        resume_data = {
+                            'text': result['text'],
+                            'sections': sections_dict,
+                            'experience': result.get('experience', [])
+                        }
+                        enhanced_result = self.enhanced_skill_extractor.extract_skills_with_metadata(resume_data)
+                        result['skills']['enhanced'] = enhanced_result.get('skills_with_proficiency', [])
+                        
+                        # Calculate proficiency summary
+                        skills_list = enhanced_result.get('skills_with_proficiency', [])
+                        result['skills']['proficiency_summary'] = {
+                            'expert': len([s for s in skills_list if s.get('proficiency') == 'expert']),
+                            'proficient': len([s for s in skills_list if s.get('proficiency') == 'proficient']),
+                            'intermediate': len([s for s in skills_list if s.get('proficiency') == 'intermediate']),
+                            'beginner': len([s for s in skills_list if s.get('proficiency') == 'beginner'])
+                        }
+                        
+                        # Add additional enhanced metadata
+                        result['skills']['skill_sources'] = enhanced_result.get('skill_sources', {})
+                        result['skills']['skill_years'] = enhanced_result.get('skill_years', {})
+                        
+                        # Add skill portfolio analysis
+                        portfolio = self.enhanced_skill_extractor.analyze_skill_portfolio(skills_list)
+                        result['skills']['portfolio_analysis'] = portfolio
                 
                 # Extract organizations/companies if ML enabled
                 if self.use_ml and self.org_extractor:
@@ -193,6 +265,15 @@ class ResumeParser:
                         'summary': org_summary,
                         'extraction_method': 'ner_ml'
                     }
+                    
+                    # Add career timeline analysis
+                    timeline_resume_data = {
+                        'text': result['text'],
+                        'sections': sections_dict,
+                        'experience': result.get('experience', [])
+                    }
+                    timeline_analysis = analyze_career_timeline(timeline_resume_data)
+                    result['career_timeline'] = timeline_analysis
                 
                 # Assess quality if enabled (only for PDFs)
                 if self.quality_scorer and result.get('file_type') == 'pdf':
