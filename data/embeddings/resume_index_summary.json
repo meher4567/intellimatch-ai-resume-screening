@@ -1,0 +1,7 @@
+{
+  "name": "resume_index",
+  "total_resumes": 2484,
+  "embedding_dim": 384,
+  "metric": "cosine",
+  "saved_at": "2025-12-28T16:29:52.321322"
+}

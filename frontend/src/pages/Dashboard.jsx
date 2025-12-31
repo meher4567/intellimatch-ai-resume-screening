@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Upload, Briefcase, Search, TrendingUp, Users, Clock } from 'lucide-react';
+import { Upload, Briefcase, Search, TrendingUp, Users, Clock, Target } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Card, LoadingSpinner, Button, Badge } from '../components';
+import { Card, LoadingSpinner, Button, Badge, StatCard } from '../components';
 import api from '../api/config';
 
 function Dashboard() {
@@ -77,10 +77,10 @@ function Dashboard() {
   ];
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
-        <p className="text-gray-600 mt-2">Welcome back! Here's what's happening today.</p>
+    <div className="p-8 min-h-screen animate-fade-in">
+      <div className="mb-8 animate-fade-in-down">
+        <h1 className="text-4xl font-bold text-gray-800 mb-2">Dashboard</h1>
+        <p className="text-gray-600 text-lg">Welcome back! Here's what's happening today. ✨</p>
       </div>
 
       {/* Stats Cards */}
@@ -114,33 +114,66 @@ function Dashboard() {
           value={analyticsData?.avg_match_score || "87%"}
           change="+2%"
           icon={Search}
-          color="orange"
+          color="indigo"
           trend="up"
         />
       </div>
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <Card title="Resume Activity (Last 7 Days)">
+        <Card title="📈 Resume Activity (Last 7 Days)" hover={false}>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={trendingData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="resumes" stroke="#3b82f6" strokeWidth={2} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis dataKey="name" stroke="#6b7280" />
+              <YAxis stroke="#6b7280" />
+              <Tooltip 
+                contentStyle={{ 
+                  background: 'rgba(255, 255, 255, 0.95)', 
+                  backdropFilter: 'blur(10px)',
+                  border: 'none',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
+                }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="resumes" 
+                stroke="#6366f1" 
+                strokeWidth={3}
+                dot={{ fill: '#6366f1', r: 4 }}
+                activeDot={{ r: 6 }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </Card>
 
-        <Card title="Match Success Rate">
+        <Card title="🎯 Match Success Rate" hover={false}>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={trendingData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="matches" fill="#8b5cf6" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis dataKey="name" stroke="#6b7280" />
+              <YAxis stroke="#6b7280" />
+              <Tooltip 
+                contentStyle={{ 
+                  background: 'rgba(255, 255, 255, 0.95)', 
+                  backdropFilter: 'blur(10px)',
+                  border: 'none',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
+                }}
+              />
+              <Bar 
+                dataKey="matches" 
+                fill="url(#colorGradient)" 
+                radius={[8, 8, 0, 0]}
+              />
+              <defs>
+                <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#8b5cf6" stopOpacity={1}/>
+                  <stop offset="100%" stopColor="#ec4899" stopOpacity={0.8}/>
+                </linearGradient>
+              </defs>
             </BarChart>
           </ResponsiveContainer>
         </Card>
@@ -148,7 +181,7 @@ function Dashboard() {
 
       {/* Recent Activity & Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card title="Recent Activity">
+        <Card title="⏱️ Recent Activity" hover={false}>
           <div className="space-y-3">
             {recentActivity && recentActivity.length > 0 ? (
               recentActivity.slice(0, 5).map((activity, index) => (
@@ -170,8 +203,14 @@ function Dashboard() {
           </div>
         </Card>
 
-        <Card title="Quick Actions">
+        <Card title="⚡ Quick Actions" hover={false}>
           <div className="grid grid-cols-1 gap-4">
+            <QuickActionCard 
+              icon={Target}
+              title="Resume Analyzer" 
+              description="Upload one resume & see extracted details + quality score"
+              onClick={() => navigate('/analyzer')}
+            />
             <QuickActionCard 
               icon={Upload}
               title="Upload Resumes" 
@@ -198,64 +237,9 @@ function Dashboard() {
 }
 
 function StatCard({ title, value, change, icon: Icon, color, trend }) {
-  const colorClasses = {
-    blue: 'bg-blue-500',
-    green: 'bg-green-500',
-    purple: 'bg-purple-500',
-    orange: 'bg-orange-500'
-  };
-  
-  const trendColor = trend === 'up' ? 'text-green-600' : 'text-red-600';
-
-  return (
-    <Card className="hover:shadow-lg transition-shadow">
-      <div className="flex items-center justify-between">
-        <div className="flex-1">
-          <p className="text-gray-600 text-sm mb-1">{title}</p>
-          <p className="text-3xl font-bold text-gray-800 mb-2">{value}</p>
-          {change && (
-            <Badge variant="success" size="sm" className={trendColor}>
-              {change} from last week
-            </Badge>
-          )}
-        </div>
-        <div className={`${colorClasses[color]} text-white w-14 h-14 rounded-xl flex items-center justify-center`}>
-          <Icon className="w-7 h-7" />
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-function ActivityItem({ icon: Icon, title, time }) {
-  return (
-    <div className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-        <Icon className="w-5 h-5 text-blue-600" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="font-medium text-gray-800 truncate">{title}</p>
-        <p className="text-sm text-gray-500">{time}</p>
-      </div>
-    </div>
-  );
-}
-
-function QuickActionCard({ icon: Icon, title, description, onClick }) {
-  return (
-    <button 
-      onClick={onClick}
-      className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-4 text-left hover:shadow-md hover:scale-105 transition-all border border-blue-100"
-    >
-      <div className="flex items-center mb-2">
-        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3 shadow-sm">
-          <Icon className="w-5 h-5 text-blue-600" />
-        </div>
-        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
-      </div>
-      <p className="text-sm text-gray-600">{description}</p>
-    </button>
-  );
+  // This is now replaced by the imported StatCard component
+  // Keeping for backward compatibility but not used
+  return null;
 }
 
 export default Dashboard;

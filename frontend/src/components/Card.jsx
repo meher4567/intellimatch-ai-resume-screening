@@ -1,11 +1,17 @@
 import React from 'react';
 
-const Card = ({ children, className = '', title, action, hover = false }) => {
+const Card = ({ children, className = '', title, action, hover = true, gradient = false }) => {
+  const baseClass = gradient 
+    ? 'glass-card' 
+    : 'bg-white/95 backdrop-blur-xl rounded-2xl shadow-glass';
+  
+  const hoverClass = hover ? 'card-hover-lift glass-card-hover' : '';
+  
   return (
-    <div className={`bg-white rounded-lg shadow ${hover ? 'hover:shadow-lg transition-shadow' : ''} ${className}`}>
+    <div className={`${baseClass} ${hoverClass} ${className} animate-fade-in-up`}>
       {title && (
-        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-          <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <div className="px-6 py-5 border-b border-gray-200/50 flex justify-between items-center">
+          <h3 className="text-xl font-bold text-gray-800">{title}</h3>
           {action && <div>{action}</div>}
         </div>
       )}

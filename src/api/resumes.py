@@ -3,23 +3,154 @@ from sqlalchemy.orm import Session
 from src.core.dependencies import get_db
 from src.models.resume import Resume
 from src.models.candidate import Candidate
-from src.schemas.common import ResumeResponse
+from src.schemas.common import ResumeResponse, QualityGrade
 from src.services.resume_parser import ResumeParser
+from src.services.enhanced_quality_scorer import EnhancedQualityScorer
 from src.utils.file_validation import validate_file_upload, sanitize_filename
-from typing import List
+from typing import List, Any
 import shutil
 import os
+import json
 import logging
-from datetime import datetime
+from datetime import datetime, date
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
+
+def make_json_serializable(obj: Any) -> Any:
+    """Recursively convert datetime/date objects to ISO format strings for JSON serialization."""
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    elif isinstance(obj, dict):
+        return {k: make_json_serializable(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [make_json_serializable(item) for item in obj]
+    elif isinstance(obj, tuple):
+        return tuple(make_json_serializable(item) for item in obj)
+    return obj
+
 router = APIRouter(prefix="/resumes", tags=["Resumes"])
 
 UPLOAD_DIR = "data/raw"
+
+# Initialize quality scorer (singleton)
+_quality_scorer = None
+def get_quality_scorer():
+    global _quality_scorer
+    if _quality_scorer is None:
+        _quality_scorer = EnhancedQualityScorer()
+    return _quality_scorer
 ALLOWED_EXTENSIONS = {".pdf", ".docx", ".doc"}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+
+
+@router.get("/{resume_id}/quality", summary="Get resume quality assessment")
+def get_resume_quality(resume_id: int, refresh: bool = False, db: Session = Depends(get_db)):
+    """
+    Get detailed quality assessment for a resume.
+    
+    Args:
+        resume_id: ID of the resume to assess
+        refresh: If True, re-parse the resume file for fresh data
+    
+    Returns:
+    - **score**: Overall score (0-100)
+    - **grade**: Letter grade (A, B+, C, etc.)
+    - **tier**: Quality tier (Excellent, Good, Average, etc.)
+    - **ats_score**: ATS compatibility score
+    - **strengths**: List of resume strengths
+    - **improvements**: Prioritized list of improvements
+    - **missing**: Critical missing elements
+    
+    This helps candidates understand how their resume performs
+    and what they can do to improve it.
+    """
+    resume = db.query(Resume).filter(
+        Resume.id == resume_id, 
+        Resume.deleted_at.is_(None)
+    ).first()
+    
+    if not resume:
+        raise HTTPException(status_code=404, detail="Resume not found")
+    
+    parsed_data = resume.parsed_data_json or {}
+    
+    # Check if we need to re-parse (incomplete data or refresh requested)
+    skills_data = parsed_data.get('skills', {})
+    has_skills = len(skills_data.get('all_skills', [])) > 0 if isinstance(skills_data, dict) else bool(skills_data)
+    
+    if refresh or not has_skills:
+        # Re-parse from file for better quality assessment
+        if os.path.exists(resume.file_path):
+            try:
+                parser = ResumeParser()
+                parsed_data = parser.parse(resume.file_path)
+                # Update stored data
+                resume.parsed_data_json = parsed_data
+                db.commit()
+                logger.info(f"Re-parsed resume {resume_id} for quality assessment")
+            except Exception as e:
+                logger.warning(f"Could not re-parse resume: {e}")
+    
+    # Score the resume
+    scorer = get_quality_scorer()
+    try:
+        grade = scorer.score_resume(parsed_data)
+        return QualityGrade(
+            score=grade.score,
+            grade=grade.grade,
+            tier=grade.tier,
+            summary=grade.summary,
+            strengths=grade.strengths,
+            improvements=grade.improvements,
+            missing=grade.missing,
+            ats_score=grade.ats_score,
+            breakdown=grade.breakdown,
+            bonuses=grade.bonuses,
+            penalties=grade.penalties,
+            job_relevance_score=grade.job_relevance_score
+        )
+    except Exception as e:
+        logger.error(f"Quality assessment failed: {e}")
+        raise HTTPException(status_code=500, detail=f"Quality assessment failed: {str(e)}")
+
+
+@router.get("/{resume_id}/parsed", summary="Get full parsed data for a resume")
+def get_parsed_data(resume_id: int, db: Session = Depends(get_db)):
+    """
+    Get the full parsed JSON data for a resume.
+    
+    Returns all extracted fields including:
+    - name, contact_info, sections (education, experience, skills, projects, etc.)
+    - experience list with titles, companies, dates, achievements
+    - skills with categories and proficiency
+    - career_timeline, organizations, etc.
+    """
+    resume = db.query(Resume).filter(
+        Resume.id == resume_id, 
+        Resume.deleted_at.is_(None)
+    ).first()
+    
+    if not resume:
+        raise HTTPException(status_code=404, detail="Resume not found")
+    
+    parsed_data = resume.parsed_data_json or {}
+    
+    # If parsed data is empty, try to re-parse
+    if not parsed_data or not parsed_data.get('skills'):
+        if os.path.exists(resume.file_path):
+            try:
+                parser = ResumeParser()
+                parsed_data = parser.parse(resume.file_path)
+                resume.parsed_data_json = parsed_data
+                db.commit()
+                logger.info(f"Re-parsed resume {resume_id} for parsed data endpoint")
+            except Exception as e:
+                logger.warning(f"Could not re-parse resume: {e}")
+    
+    return parsed_data
+
 
 @router.get("/", summary="List all resumes", response_model=List[ResumeResponse])
 def list_resumes(
@@ -139,6 +270,8 @@ def upload_resume(file: UploadFile = File(..., description="Resume file (PDF, DO
     try:
         logger.info(f"Parsing resume: {safe_filename}")
         parsed_data = parser.parse(file_path)
+        # Convert all datetime/date objects to strings for JSON serialization
+        parsed_data = make_json_serializable(parsed_data)
         logger.info(f"Resume parsed successfully: {parsed_data.get('personal_info', {}).get('name', 'Unknown')}")
     except Exception as e:
         # Clean up file if parsing fails
@@ -160,11 +293,22 @@ def upload_resume(file: UploadFile = File(..., description="Resume file (PDF, DO
     db.add(resume)
     db.flush()  # Get resume ID
     
+    # Score resume quality
+    scorer = get_quality_scorer()
+    try:
+        quality_grade = scorer.score_resume(parsed_data)
+        quality_score = quality_grade.score / 100.0  # Convert to 0-1 scale for DB
+        logger.info(f"Resume quality: {quality_grade.grade} ({quality_grade.score}/100)")
+    except Exception as e:
+        logger.warning(f"Quality scoring failed: {e}")
+        quality_grade = None
+        quality_score = None
+    
     # Create Candidate record
     candidate = Candidate(
         resume_id=resume.id,
         extracted_info_json=parsed_data,
-        quality_score=None,  # Calculate later
+        quality_score=quality_score,  # Store normalized score
         experience_level=parsed_data.get('experience_level'),
         created_at=datetime.utcnow()
     )
@@ -179,6 +323,23 @@ def upload_resume(file: UploadFile = File(..., description="Resume file (PDF, DO
         response.skills_with_proficiency = skills_data.get('enhanced', [])
         response.proficiency_summary = skills_data.get('proficiency_summary', {})
     response.career_timeline = parsed_data.get('career_timeline', {})
+    
+    # Add quality assessment
+    if quality_grade:
+        response.quality_assessment = QualityGrade(
+            score=quality_grade.score,
+            grade=quality_grade.grade,
+            tier=quality_grade.tier,
+            summary=quality_grade.summary,
+            strengths=quality_grade.strengths,
+            improvements=quality_grade.improvements,
+            missing=quality_grade.missing,
+            ats_score=quality_grade.ats_score,
+            breakdown=quality_grade.breakdown,
+            bonuses=quality_grade.bonuses,
+            penalties=quality_grade.penalties,
+            job_relevance_score=quality_grade.job_relevance_score
+        )
     
     return response
 
@@ -256,6 +417,9 @@ async def batch_upload_resumes(
             # Parse resume
             parser = ResumeParser()
             parsed_data = parser.parse(file_path)
+            
+            # Convert all datetime/date objects to strings for JSON serialization
+            parsed_data = make_json_serializable(parsed_data)
             
             # Create resume record first
             resume = Resume(

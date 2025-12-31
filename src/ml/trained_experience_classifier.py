@@ -114,16 +114,28 @@ class TrainedExperienceClassifier:
         
         # Get experience entries
         for exp in candidate_data.get('experience', []):
-            title = exp.get('title', '')
-            company = exp.get('company', '')
-            responsibilities = ' '.join(exp.get('responsibilities', []))
-            
-            text_parts.append(f"{title} at {company}. {responsibilities}")
+            if isinstance(exp, dict):
+                title = exp.get('title', '')
+                company = exp.get('company', '')
+                responsibilities = exp.get('responsibilities', [])
+                if isinstance(responsibilities, list):
+                    responsibilities = ' '.join(responsibilities)
+                text_parts.append(f"{title} at {company}. {responsibilities}")
+            elif isinstance(exp, str):
+                text_parts.append(exp)
         
-        # Get skills
-        skills = candidate_data.get('skills', [])
+        # Get skills - handle both list and dict formats
+        skills_raw = candidate_data.get('skills', [])
+        if isinstance(skills_raw, dict):
+            # New format: {'all_skills': [...], 'by_category': {...}}
+            skills = skills_raw.get('all_skills', [])
+        elif isinstance(skills_raw, list):
+            skills = skills_raw
+        else:
+            skills = []
+        
         if skills:
-            text_parts.append(f"Skills: {', '.join(skills[:20])}")
+            text_parts.append(f"Skills: {', '.join(str(s) for s in skills[:20])}")
         
         # Combine text
         text = ' '.join(text_parts)

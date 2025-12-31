@@ -76,12 +76,22 @@ def adapt_candidate_data_for_explainer(candidate_data: Dict) -> Dict:
             highest_degree = "Bachelor's"
             
             for edu in education_list:
-                degree = edu.get('degree', '').lower()
+                # Handle both dict and string formats
+                if isinstance(edu, dict):
+                    degree = edu.get('degree', '').lower()
+                elif isinstance(edu, str):
+                    degree = edu.lower()
+                else:
+                    continue
+                    
                 for key, level in degree_hierarchy.items():
                     if key in degree:
                         if level > highest_level:
                             highest_level = level
-                            highest_degree = edu.get('degree', "Bachelor's")
+                            if isinstance(edu, dict):
+                                highest_degree = edu.get('degree', "Bachelor's")
+                            else:
+                                highest_degree = edu
                         break
             
             adapted['education_level'] = highest_degree

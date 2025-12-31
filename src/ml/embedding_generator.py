@@ -1,14 +1,80 @@
 """
 Embedding Generator for Semantic Search
 Generates vector embeddings using sentence-transformers
+
+Edge Cases Handled:
+- Empty or None text inputs
+- Very long text (truncation with warning)
+- Invalid text types (conversion with fallback)
+- Model loading failures (graceful degradation)
+- Unicode/encoding issues
+- Batch size optimization for memory
 """
 
 from sentence_transformers import SentenceTransformer
-from typing import List, Union, Dict, Any
+from typing import List, Union, Dict, Any, Optional
 import numpy as np
 from pathlib import Path
 import json
 import time
+import logging
+
+# Import caching system
+import sys
+sys.path.append(str(Path(__file__).parent.parent))
+from core.caching import EmbeddingCache, BatchProcessor
+from utils.logger import get_logger, get_metrics, timed
+
+logger = get_logger(__name__)
+metrics = get_metrics()
+
+
+# Constants for edge case handling
+MAX_TEXT_LENGTH = 50000  # Maximum characters before truncation
+MIN_TEXT_LENGTH = 1  # Minimum valid text length
+MAX_BATCH_SIZE = 128  # Maximum batch size to prevent OOM
+DEFAULT_EMBEDDING_VALUE = None  # Returned on complete failure
+
+
+def _sanitize_text(text: Any, max_length: int = MAX_TEXT_LENGTH) -> str:
+    """
+    Sanitize text input for embedding generation
+    
+    Handles:
+    - None -> empty string
+    - Non-string types -> string conversion
+    - Very long text -> truncation with warning
+    - Control characters -> removal
+    - Unicode normalization
+    """
+    if text is None:
+        return ""
+    
+    # Convert non-strings
+    if not isinstance(text, str):
+        try:
+            text = str(text)
+        except Exception:
+            return ""
+    
+    # Remove control characters (except newlines and tabs)
+    import re
+    text = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]', '', text)
+    
+    # Truncate if too long
+    if len(text) > max_length:
+        logger.warning(f"Text truncated from {len(text)} to {max_length} characters")
+        text = text[:max_length]
+    
+    return text.strip()
+
+
+def _validate_text_list(texts: List[Any]) -> List[str]:
+    """Validate and sanitize a list of texts"""
+    if not texts:
+        return []
+    
+    return [_sanitize_text(t) for t in texts]
 
 
 class EmbeddingGenerator:
@@ -21,19 +87,37 @@ class EmbeddingGenerator:
         'large': 'all-mpnet-base-v2',      # Same as base (no larger available)
     }
     
-    def __init__(self, model_name: str = 'mini', cache_dir: str = None):
+    # Embedding dimensions for each model
+    MODEL_DIMS = {
+        'mini': 384,
+        'base': 768,
+        'large': 768
+    }
+    
+    def __init__(self, model_name: str = 'mini', cache_dir: str = None, enable_cache: bool = True):
         """
         Initialize embedding generator
         
         Args:
             model_name: Model size ('mini', 'base', 'large')
             cache_dir: Directory to cache models (default: ./models/embeddings)
+            enable_cache: Enable embedding caching (default: True)
+        
+        Raises:
+            ValueError: If model_name is not valid
         """
+        # Validate model name with helpful error
         if model_name not in self.MODELS:
-            raise ValueError(f"Model must be one of {list(self.MODELS.keys())}")
+            valid_models = list(self.MODELS.keys())
+            raise ValueError(
+                f"Model '{model_name}' not found. "
+                f"Valid options: {valid_models}. "
+                f"Using 'mini' for speed, 'base' for accuracy."
+            )
         
         self.model_name = model_name
         self.model_path = self.MODELS[model_name]
+        self._expected_dim = self.MODEL_DIMS[model_name]
         
         # Setup cache directory
         if cache_dir is None:
@@ -41,55 +125,186 @@ class EmbeddingGenerator:
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         
-        print(f"📦 Loading model: {self.model_path}...")
+        # Initialize model (with error handling)
+        self._model = None
+        self._model_loaded = False
+        self._load_error = None
+        
+        try:
+            self._load_model()
+        except Exception as e:
+            self._load_error = str(e)
+            logger.error(f"Failed to load model: {e}")
+        
+        # Initialize embedding cache
+        self.enable_cache = enable_cache
+        if enable_cache:
+            self.cache = EmbeddingCache(max_size=10000, ttl_seconds=3600)
+            self.batch_processor = BatchProcessor(optimal_batch_size=32)
+            logger.info("Embedding cache enabled", extra={
+                "max_size": 10000,
+                "ttl_seconds": 3600
+            })
+        else:
+            self.cache = None
+            self.batch_processor = None
+            logger.info("Embedding cache disabled")
+    
+    def _load_model(self):
+        """Load the sentence transformer model with error handling"""
+        if self._model_loaded:
+            return
+            
+        logger.info(f"Loading model: {self.model_path}")
         start_time = time.time()
         
-        # Load model
-        self.model = SentenceTransformer(self.model_path, cache_folder=str(self.cache_dir))
-        self.embedding_dim = self.model.get_sentence_embedding_dimension()
-        
-        load_time = time.time() - start_time
-        print(f"✅ Model loaded in {load_time:.2f}s")
-        print(f"   Embedding dimension: {self.embedding_dim}")
-        print(f"   Max sequence length: {self.model.max_seq_length}")
+        try:
+            self._model = SentenceTransformer(self.model_path, cache_folder=str(self.cache_dir))
+            self.embedding_dim = self._model.get_sentence_embedding_dimension()
+            self._model_loaded = True
+            
+            load_time = time.time() - start_time
+            logger.info(f"Model loaded successfully", extra={
+                "load_time_seconds": load_time,
+                "embedding_dim": self.embedding_dim,
+                "max_seq_length": self._model.max_seq_length
+            })
+            metrics.record("model_load_time", load_time)
+        except Exception as e:
+            self._load_error = str(e)
+            # Set default dimension so other code can continue
+            self.embedding_dim = self._expected_dim
+            raise RuntimeError(f"Failed to load model '{self.model_path}': {e}")
     
-    def encode(self, texts: Union[str, List[str]], 
+    @property
+    def model(self) -> SentenceTransformer:
+        """Get the loaded model (lazy loading)"""
+        if not self._model_loaded:
+            if self._load_error:
+                raise RuntimeError(f"Model failed to load: {self._load_error}")
+            self._load_model()
+        return self._model
+    
+    def is_ready(self) -> bool:
+        """Check if the model is loaded and ready"""
+        return self._model_loaded and self._model is not None
+    
+    def get_zero_embedding(self) -> np.ndarray:
+        """Get a zero embedding (for fallback on errors)"""
+        return np.zeros(self.embedding_dim, dtype=np.float32)
+    
+    @timed(logger=logger, event="encode_embeddings")
+    def encode(self, texts: Union[str, List[str], Any], 
                batch_size: int = 32,
                show_progress: bool = False,
-               normalize: bool = True) -> np.ndarray:
+               normalize: bool = True,
+               use_cache: bool = None) -> np.ndarray:
         """
-        Generate embeddings for text(s)
+        Generate embeddings for text(s) with caching support
+        
+        Edge cases handled:
+        - None input -> zero embedding
+        - Empty string -> zero embedding
+        - Non-string types -> string conversion
+        - Very long text -> truncation
+        - Single text vs batch -> consistent output shape
         
         Args:
-            texts: Single text or list of texts
-            batch_size: Batch size for processing
+            texts: Single text or list of texts (can also be None or non-string)
+            batch_size: Batch size for processing (clamped to MAX_BATCH_SIZE)
             show_progress: Show progress bar
             normalize: Normalize embeddings to unit length (for cosine similarity)
+            use_cache: Override cache enable setting (default: use self.enable_cache)
             
         Returns:
-            numpy array of embeddings (shape: [n_texts, embedding_dim])
+            numpy array of embeddings (shape: [n_texts, embedding_dim] or [embedding_dim] for single)
         """
+        # Determine if cache should be used
+        if use_cache is None:
+            use_cache = self.enable_cache
+        
+        # Handle None input
+        if texts is None:
+            logger.warning("Received None text for embedding")
+            return self.get_zero_embedding()
+        
         # Convert single text to list
+        single_text = False
         if isinstance(texts, str):
             texts = [texts]
             single_text = True
-        else:
-            single_text = False
+        elif not isinstance(texts, (list, tuple)):
+            # Try to convert or wrap
+            try:
+                texts = [str(texts)]
+                single_text = True
+            except:
+                logger.error(f"Cannot convert {type(texts)} to string")
+                return self.get_zero_embedding()
         
-        # Generate embeddings
-        embeddings = self.model.encode(
-            texts,
-            batch_size=batch_size,
-            show_progress_bar=show_progress,
-            convert_to_numpy=True,
-            normalize_embeddings=normalize
-        )
+        # Sanitize all texts
+        texts = [_sanitize_text(t) for t in texts]
+        
+        # Handle all-empty case
+        if not texts or all(not t for t in texts):
+            logger.warning("All texts are empty, returning zero embeddings")
+            empty_result = np.zeros((len(texts) if texts else 1, self.embedding_dim), dtype=np.float32)
+            return empty_result[0] if single_text else empty_result
+        
+        # Clamp batch size
+        batch_size = min(batch_size, MAX_BATCH_SIZE)
+        
+        # Try to get from cache
+        results = []
+        texts_to_encode = []
+        indices_to_encode = []
+        
+        if use_cache and self.cache is not None:
+            for i, text in enumerate(texts):
+                cached = self.cache.get(text)
+                if cached is not None:
+                    results.append((i, cached))
+                    logger.debug(f"Cache hit for text {i}")
+                else:
+                    texts_to_encode.append(text)
+                    indices_to_encode.append(i)
+                    logger.debug(f"Cache miss for text {i}")
+        else:
+            texts_to_encode = texts
+            indices_to_encode = list(range(len(texts)))
+        
+        # Generate embeddings for cache misses
+        if texts_to_encode:
+            logger.debug(f"Encoding {len(texts_to_encode)}/{len(texts)} texts")
+            embeddings = self.model.encode(
+                texts_to_encode,
+                batch_size=batch_size,
+                show_progress_bar=show_progress,
+                convert_to_numpy=True,
+                normalize_embeddings=normalize
+            )
+            
+            # Add to cache and results
+            for i, text, embedding in zip(indices_to_encode, texts_to_encode, embeddings):
+                if use_cache and self.cache is not None:
+                    self.cache.put(text, embedding)
+                results.append((i, embedding))
+        
+        # Sort results by original index
+        results.sort(key=lambda x: x[0])
+        final_embeddings = np.array([emb for _, emb in results])
+        
+        # Log cache statistics
+        if use_cache and self.cache is not None:
+            stats = self.cache.get_stats()
+            logger.debug("Cache statistics", extra=stats)
+            metrics.record("cache_hit_rate", stats['hit_rate'])
         
         # Return single embedding as 1D array
         if single_text:
-            return embeddings[0]
+            return final_embeddings[0]
         
-        return embeddings
+        return final_embeddings
     
     def encode_resume(self, resume_data: Dict[str, Any]) -> Dict[str, np.ndarray]:
         """
@@ -306,6 +521,40 @@ class EmbeddingGenerator:
             json.dump(serializable, f)
         
         print(f"✅ Embeddings saved to {filepath}")
+    
+    def get_cache_stats(self) -> Dict[str, Any]:
+        """Get cache statistics"""
+        if self.cache is not None:
+            return self.cache.get_stats()
+        return {"cache_enabled": False}
+    
+    def clear_cache(self):
+        """Clear the embedding cache"""
+        if self.cache is not None:
+            self.cache.clear()
+            logger.info("Embedding cache cleared")
+        else:
+            logger.warning("Cache not enabled, nothing to clear")
+    
+    def save_cache(self, filepath: Optional[str] = None):
+        """Save cache to disk"""
+        if self.cache is not None:
+            if filepath is None:
+                filepath = str(Path("data/cache/embedding_cache.pkl"))
+            self.cache.save_cache_to_disk(filepath)
+            logger.info(f"Cache saved to {filepath}")
+        else:
+            logger.warning("Cache not enabled, nothing to save")
+    
+    def load_cache(self, filepath: Optional[str] = None):
+        """Load cache from disk"""
+        if self.cache is not None:
+            if filepath is None:
+                filepath = str(Path("data/cache/embedding_cache.pkl"))
+            self.cache.load_cache_from_disk(filepath)
+            logger.info(f"Cache loaded from {filepath}")
+        else:
+            logger.warning("Cache not enabled, cannot load")
     
     def load_embeddings(self, filepath: str) -> Dict[str, Any]:
         """Load embeddings from file"""

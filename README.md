@@ -19,9 +19,10 @@ An AI-powered intelligent resume screening and candidate-job matching platform u
 **IntelliMatch AI** automates resume screening using:
 - 🤖 Semantic matching with BERT/sentence-transformers
 - 🎯 ESCO skill validation (851 validated skills)
-- 📊 Multi-factor scoring (Skills 40%, Experience 30%, Education 20%, Quality 10%)
-- 📈 Tier-based ranking (S/A/B/C/D/F)
+- 📊 Multi-factor scoring (Skills 40%, Semantic 30%, Experience 20%, Education 10%)
+- 📈 Tier-based ranking (S/A/B/C/D)
 - 💡 Explainable AI with natural language explanations
+- 🔍 3-tier skill matching: Exact + Fuzzy + Semantic
 
 ---
 
@@ -94,11 +95,10 @@ Frontend (React) → REST API (FastAPI) → ML Engine (Phase 1 ✅)
 ## 📚 Documentation
 
 - **[COMPLETE_GUIDE.md](COMPLETE_GUIDE.md)** - 📖 All-in-one comprehensive documentation
+- **[docs/WHAT_MAKES_THIS_SPECIAL.md](docs/WHAT_MAKES_THIS_SPECIAL.md)** - 🌟 Unique features & innovations
+- **[docs/CHANGELOG.md](docs/CHANGELOG.md)** - 📝 Recent changes and bug fixes
+- **[docs/ML_INTERVIEW_PREP.md](docs/ML_INTERVIEW_PREP.md)** - 🎯 Interview preparation guide
 - **[ref.md](ref.md)** - 🔧 Technical reference implementations
-- **[PHASE2_DETAILED_PLAN.md](PHASE2_DETAILED_PLAN.md)** - Phase 2 specs
-- **[PHASE3_DETAILED_PLAN.md](PHASE3_DETAILED_PLAN.md)** - Phase 3 specs
-- **[PHASE4_DETAILED_PLAN.md](PHASE4_DETAILED_PLAN.md)** - Phase 4 specs
-- **[PHASE5_DETAILED_PLAN.md](PHASE5_DETAILED_PLAN.md)** - Phase 5 specs
 
 ---
 

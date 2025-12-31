@@ -41,6 +41,10 @@ class ExperienceMatcher:
         score = 0
         breakdown = {}
         
+        # Handle None candidate_years - default to 0
+        if candidate_years is None:
+            candidate_years = 0
+        
         # Years of experience score (60% weight)
         if required_years is not None:
             years_score = self._score_years(candidate_years, required_years)

@@ -1,14 +1,25 @@
 """
 Match Scorer
 Aggregates multiple scoring factors into final match score
+
+Edge Cases Handled:
+- Missing/empty candidate data
+- Missing/empty job requirements
+- Invalid weight configurations
+- Scorer initialization failures
+- None values in scoring components
+- Extreme scores (clamping)
+- Auto-compute semantic score when not provided
 """
 
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from typing import Dict, Any, Optional, List
-from src.ml.scorers.skill_matcher import SkillMatcher
+from typing import Dict, Any, Optional, List, Union
+import logging
+import numpy as np
+from src.ml.enhanced_skill_matcher import EnhancedSkillMatcher
 from src.ml.scorers.experience_matcher import ExperienceMatcher
 from src.ml.scorers.education_matcher import EducationMatcher
 from src.ml.classifiers.experience_classifier import ExperienceLevelClassifier
@@ -20,15 +31,52 @@ from src.ml.match_data_adapter import (
     prepare_match_scores_for_explainer
 )
 
+logger = logging.getLogger(__name__)
+
+
+def _safe_score(value: Any, default: float = 50.0, min_val: float = 0.0, max_val: float = 100.0) -> float:
+    """
+    Safely convert a value to a clamped score
+    
+    Args:
+        value: Value to convert
+        default: Default if conversion fails
+        min_val: Minimum allowed value
+        max_val: Maximum allowed value
+        
+    Returns:
+        Clamped float score
+    """
+    if value is None:
+        return default
+    
+    try:
+        score = float(value)
+        # Handle NaN
+        if score != score:
+            return default
+        return max(min_val, min(max_val, score))
+    except (TypeError, ValueError):
+        return default
+
 
 class MatchScorer:
     """Aggregate multiple factors into final match score"""
+    
+    # Default weights
+    DEFAULT_WEIGHTS = {
+        'semantic': 0.30,
+        'skills': 0.40,
+        'experience': 0.20,
+        'education': 0.10
+    }
     
     def __init__(self,
                  semantic_weight: float = 0.30,
                  skills_weight: float = 0.40,
                  experience_weight: float = 0.20,
-                 education_weight: float = 0.10):
+                 education_weight: float = 0.10,
+                 auto_normalize_weights: bool = True):
         """
         Initialize match scorer
         
@@ -37,26 +85,128 @@ class MatchScorer:
             skills_weight: Weight for skill match (default: 40%)
             experience_weight: Weight for experience match (default: 20%)
             education_weight: Weight for education match (default: 10%)
+            auto_normalize_weights: If True, automatically normalize weights to sum to 1.0
         """
-        # Validate weights sum to 1.0
-        total = semantic_weight + skills_weight + experience_weight + education_weight
-        if abs(total - 1.0) > 0.01:
-            raise ValueError(f"Weights must sum to 1.0, got {total}")
-        
-        self.weights = {
-            'semantic': semantic_weight,
-            'skills': skills_weight,
-            'experience': experience_weight,
-            'education': education_weight
+        # Collect weights
+        raw_weights = {
+            'semantic': _safe_score(semantic_weight, 0.30, 0.0, 1.0),
+            'skills': _safe_score(skills_weight, 0.40, 0.0, 1.0),
+            'experience': _safe_score(experience_weight, 0.20, 0.0, 1.0),
+            'education': _safe_score(education_weight, 0.10, 0.0, 1.0)
         }
         
+        total = sum(raw_weights.values())
+        
+        # Validate or normalize weights
+        if abs(total - 1.0) > 0.01:
+            if auto_normalize_weights and total > 0:
+                # Normalize weights
+                self.weights = {k: v / total for k, v in raw_weights.items()}
+                logger.warning(f"Weights normalized from sum={total:.2f} to 1.0")
+            else:
+                raise ValueError(
+                    f"Weights must sum to 1.0, got {total:.4f}. "
+                    f"Set auto_normalize_weights=True to auto-fix."
+                )
+        else:
+            self.weights = raw_weights
+        
         # Initialize individual scorers with ML enhancements
-        self.skill_matcher = SkillMatcher(use_semantic=True, semantic_threshold=0.65)
+        # Use EnhancedSkillMatcher with fuzzy + semantic matching
+        try:
+            self.skill_matcher = EnhancedSkillMatcher(
+                use_fuzzy=True,
+                fuzzy_threshold=85,
+                use_semantic=True,
+                semantic_threshold=0.70
+            )
+        except Exception as e:
+            logger.warning(f"Failed to initialize EnhancedSkillMatcher with semantic: {e}")
+            # Fallback to simpler matching
+            self.skill_matcher = EnhancedSkillMatcher(
+                use_fuzzy=True,
+                fuzzy_threshold=85,
+                use_semantic=False
+            )
         self.experience_matcher = ExperienceMatcher()
         self.education_matcher = EducationMatcher()
         
         # Initialize ML classifiers (lazy loading to avoid startup delay)
         self._experience_classifier = None
+        self._semantic_model = None  # Lazy load for semantic scoring
+    
+    def _compute_semantic_score(self, candidate_data: Dict, job_data: Dict) -> float:
+        """
+        Compute semantic similarity between resume and job description.
+        Uses sentence embeddings to find overall similarity.
+        
+        Returns:
+            Semantic similarity score (0-100)
+        """
+        try:
+            # Lazy load the embedding model
+            if self._semantic_model is None:
+                from sentence_transformers import SentenceTransformer
+                self._semantic_model = SentenceTransformer('all-MiniLM-L6-v2')
+            
+            # Build resume text
+            resume_parts = []
+            
+            # Add skills
+            skills = candidate_data.get('skills', [])
+            if isinstance(skills, dict):
+                skills = skills.get('all_skills', [])
+            if skills:
+                resume_parts.append("Skills: " + ", ".join(str(s) for s in skills[:30]))
+            
+            # Add experience titles
+            for exp in candidate_data.get('experience', [])[:5]:
+                title = exp.get('title', '')
+                if title:
+                    resume_parts.append(title)
+            
+            # Add education
+            for edu in candidate_data.get('education', [])[:2]:
+                degree = edu.get('degree', '')
+                field = edu.get('field', '')
+                if degree or field:
+                    resume_parts.append(f"{degree} {field}".strip())
+            
+            resume_text = " | ".join(resume_parts) if resume_parts else "No resume data"
+            
+            # Build job text
+            job_parts = []
+            job_title = job_data.get('title', '')
+            if job_title:
+                job_parts.append(job_title)
+            
+            required_skills = job_data.get('required_skills', [])
+            if required_skills:
+                job_parts.append("Required: " + ", ".join(required_skills))
+            
+            preferred_skills = job_data.get('preferred_skills', [])
+            if preferred_skills:
+                job_parts.append("Preferred: " + ", ".join(preferred_skills))
+            
+            job_text = " | ".join(job_parts) if job_parts else "No job data"
+            
+            # Compute embeddings
+            embeddings = self._semantic_model.encode([resume_text, job_text], convert_to_numpy=True)
+            
+            # Cosine similarity
+            similarity = np.dot(embeddings[0], embeddings[1]) / (
+                np.linalg.norm(embeddings[0]) * np.linalg.norm(embeddings[1])
+            )
+            
+            # Convert to 0-100 scale (similarity is typically 0-1 for similar, can be negative)
+            # Clamp to reasonable range
+            score = max(0, min(100, similarity * 100))
+            
+            return float(score)
+            
+        except Exception as e:
+            logger.warning(f"Semantic scoring failed: {e}. Using default 50.")
+            return 50.0
     
     def calculate_match(self,
                        candidate_data: Dict[str, Any],
@@ -69,45 +219,99 @@ class MatchScorer:
         Args:
             candidate_data: Resume data with skills, experience, education
             job_data: Job data with requirements
-            semantic_score: Pre-calculated semantic similarity (0-100)
+            semantic_score: Pre-calculated semantic similarity (0-100). 
+                           If None, will be auto-computed using embeddings.
             include_explanation: Whether to generate natural language explanation
             
         Returns:
             Dict with final score and detailed breakdown
         """
+        # Validate inputs
+        if candidate_data is None:
+            logger.warning("calculate_match called with None candidate_data")
+            candidate_data = {}
+        
+        if job_data is None:
+            logger.warning("calculate_match called with None job_data")
+            job_data = {}
+        
         scores = {}
         details = {}
+        errors = []
         
-        # 1. Semantic similarity (if provided)
-        if semantic_score is not None:
-            scores['semantic'] = semantic_score
+        # 1. Semantic similarity - auto-compute if not provided
+        if semantic_score is None:
+            computed_semantic = self._compute_semantic_score(candidate_data, job_data)
+            scores['semantic'] = _safe_score(computed_semantic, default=50.0)
+            details['semantic'] = {'computed': True, 'score': computed_semantic}
         else:
-            scores['semantic'] = 50  # Neutral if not available
+            scores['semantic'] = _safe_score(semantic_score, default=50.0)
+            details['semantic'] = {'computed': False, 'score': semantic_score}
         
-        # 2. Skills match
-        skill_result = self._score_skills(candidate_data, job_data)
-        scores['skills'] = skill_result['score']
-        details['skills'] = skill_result
+        # 2. Skills match (with error handling)
+        try:
+            skill_result = self._score_skills(candidate_data, job_data)
+            scores['skills'] = _safe_score(skill_result.get('score'), default=50.0)
+            details['skills'] = skill_result
+        except Exception as e:
+            logger.error(f"Skills scoring failed: {e}")
+            scores['skills'] = 50.0
+            details['skills'] = {'error': str(e), 'score': 50.0}
+            errors.append(f"Skills: {e}")
         
-        # 3. Experience match
-        exp_result = self._score_experience(candidate_data, job_data)
-        scores['experience'] = exp_result['score']
-        details['experience'] = exp_result
+        # 3. Experience match (with error handling)
+        try:
+            exp_result = self._score_experience(candidate_data, job_data)
+            scores['experience'] = _safe_score(exp_result.get('score'), default=50.0)
+            details['experience'] = exp_result
+        except Exception as e:
+            logger.error(f"Experience scoring failed: {e}")
+            scores['experience'] = 50.0
+            details['experience'] = {'error': str(e), 'score': 50.0}
+            errors.append(f"Experience: {e}")
         
-        # 4. Education match
-        edu_result = self._score_education(candidate_data, job_data)
-        scores['education'] = edu_result['score']
-        details['education'] = edu_result
+        # 4. Education match (with error handling)
+        try:
+            edu_result = self._score_education(candidate_data, job_data)
+            scores['education'] = _safe_score(edu_result.get('score'), default=50.0)
+            details['education'] = edu_result
+        except Exception as e:
+            logger.error(f"Education scoring failed: {e}")
+            scores['education'] = 50.0
+            details['education'] = {'error': str(e), 'score': 50.0}
+            errors.append(f"Education: {e}")
         
-        # Calculate weighted final score
-        final_score = sum(scores[k] * self.weights[k] for k in scores.keys())
+        # Calculate weighted final score with validation
+        try:
+            final_score = sum(
+                _safe_score(scores.get(k), 50.0) * self.weights.get(k, 0.25) 
+                for k in self.weights.keys()
+            )
+            final_score = _safe_score(final_score, 50.0)
+        except Exception as e:
+            logger.error(f"Final score calculation failed: {e}")
+            final_score = 50.0
+            errors.append(f"Scoring: {e}")
         
         # Generate overall assessment
-        assessment = self._get_overall_assessment(final_score, scores)
+        try:
+            assessment = self._get_overall_assessment(final_score, scores)
+        except Exception as e:
+            logger.error(f"Assessment generation failed: {e}")
+            assessment = "Match score calculated with some errors"
         
         # Identify strengths and weaknesses
-        strengths = self._identify_strengths(scores, details)
-        weaknesses = self._identify_weaknesses(scores, details)
+        try:
+            strengths = self._identify_strengths(scores, details)
+        except Exception as e:
+            logger.error(f"Strength identification failed: {e}")
+            strengths = []
+        
+        try:
+            weaknesses = self._identify_weaknesses(scores, details)
+        except Exception as e:
+            logger.error(f"Weakness identification failed: {e}")
+            weaknesses = []
         
         result = {
             'final_score': round(final_score, 2),
@@ -119,23 +323,31 @@ class MatchScorer:
             'weaknesses': weaknesses
         }
         
+        # Add errors if any occurred
+        if errors:
+            result['errors'] = errors
+            result['has_errors'] = True
+        
         # Add natural language explanation if requested
         if include_explanation:
-            # Adapt data to format expected by explainer
-            adapted_candidate = adapt_candidate_data_for_explainer(candidate_data)
-            adapted_job = adapt_job_data_for_explainer(job_data)
+            try:
+                # Adapt data to format expected by explainer
+                adapted_candidate = adapt_candidate_data_for_explainer(candidate_data)
+                adapted_job = adapt_job_data_for_explainer(job_data)
             
-            # Prepare match scores dict for explainer
-            match_scores_dict = prepare_match_scores_for_explainer(
-                final_score, scores, details
-            )
+                # Prepare match scores dict for explainer
+                match_scores_dict = prepare_match_scores_for_explainer(
+                    final_score, scores, details
+                )
             
-            explanation = explain_match(
-                candidate_data=adapted_candidate,
-                job_requirements=adapted_job,
-                match_scores=match_scores_dict
-            )
-            result['explanation'] = explanation
+                explanation = explain_match(
+                    candidate_data=adapted_candidate,
+                    job_requirements=adapted_job,
+                    match_scores=match_scores_dict
+                )
+                result['explanation'] = explanation
+            except Exception as e:
+                result['explanation'] = f"Unable to generate explanation: {str(e)}"
         
         return result
     
@@ -163,7 +375,11 @@ class MatchScorer:
         """Score experience match"""
         # Calculate total years from experience entries
         experience_entries = candidate_data.get('experience', [])
-        total_months = sum(entry.get('duration_months', 0) for entry in experience_entries)
+        total_months = 0
+        for entry in experience_entries:
+            months = entry.get('duration_months')
+            if months is not None and isinstance(months, (int, float)):
+                total_months += months
         candidate_years = total_months // 12
         
         # Get experience level using ML classifier (hybrid mode with rule-based fallback)
@@ -229,12 +445,18 @@ class MatchScorer:
     def _infer_experience_level_fallback(self, candidate_data: Dict) -> str:
         """Fallback rule-based experience level inference"""
         experience_entries = candidate_data.get('experience', [])
-        total_months = sum(entry.get('duration_months', 0) for entry in experience_entries)
+        
+        # Calculate total months, handling None values
+        total_months = 0
+        for entry in experience_entries:
+            months = entry.get('duration_months')
+            if months is not None and isinstance(months, (int, float)):
+                total_months += months
         years = total_months // 12
         
         # Check job titles for level indicators
         for entry in experience_entries:
-            title = entry.get('title', '').lower()
+            title = entry.get('title', '').lower() if entry.get('title') else ''
             if any(word in title for word in ['lead', 'principal', 'architect', 'director']):
                 return 'expert'
             elif any(word in title for word in ['senior', 'sr', 'staff']):

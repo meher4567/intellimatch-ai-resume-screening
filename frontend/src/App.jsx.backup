@@ -1,0 +1,127 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
+import { LayoutDashboard, Briefcase, Users, Calendar, BarChart3, Mail, Settings as SettingsIcon, Upload, Target } from 'lucide-react';
+import Dashboard from './pages/Dashboard';
+import JobManagement from './pages/JobManagement';
+import CandidateMatching from './pages/CandidateMatching';
+import InterviewManagement from './pages/InterviewManagement';
+import Analytics from './pages/Analytics';
+import EmailCenter from './pages/EmailCenter';
+import Settings from './pages/Settings';
+import ResumeUpload from './pages/ResumeUpload';
+import ResumeAnalyzer from './pages/ResumeAnalyzer';
+import UploadPage from './pages/UploadPage';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+      staleTime: 30000,
+    },
+  },
+});
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <AppContent />
+      </Router>
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            duration: 4000,
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
+    </QueryClientProvider>
+  );
+}
+
+function AppContent() {
+  return (
+    <div className="flex h-screen">
+      {/* Sidebar with Glassmorphism */}
+      <aside className="w-72 bg-white/90 backdrop-blur-xl shadow-glass flex-shrink-0 border-r border-white/50">
+        <div className="p-6 gradient-primary">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-2xl">✨</div>
+            <h1 className="text-2xl font-bold text-white">
+              IntelliMatch AI
+            </h1>
+          </div>
+          <p className="text-sm text-white/90 ml-13">Powered by Machine Learning</p>
+        </div>
+        
+        <nav className="mt-6 px-4 space-y-1">
+          <NavLink to="/" icon={LayoutDashboard}>Dashboard</NavLink>
+          <NavLink to="/upload" icon={Upload}>Upload Resumes</NavLink>
+          <NavLink to="/analyzer" icon={Target}>Resume Analyzer</NavLink>
+          <NavLink to="/jobs" icon={Briefcase}>Job Management</NavLink>
+          <NavLink to="/candidates" icon={Users}>Candidates</NavLink>
+          <NavLink to="/interviews" icon={Calendar}>Interviews</NavLink>
+          <NavLink to="/analytics" icon={BarChart3}>Analytics</NavLink>
+          <NavLink to="/emails" icon={Mail}>Email Center</NavLink>
+          <NavLink to="/settings" icon={SettingsIcon}>Settings</NavLink>
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 overflow-y-auto">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/upload" element={<ResumeUpload />} />
+          <Route path="/upload2" element={<UploadPage />} />
+          <Route path="/analyzer" element={<ResumeAnalyzer />} />
+          <Route path="/jobs" element={<JobManagement />} />
+          <Route path="/candidates" element={<CandidateMatching />} />
+          <Route path="/interviews" element={<InterviewManagement />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/emails" element={<EmailCenter />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </main>
+    </div>
+  );
+}
+
+function NavLink({ to, icon: Icon, children }) {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+  
+  return (
+    <Link
+      to={to}
+      className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+        isActive 
+          ? 'gradient-primary text-white shadow-lg shadow-primary-500/30' 
+          : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600 hover:translate-x-1'
+      }`}
+    >
+      <Icon className={`w-5 h-5 ${isActive ? 'animate-pulse' : ''}`} />
+      <span>{children}</span>
+    </Link>
+  );
+}
+
+export default App;

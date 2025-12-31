@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { Search, Users, TrendingUp, Award, Briefcase, GraduationCap, Calendar, Mail, Phone, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
-import { Card, Button, Badge, LoadingSpinner, EmptyState, ProgressBar, Modal } from '../components';
+import { Search, Users, TrendingUp, Award, Briefcase, GraduationCap, Calendar, Mail, Phone, MapPin, ChevronDown, ChevronUp, Sparkles, Filter, RefreshCw } from 'lucide-react';
+import { Card, Button, Badge, LoadingSpinner, EmptyState, ProgressBar, Modal, StatCard } from '../components';
 import api from '../api/config';
 
 function CandidateMatching() {
@@ -52,28 +52,36 @@ function CandidateMatching() {
   };
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Candidate Matching</h1>
-        <p className="text-gray-600 mt-2">Find the best candidates for your job openings with AI-powered matching</p>
+    <div className="p-8 min-h-screen animate-fade-in">
+      {/* Header */}
+      <div className="mb-8 animate-fade-in-down">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+            <Users className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-4xl font-bold text-gray-800">Candidate Matching</h1>
+            <p className="text-gray-600 text-lg">Find the best candidates with AI-powered matching ✨</p>
+          </div>
+        </div>
       </div>
 
       {/* Job Selection Card */}
-      <Card className="mb-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <Card className="mb-6" hover={false}>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">
               Select Job Position
             </label>
             <select 
-              className="w-full border-2 border-gray-300 rounded-lg p-3 text-base focus:border-blue-500 focus:outline-none transition-colors"
+              className="input-modern"
               onChange={(e) => {
                 setSelectedJob(e.target.value);
                 setSelectedCandidates([]);
               }}
               value={selectedJob || ''}
             >
-              <option value="">Choose a job...</option>
+              <option value="">🔍 Choose a job...</option>
               {jobs?.map(job => (
                 <option key={job.job_id} value={job.job_id}>
                   {job.title} - {job.company}
@@ -83,7 +91,7 @@ function CandidateMatching() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">
               Number of Candidates
             </label>
             <input
@@ -92,30 +100,36 @@ function CandidateMatching() {
               max="100"
               value={topK}
               onChange={(e) => setTopK(parseInt(e.target.value))}
-              className="w-full border-2 border-gray-300 rounded-lg p-3 text-base focus:border-blue-500 focus:outline-none transition-colors"
+              className="input-modern"
             />
           </div>
         </div>
         
         {selectedJob && (
-          <div className="mt-4 flex justify-between items-center">
-            <div className="flex items-center space-x-4">
+          <div className="mt-6 pt-6 border-t border-gray-200 flex justify-between items-center flex-wrap gap-4">
+            <div className="flex items-center gap-4">
               {selectedCandidates.length > 0 && (
-                <Badge variant="primary" size="lg">
-                  {selectedCandidates.length} selected
+                <Badge variant="primary" size="lg" glow>
+                  ✓ {selectedCandidates.length} selected
                 </Badge>
               )}
+              {matches?.length > 0 && (
+                <span className="text-gray-600">
+                  Found <span className="font-bold text-primary-600">{matches.length}</span> matching candidates
+                </span>
+              )}
             </div>
-            <div className="flex space-x-3">
+            <div className="flex gap-3">
               {selectedCandidates.length > 1 && (
                 <Button 
                   variant="outline"
                   onClick={() => setShowComparison(true)}
+                  icon={Filter}
                 >
                   Compare ({selectedCandidates.length})
                 </Button>
               )}
-              <Button icon={Search} onClick={() => refetch()}>
+              <Button icon={RefreshCw} onClick={() => refetch()}>
                 Refresh Matches
               </Button>
             </div>
@@ -143,21 +157,25 @@ function CandidateMatching() {
           ))}
         </div>
       ) : selectedJob ? (
-        <EmptyState
-          icon={Users}
-          title="No matching candidates found"
-          description="Try adjusting the job requirements or increase the number of candidates to search."
-          action={{
-            label: 'Refresh Search',
-            onClick: refetch
-          }}
-        />
+        <Card hover={false}>
+          <EmptyState
+            icon={Users}
+            title="No matching candidates found"
+            description="Try adjusting the job requirements or increase the number of candidates to search."
+            action={{
+              label: 'Refresh Search',
+              onClick: refetch
+            }}
+          />
+        </Card>
       ) : (
-        <EmptyState
-          icon={Search}
-          title="Select a job position"
-          description="Choose a job from the dropdown above to find matching candidates from your resume database."
-        />
+        <Card hover={false}>
+          <EmptyState
+            icon={Search}
+            title="Select a job position"
+            description="Choose a job from the dropdown above to find matching candidates from your resume database."
+          />
+        </Card>
       )}
 
       {/* Comparison Modal */}
@@ -173,50 +191,58 @@ function CandidateMatching() {
 
 function CandidateCard({ candidate, rank, isSelected, onToggleSelect, isExpanded, onToggleExpand }) {
   const getScoreColor = (score) => {
-    if (score >= 85) return 'text-green-600 bg-green-50';
-    if (score >= 70) return 'text-blue-600 bg-blue-50';
-    if (score >= 50) return 'text-yellow-600 bg-yellow-50';
-    return 'text-red-600 bg-red-50';
+    if (score >= 85) return 'from-green-500 to-emerald-500';
+    if (score >= 70) return 'from-blue-500 to-indigo-500';
+    if (score >= 50) return 'from-yellow-500 to-amber-500';
+    return 'from-red-500 to-rose-500';
+  };
+
+  const getRankStyle = (rank) => {
+    if (rank === 1) return 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white shadow-lg shadow-yellow-500/40';
+    if (rank === 2) return 'bg-gradient-to-br from-gray-300 to-gray-400 text-gray-800 shadow-lg shadow-gray-400/40';
+    if (rank === 3) return 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-lg shadow-orange-500/40';
+    return 'bg-gray-100 text-gray-600';
   };
 
   return (
-    <Card className={`hover:shadow-xl transition-all ${isSelected ? 'ring-2 ring-blue-500 shadow-lg' : ''}`}>
+    <Card 
+      className={`transition-all duration-300 ${isSelected ? 'ring-2 ring-primary-500 shadow-glow-primary' : ''}`}
+      hover={true}
+    >
       <div className="flex items-start">
         {/* Rank Badge */}
-        <div className="flex-shrink-0 mr-4">
-          <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
-            rank <= 3 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white' : 'bg-gray-100 text-gray-600'
-          }`}>
+        <div className="flex-shrink-0 mr-5">
+          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-xl ${getRankStyle(rank)}`}>
             #{rank}
           </div>
         </div>
 
         <div className="flex-1 min-w-0">
           {/* Header */}
-          <div className="flex items-start justify-between mb-3">
+          <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
-              <div className="flex items-center space-x-3 mb-2">
-                <h3 className="text-xl font-bold text-gray-900">{candidate.name}</h3>
-                <Badge variant={`tier-${candidate.tier}`}>
-                  Tier {candidate.tier}
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-2xl font-bold text-gray-900">{candidate.name}</h3>
+                <Badge variant={`tier-${candidate.tier}`} glow>
+                  {candidate.tier} Tier
                 </Badge>
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
                 {candidate.email && (
-                  <span className="flex items-center">
-                    <Mail className="w-4 h-4 mr-1" />
+                  <span className="flex items-center gap-1.5 hover:text-primary-600 transition-colors">
+                    <Mail className="w-4 h-4" />
                     {candidate.email}
                   </span>
                 )}
                 {candidate.phone && (
-                  <span className="flex items-center">
-                    <Phone className="w-4 h-4 mr-1" />
+                  <span className="flex items-center gap-1.5">
+                    <Phone className="w-4 h-4" />
                     {candidate.phone}
                   </span>
                 )}
                 {candidate.location && (
-                  <span className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-1" />
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4" />
                     {candidate.location}
                   </span>
                 )}
@@ -224,9 +250,9 @@ function CandidateCard({ candidate, rank, isSelected, onToggleSelect, isExpanded
             </div>
 
             {/* Score */}
-            <div className={`px-6 py-3 rounded-xl text-center ml-4 ${getScoreColor(candidate.score)}`}>
-              <div className="text-3xl font-bold">{candidate.score}</div>
-              <div className="text-xs mt-1 font-medium">Match Score</div>
+            <div className={`px-6 py-4 rounded-2xl text-center ml-4 bg-gradient-to-br ${getScoreColor(candidate.score)} text-white shadow-lg`}>
+              <div className="text-4xl font-bold">{candidate.score}</div>
+              <div className="text-xs mt-1 font-medium opacity-90">Match Score</div>
             </div>
           </div>
 
@@ -251,20 +277,23 @@ function CandidateCard({ candidate, rank, isSelected, onToggleSelect, isExpanded
 
           {/* Explanation Preview */}
           {candidate.explanation && (
-            <div className="bg-gray-50 rounded-lg p-3 mb-3">
-              <p className="text-sm text-gray-700 line-clamp-2">{candidate.explanation}</p>
+            <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-xl p-4 mb-4 border-l-4 border-primary-500">
+              <div className="flex items-start gap-2">
+                <Sparkles className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-gray-700 line-clamp-2 leading-relaxed">{candidate.explanation}</p>
+              </div>
             </div>
           )}
 
           {/* Actions */}
           <div className="flex items-center justify-between">
-            <div className="flex space-x-2">
+            <div className="flex gap-3">
               <Button
                 variant={isSelected ? 'primary' : 'outline'}
                 size="sm"
                 onClick={onToggleSelect}
               >
-                {isSelected ? 'Selected ✓' : 'Select'}
+                {isSelected ? '✓ Selected' : 'Select'}
               </Button>
               <Button
                 variant="ghost"
@@ -279,7 +308,7 @@ function CandidateCard({ candidate, rank, isSelected, onToggleSelect, isExpanded
 
           {/* Expanded Details */}
           {isExpanded && candidate.explanation_data && (
-            <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="mt-6 pt-6 border-t border-gray-200 animate-fade-in">
               <MatchExplanationDetails data={candidate.explanation_data} />
             </div>
           )}
@@ -290,23 +319,28 @@ function CandidateCard({ candidate, rank, isSelected, onToggleSelect, isExpanded
 }
 
 function ScoreBar({ label, score, icon: Icon }) {
-  const getColor = (score) => {
-    if (score >= 80) return 'green';
-    if (score >= 60) return 'blue';
-    if (score >= 40) return 'yellow';
-    return 'red';
+  const getGradient = (score) => {
+    if (score >= 80) return 'from-green-500 to-emerald-500';
+    if (score >= 60) return 'from-blue-500 to-indigo-500';
+    if (score >= 40) return 'from-yellow-500 to-amber-500';
+    return 'from-red-500 to-rose-500';
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-between text-sm mb-2">
-        <span className="flex items-center text-gray-700">
-          {Icon && <Icon className="w-4 h-4 mr-1" />}
+    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-gray-200 hover:border-primary-500 transition-all duration-200 hover:shadow-md">
+      <div className="flex items-center justify-between text-sm mb-3">
+        <span className="flex items-center text-gray-700 font-medium">
+          {Icon && <Icon className="w-4 h-4 mr-2 text-primary-500" />}
           {label}
         </span>
-        <span className="font-semibold text-gray-900">{score}%</span>
+        <span className="font-bold text-lg gradient-text">{score}%</span>
       </div>
-      <ProgressBar value={score} color={getColor(score)} showPercentage={false} />
+      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div 
+          className={`h-full bg-gradient-to-r ${getGradient(score)} rounded-full transition-all duration-500`}
+          style={{ width: `${score}%` }}
+        />
+      </div>
     </div>
   );
 }
@@ -316,17 +350,19 @@ function MatchExplanationDetails({ data }) {
   if (!data) return null;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Matching Skills */}
       {data.matching_skills && data.matching_skills.length > 0 && (
-        <div>
-          <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
-            <Award className="w-4 h-4 mr-2 text-green-600" />
+        <div className="animate-fade-in">
+          <h4 className="font-bold text-gray-800 mb-3 flex items-center">
+            <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center mr-2">
+              <Award className="w-4 h-4 text-green-600" />
+            </div>
             Matching Skills ({data.matching_skills.length})
           </h4>
           <div className="flex flex-wrap gap-2">
             {data.matching_skills.map((skill, idx) => (
-              <Badge key={idx} variant="success">{skill}</Badge>
+              <Badge key={idx} variant="success">✓ {skill}</Badge>
             ))}
           </div>
         </div>
@@ -334,9 +370,11 @@ function MatchExplanationDetails({ data }) {
 
       {/* Missing Skills */}
       {data.missing_skills && data.missing_skills.length > 0 && (
-        <div>
-          <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
-            <TrendingUp className="w-4 h-4 mr-2 text-orange-600" />
+        <div className="animate-fade-in">
+          <h4 className="font-bold text-gray-800 mb-3 flex items-center">
+            <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center mr-2">
+              <TrendingUp className="w-4 h-4 text-orange-600" />
+            </div>
             Skills to Develop ({data.missing_skills.length})
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -349,41 +387,52 @@ function MatchExplanationDetails({ data }) {
 
       {/* Career Timeline */}
       {data.career_timeline && (
-        <div>
-          <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
-            <Calendar className="w-4 h-4 mr-2 text-blue-600" />
+        <div className="animate-fade-in">
+          <h4 className="font-bold text-gray-800 mb-3 flex items-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center mr-2">
+              <Calendar className="w-4 h-4 text-blue-600" />
+            </div>
             Career Highlights
           </h4>
-          <div className="bg-blue-50 rounded-lg p-3 space-y-2">
-            <p className="text-sm"><strong>Total Experience:</strong> {data.career_timeline.total_years} years</p>
-            <p className="text-sm"><strong>Positions:</strong> {data.career_timeline.total_positions}</p>
-            {data.career_timeline.career_gaps > 0 && (
-              <p className="text-sm text-orange-600"><strong>Career Gaps:</strong> {data.career_timeline.career_gaps} detected</p>
-            )}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 grid grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-bold gradient-text">{data.career_timeline.total_years}</div>
+              <div className="text-xs text-gray-600 uppercase tracking-wide">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold gradient-text">{data.career_timeline.total_positions}</div>
+              <div className="text-xs text-gray-600 uppercase tracking-wide">Positions Held</div>
+            </div>
+            <div className="text-center">
+              <div className={`text-2xl font-bold ${data.career_timeline.career_gaps > 0 ? 'text-orange-600' : 'text-green-600'}`}>
+                {data.career_timeline.career_gaps || 0}
+              </div>
+              <div className="text-xs text-gray-600 uppercase tracking-wide">Career Gaps</div>
+            </div>
           </div>
         </div>
       )}
 
       {/* Proficiency Summary */}
       {data.proficiency_summary && (
-        <div>
-          <h4 className="font-semibold text-gray-800 mb-2">Skill Proficiency Breakdown</h4>
-          <div className="grid grid-cols-4 gap-2">
-            <div className="bg-purple-50 rounded p-2 text-center">
-              <div className="text-lg font-bold text-purple-600">{data.proficiency_summary.expert || 0}</div>
-              <div className="text-xs text-gray-600">Expert</div>
+        <div className="animate-fade-in">
+          <h4 className="font-bold text-gray-800 mb-3">Skill Proficiency Breakdown</h4>
+          <div className="grid grid-cols-4 gap-3">
+            <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl p-4 text-center border border-purple-200 hover:shadow-md transition-shadow">
+              <div className="text-2xl font-bold text-purple-600">{data.proficiency_summary.expert || 0}</div>
+              <div className="text-xs text-gray-600 uppercase tracking-wide mt-1">Expert</div>
             </div>
-            <div className="bg-blue-50 rounded p-2 text-center">
-              <div className="text-lg font-bold text-blue-600">{data.proficiency_summary.proficient || 0}</div>
-              <div className="text-xs text-gray-600">Proficient</div>
+            <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 text-center border border-blue-200 hover:shadow-md transition-shadow">
+              <div className="text-2xl font-bold text-blue-600">{data.proficiency_summary.proficient || 0}</div>
+              <div className="text-xs text-gray-600 uppercase tracking-wide mt-1">Proficient</div>
             </div>
-            <div className="bg-green-50 rounded p-2 text-center">
-              <div className="text-lg font-bold text-green-600">{data.proficiency_summary.intermediate || 0}</div>
-              <div className="text-xs text-gray-600">Intermediate</div>
+            <div className="bg-gradient-to-br from-green-100 to-green-50 rounded-xl p-4 text-center border border-green-200 hover:shadow-md transition-shadow">
+              <div className="text-2xl font-bold text-green-600">{data.proficiency_summary.intermediate || 0}</div>
+              <div className="text-xs text-gray-600 uppercase tracking-wide mt-1">Intermediate</div>
             </div>
-            <div className="bg-yellow-50 rounded p-2 text-center">
-              <div className="text-lg font-bold text-yellow-600">{data.proficiency_summary.beginner || 0}</div>
-              <div className="text-xs text-gray-600">Beginner</div>
+            <div className="bg-gradient-to-br from-yellow-100 to-yellow-50 rounded-xl p-4 text-center border border-yellow-200 hover:shadow-md transition-shadow">
+              <div className="text-2xl font-bold text-yellow-600">{data.proficiency_summary.beginner || 0}</div>
+              <div className="text-xs text-gray-600 uppercase tracking-wide mt-1">Beginner</div>
             </div>
           </div>
         </div>

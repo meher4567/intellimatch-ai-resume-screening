@@ -14,6 +14,7 @@ from .contact_extractor import ContactExtractor
 from .name_extractor import NameExtractor
 from .quality_scorer import QualityScorer
 from .extractors.experience_extractor import ExperienceExtractor
+from .extractors.enhanced_experience_extractor import EnhancedExperienceExtractor
 
 # Import ML-based extractors
 from ..ml import HybridNameExtractor, SkillEmbedder, OrganizationExtractor, DynamicSkillExtractor
@@ -35,6 +36,7 @@ class ResumeParser:
         self.section_detector = SectionDetector() if detect_sections else None
         self.contact_extractor = ContactExtractor() if extract_contact else None
         self.experience_extractor = ExperienceExtractor()
+        self.enhanced_experience_extractor = EnhancedExperienceExtractor()  # Use enhanced extractor
         
         # Use ML-based extractors if enabled
         self.use_ml = use_ml
@@ -146,16 +148,16 @@ class ResumeParser:
                 # Extract experience from experience section AND publications section
                 # (publications often contains research positions)
                 experience_entries = []
-                if self.experience_extractor and 'sections' in result:
+                if self.enhanced_experience_extractor and 'sections' in result:
                     # Get company names from organizations if available
                     company_names = None
                     if 'organizations' in result and 'companies' in result['organizations']:
                         company_names = result['organizations']['companies']
                     
-                    # Extract from experience section
+                    # Extract from experience section using enhanced extractor
                     if 'experience' in result['sections']:
                         exp_section_text = result['sections']['experience']['content']
-                        entries = self.experience_extractor.extract_from_section(
+                        entries = self.enhanced_experience_extractor.extract_from_section(
                             exp_section_text, 
                             company_names
                         )
@@ -166,7 +168,7 @@ class ResumeParser:
                         pub_section_text = result['sections']['publications']['content']
                         # Check if it has experience-like content (dates, companies)
                         if '202' in pub_section_text or '201' in pub_section_text:  # Year indicators
-                            pub_entries = self.experience_extractor.extract_from_section(
+                            pub_entries = self.enhanced_experience_extractor.extract_from_section(
                                 pub_section_text, 
                                 company_names
                             )

@@ -67,25 +67,21 @@ def list_candidates(
     """
     query = db.query(Candidate).filter(Candidate.deleted_at.is_(None))
     
+    # Join with Resume to access candidate data through the relationship
     if search:
         search_filter = f"%{search}%"
-        query = query.filter(
-            (Candidate.name.ilike(search_filter)) |
-            (Candidate.email.ilike(search_filter)) |
-            (Candidate.skills.ilike(search_filter))
+        query = query.join(Resume, Candidate.resume_id == Resume.id).filter(
+            Resume.raw_text.ilike(search_filter)
         )
     
-    if min_experience is not None:
-        query = query.filter(Candidate.total_experience >= min_experience)
-    
-    if max_experience is not None:
-        query = query.filter(Candidate.total_experience <= max_experience)
-    
+    # Filter by quality score (this field exists on Candidate model)
     if min_quality is not None:
         query = query.filter(Candidate.quality_score >= min_quality)
     
-    if status:
-        query = query.filter(Candidate.status == status)
+    # Experience filtering based on experience_level field
+    if min_experience is not None or max_experience is not None:
+        # Use experience_level as a rough filter
+        pass  # Experience is stored in JSON, complex filtering would need different approach
     
     total = query.count()
     candidates = query.offset(skip).limit(limit).all()
@@ -109,17 +105,34 @@ def get_candidate(candidate_id: int, db: Session = Depends(get_db)):
     if not candidate:
         raise HTTPException(status_code=404, detail="Candidate not found")
     
-    # Get candidate's resumes
-    resumes = db.query(Resume).filter(
-        Resume.candidate_id == candidate_id,
+    # Get associated resume
+    resume = db.query(Resume).filter(
+        Resume.id == candidate.resume_id,
         Resume.deleted_at.is_(None)
-    ).all()
+    ).first()
     
-    return {
-        "candidate": candidate,
-        "resumes": resumes,
-        "resume_count": len(resumes)
+    # Build response with data from resume
+    response = {
+        "id": candidate.id,
+        "resume_id": candidate.resume_id,
+        "quality_score": candidate.quality_score,
+        "experience_level": candidate.experience_level,
+        "created_at": candidate.created_at,
+        "extracted_info": candidate.extracted_info_json
     }
+    
+    if resume:
+        parsed = resume.parsed_data_json or {}
+        response.update({
+            "name": parsed.get("name", "Unknown"),
+            "email": parsed.get("email", ""),
+            "phone": parsed.get("phone", ""),
+            "skills": parsed.get("skills", []),
+            "experience": parsed.get("experience", []),
+            "education": parsed.get("education", [])
+        })
+    
+    return response
 
 
 @router.delete("/{candidate_id}", summary="Delete candidate")

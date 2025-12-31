@@ -1,19 +1,64 @@
 """
 Vector Store using FAISS
 Efficient storage and retrieval of resume embeddings for semantic search
+
+Edge Cases Handled:
+- Empty embeddings (validation)
+- Dimension mismatch (detection and error)
+- NaN/Inf values in embeddings
+- Duplicate resume IDs (update vs insert)
+- Empty search results
+- Invalid metadata
+- Concurrent access considerations
 """
 
 import faiss
 import numpy as np
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional, Tuple, Union
 import json
 import pickle
 from datetime import datetime
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+def _validate_embedding(embedding: np.ndarray, expected_dim: int, 
+                       name: str = "embedding") -> Tuple[bool, str]:
+    """
+    Validate an embedding array
+    
+    Returns:
+        Tuple of (is_valid, error_message)
+    """
+    if embedding is None:
+        return False, f"{name} cannot be None"
+    
+    if not isinstance(embedding, np.ndarray):
+        return False, f"{name} must be a numpy array, got {type(embedding)}"
+    
+    # Check for NaN
+    if np.any(np.isnan(embedding)):
+        return False, f"{name} contains NaN values"
+    
+    # Check for Inf
+    if np.any(np.isinf(embedding)):
+        return False, f"{name} contains infinite values"
+    
+    # Flatten if needed and check dimension
+    flat = embedding.flatten() if embedding.ndim > 1 else embedding
+    if len(flat) != expected_dim:
+        return False, f"{name} dimension mismatch: expected {expected_dim}, got {len(flat)}"
+    
+    return True, ""
 
 
 class VectorStore:
     """FAISS-based vector store for resume embeddings"""
+    
+    # Supported metrics
+    SUPPORTED_METRICS = ['cosine', 'l2']
     
     def __init__(self, embedding_dim: int = 384, 
                  metric: str = 'cosine',
@@ -25,8 +70,21 @@ class VectorStore:
             embedding_dim: Dimension of embeddings (384 for mini, 768 for base)
             metric: Distance metric ('cosine' or 'l2')
             storage_dir: Directory to store index and metadata
+        
+        Raises:
+            ValueError: If invalid metric is specified
         """
+        # Validate embedding dimension
+        if embedding_dim <= 0:
+            raise ValueError(f"embedding_dim must be positive, got {embedding_dim}")
+        
         self.embedding_dim = embedding_dim
+        
+        # Validate metric
+        if metric not in self.SUPPORTED_METRICS:
+            raise ValueError(
+                f"Metric must be one of {self.SUPPORTED_METRICS}, got '{metric}'"
+            )
         self.metric = metric
         
         # Setup storage
@@ -39,17 +97,16 @@ class VectorStore:
         if metric == 'cosine':
             # For cosine similarity, use inner product with normalized vectors
             self.index = faiss.IndexFlatIP(embedding_dim)
-        elif metric == 'l2':
+        else:  # l2
             # For L2 distance
             self.index = faiss.IndexFlatL2(embedding_dim)
-        else:
-            raise ValueError(f"Metric must be 'cosine' or 'l2', got {metric}")
         
         # Metadata storage (maps FAISS index ID to resume metadata)
-        self.id_to_metadata = {}  # {faiss_id: metadata_dict}
-        self.resume_id_to_faiss_id = {}  # {resume_id: faiss_id}
+        self.id_to_metadata: Dict[int, Dict[str, Any]] = {}
+        self.resume_id_to_faiss_id: Dict[str, int] = {}
         self.next_id = 0
         
+        logger.info(f"Vector store initialized: dim={embedding_dim}, metric={metric}")
         print(f"✅ Vector store initialized")
         print(f"   Embedding dim: {embedding_dim}")
         print(f"   Metric: {metric}")
@@ -57,7 +114,8 @@ class VectorStore:
     
     def add(self, embedding: np.ndarray, 
             resume_id: str,
-            metadata: Dict[str, Any]) -> int:
+            metadata: Dict[str, Any],
+            update_if_exists: bool = True) -> int:
         """
         Add a single resume embedding to the index
         
@@ -65,13 +123,43 @@ class VectorStore:
             embedding: Embedding vector (1D array)
             resume_id: Unique resume identifier
             metadata: Resume metadata (name, skills, etc.)
+            update_if_exists: If True, update metadata for existing resume_id
             
         Returns:
-            FAISS index ID
+            FAISS index ID (-1 on error)
+            
+        Note:
+            FAISS doesn't support updating embeddings in place for flat indices.
+            If update_if_exists is True and resume exists, only metadata is updated.
         """
+        # Validate resume_id
+        if not resume_id or not isinstance(resume_id, str):
+            resume_id = f"resume_{self.next_id}"
+            logger.warning(f"Invalid resume_id, using generated: {resume_id}")
+        
+        # Handle existing resume
+        if resume_id in self.resume_id_to_faiss_id:
+            if update_if_exists:
+                faiss_id = self.resume_id_to_faiss_id[resume_id]
+                self.id_to_metadata[faiss_id] = metadata
+                logger.debug(f"Updated metadata for existing resume: {resume_id}")
+                return faiss_id
+            else:
+                logger.warning(f"Resume {resume_id} already exists, skipping")
+                return self.resume_id_to_faiss_id[resume_id]
+        
+        # Validate embedding
+        is_valid, error_msg = _validate_embedding(embedding, self.embedding_dim)
+        if not is_valid:
+            logger.error(f"Invalid embedding for {resume_id}: {error_msg}")
+            return -1
+        
         # Ensure embedding is 2D for FAISS
         if embedding.ndim == 1:
             embedding = embedding.reshape(1, -1)
+        
+        # Ensure float32
+        embedding = embedding.astype(np.float32)
         
         # Normalize if using cosine similarity
         if self.metric == 'cosine':
@@ -90,7 +178,8 @@ class VectorStore:
     
     def add_batch(self, embeddings: np.ndarray,
                   resume_ids: List[str],
-                  metadata_list: List[Dict[str, Any]]) -> List[int]:
+                  metadata_list: List[Dict[str, Any]],
+                  skip_invalid: bool = True) -> List[int]:
         """
         Add multiple resume embeddings in batch
         
@@ -98,62 +187,131 @@ class VectorStore:
             embeddings: Embedding vectors (2D array: [n_resumes, embedding_dim])
             resume_ids: List of resume IDs
             metadata_list: List of metadata dicts
+            skip_invalid: If True, skip invalid embeddings instead of failing
             
         Returns:
-            List of FAISS index IDs
+            List of FAISS index IDs (-1 for skipped entries)
         """
-        if len(resume_ids) != len(metadata_list) != embeddings.shape[0]:
-            raise ValueError("Number of embeddings, IDs, and metadata must match")
+        # Validate inputs
+        n_embeddings = embeddings.shape[0] if hasattr(embeddings, 'shape') else 0
+        n_ids = len(resume_ids)
+        n_metadata = len(metadata_list)
+        
+        if not (n_embeddings == n_ids == n_metadata):
+            raise ValueError(
+                f"Mismatched counts: embeddings={n_embeddings}, "
+                f"ids={n_ids}, metadata={n_metadata}"
+            )
+        
+        if n_embeddings == 0:
+            logger.warning("Empty batch provided to add_batch")
+            return []
+        
+        # Validate embedding dimensions
+        if embeddings.shape[1] != self.embedding_dim:
+            raise ValueError(
+                f"Embedding dimension mismatch: expected {self.embedding_dim}, "
+                f"got {embeddings.shape[1]}"
+            )
+        
+        # Ensure float32
+        embeddings = embeddings.astype(np.float32)
+        
+        # Check for NaN/Inf
+        valid_mask = ~(np.any(np.isnan(embeddings), axis=1) | 
+                       np.any(np.isinf(embeddings), axis=1))
+        
+        if not np.all(valid_mask):
+            invalid_count = np.sum(~valid_mask)
+            if skip_invalid:
+                logger.warning(f"Skipping {invalid_count} embeddings with NaN/Inf values")
+            else:
+                raise ValueError(f"{invalid_count} embeddings contain NaN/Inf values")
+        
+        # Filter to valid embeddings only
+        valid_embeddings = embeddings[valid_mask]
+        valid_resume_ids = [rid for rid, v in zip(resume_ids, valid_mask) if v]
+        valid_metadata = [m for m, v in zip(metadata_list, valid_mask) if v]
+        
+        if len(valid_embeddings) == 0:
+            logger.warning("No valid embeddings to add after filtering")
+            return [-1] * n_embeddings
         
         # Normalize if using cosine similarity
         if self.metric == 'cosine':
-            faiss.normalize_L2(embeddings)
+            faiss.normalize_L2(valid_embeddings)
         
         # Add to FAISS index
-        self.index.add(embeddings.astype('float32'))
+        self.index.add(valid_embeddings)
         
-        # Store metadata
+        # Store metadata and build result
         faiss_ids = []
-        for resume_id, metadata in zip(resume_ids, metadata_list):
-            faiss_id = self.next_id
-            self.id_to_metadata[faiss_id] = metadata
-            self.resume_id_to_faiss_id[resume_id] = faiss_id
-            faiss_ids.append(faiss_id)
-            self.next_id += 1
+        valid_idx = 0
+        for i, is_valid in enumerate(valid_mask):
+            if is_valid:
+                faiss_id = self.next_id
+                self.id_to_metadata[faiss_id] = valid_metadata[valid_idx]
+                self.resume_id_to_faiss_id[valid_resume_ids[valid_idx]] = faiss_id
+                faiss_ids.append(faiss_id)
+                self.next_id += 1
+                valid_idx += 1
+            else:
+                faiss_ids.append(-1)
         
+        logger.info(f"Added {len(valid_embeddings)}/{n_embeddings} embeddings to index")
         return faiss_ids
     
     def search(self, query_embedding: np.ndarray,
                k: int = 10,
-               filter_fn: Optional[callable] = None) -> List[Dict[str, Any]]:
+               filter_fn: Optional[callable] = None,
+               min_score: float = 0.0) -> List[Dict[str, Any]]:
         """
         Search for most similar resumes
         
         Args:
             query_embedding: Query embedding (1D array)
-            k: Number of results to return
+            k: Number of results to return (clamped to 1-1000)
             filter_fn: Optional function to filter results (takes metadata, returns bool)
+            min_score: Minimum similarity score to include (0-100)
             
         Returns:
             List of dicts with 'resume_id', 'score', and 'metadata'
+            Empty list if index is empty or query is invalid
         """
+        # Edge case: empty index
         if self.index.ntotal == 0:
+            logger.debug("Search called on empty index")
             return []
+        
+        # Validate query embedding
+        is_valid, error_msg = _validate_embedding(query_embedding, self.embedding_dim, "query")
+        if not is_valid:
+            logger.error(f"Invalid query embedding: {error_msg}")
+            return []
+        
+        # Clamp k to valid range
+        k = max(1, min(k, 1000))
         
         # Ensure query is 2D
         if query_embedding.ndim == 1:
             query_embedding = query_embedding.reshape(1, -1)
         
+        # Ensure float32
+        query_embedding = query_embedding.astype(np.float32)
+        
         # Normalize if using cosine similarity
         if self.metric == 'cosine':
             faiss.normalize_L2(query_embedding)
         
-        # Search with larger k if filtering
-        search_k = k * 3 if filter_fn else k
-        search_k = min(search_k, self.index.ntotal)
+        # Search with larger k if filtering (but not too large)
+        search_k = min(k * 3 if filter_fn else k, self.index.ntotal, 1000)
         
         # Perform search
-        distances, indices = self.index.search(query_embedding.astype('float32'), search_k)
+        try:
+            distances, indices = self.index.search(query_embedding, search_k)
+        except Exception as e:
+            logger.error(f"FAISS search failed: {e}")
+            return []
         
         # Build results
         results = []

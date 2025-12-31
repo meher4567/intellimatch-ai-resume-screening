@@ -10,6 +10,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from typing import Dict, Any, List, Optional
 import json
 from datetime import datetime
+import time
+from uuid import uuid4
 
 from src.ml.embedding_generator import EmbeddingGenerator
 from src.ml.vector_store import VectorStore
@@ -17,9 +19,12 @@ from src.ml.semantic_search import SemanticSearch
 from src.ml.match_scorer import MatchScorer
 from src.ml.candidate_ranker import CandidateRanker
 from src.ml.match_explainer import MatchExplainer
+from src.ml.enhanced_match_explainer import EnhancedMatchExplainer
 from src.ml.resume_quality_scorer import ResumeQualityScorer
 from src.services.job_description_parser import JobDescriptionParser
 from src.ml.experience_classifier import ExperienceLevelClassifier
+from src.utils.logger import get_logger, get_metrics, timed
+from src.core.caching import MatchResultCache
 
 
 class MatchingEngine:
@@ -36,7 +41,9 @@ class MatchingEngine:
     def __init__(self,
                  model_name: str = 'mini',
                  embedding_dim: int = 384,
-                 storage_path: str = 'data/embeddings'):
+                 storage_path: str = 'data/embeddings',
+                 auto_load_index: bool = True,
+                 enable_cache: bool = True):
         """
         Initialize matching engine
         
@@ -44,11 +51,31 @@ class MatchingEngine:
             model_name: Sentence transformer model name
             embedding_dim: Embedding dimension
             storage_path: Path to store embeddings and indexes
+            auto_load_index: Automatically load pre-built index if available
+            enable_cache: Enable match result caching (default: True)
         """
-        print("🚀 Initializing Matching Engine...")
+        # Initialize logger
+        self.logger = get_logger("matching_engine")
+        self.metrics = get_metrics()
+        self.logger.set_context(component="matching_engine")
+        
+        init_start = time.time()
+        self.logger.info("initialization_started", model=model_name, cache_enabled=enable_cache)
+        
+        # Initialize match result cache
+        self.enable_cache = enable_cache
+        if enable_cache:
+            self.match_cache = MatchResultCache(max_size=1000, ttl_seconds=3600)
+            self.logger.info("Match result cache enabled", extra={
+                "max_size": 1000,
+                "ttl_seconds": 3600
+            })
+        else:
+            self.match_cache = None
+            self.logger.info("Match result cache disabled")
         
         # Initialize components
-        self.embedding_generator = EmbeddingGenerator(model_name=model_name)
+        self.embedding_generator = EmbeddingGenerator(model_name=model_name, enable_cache=enable_cache)
         self.vector_store = VectorStore(
             embedding_dim=self.embedding_generator.embedding_dim,
             metric='cosine'
@@ -61,29 +88,77 @@ class MatchingEngine:
         self.scorer = MatchScorer()
         self.ranker = CandidateRanker()
         self.explainer = MatchExplainer()
+        # Initialize EnhancedMatchExplainer for comprehensive explanations
+        self.enhanced_explainer = EnhancedMatchExplainer()
+        self.logger.info("Enhanced match explainer initialized")
         self.quality_scorer = ResumeQualityScorer()
         # Experience level classifier (Entry/Mid/Senior/Expert)
         try:
             self.experience_classifier = ExperienceLevelClassifier()
-        except Exception:
+            self.logger.info("experience_classifier_loaded")
+        except Exception as e:
             self.experience_classifier = None
+            self.logger.warning("experience_classifier_failed", error=str(e))
         
         # Storage
         self.storage_path = Path(storage_path)
         self.storage_path.mkdir(parents=True, exist_ok=True)
         
+        # Auto-load pre-built index if available
+        if auto_load_index:
+            self._load_prebuilt_index()
+        
         # Stats
         self.stats = {
-            'resumes_indexed': 0,
+            'resumes_indexed': self.vector_store.size(),
             'jobs_processed': 0,
             'matches_generated': 0,
             'last_updated': None
         }
         
+        init_time = (time.time() - init_start) * 1000
+        self.logger.info("initialization_completed",
+                        duration_ms=init_time,
+                        resumes_indexed=self.stats['resumes_indexed'])
+        self.metrics.record('initialization', init_time)
+        
         print("✅ Matching Engine ready!")
         print(f"   Model: {model_name}")
-        print(f"   Embedding dim: {embedding_dim}")
+        print(f"   Embedding dim: {self.embedding_generator.embedding_dim}")
         print(f"   Storage: {storage_path}")
+        print(f"   Indexed Resumes: {self.stats['resumes_indexed']:,}")
+    
+    def _load_prebuilt_index(self):
+        """Load pre-built FAISS index if available"""
+        # Try standard naming convention first
+        index_path = self.storage_path / "resume_index_index.faiss"
+        metadata_path = self.storage_path / "resume_index_metadata.pkl"
+        
+        if index_path.exists() and metadata_path.exists():
+            try:
+                load_start = time.time()
+                self.logger.info("loading_prebuilt_index", path=str(self.storage_path))
+                
+                # Load into semantic search's vector store
+                self.semantic_search.vector_store = VectorStore.load(
+                    name='resume_index',
+                    storage_dir=str(self.storage_path)
+                )
+                # Also update the direct vector_store reference
+                self.vector_store = self.semantic_search.vector_store
+                
+                load_time = (time.time() - load_start) * 1000
+                self.logger.info("prebuilt_index_loaded",
+                                duration_ms=load_time,
+                                index_size=self.vector_store.size())
+                self.metrics.record('index_load', load_time)
+                
+                print(f"✅ Loaded pre-built index ({self.vector_store.size():,} resumes) in {load_time:.0f}ms")
+            except Exception as e:
+                self.logger.error("index_load_failed", error=str(e))
+                print(f"⚠️  Failed to load pre-built index: {e}")
+        else:
+            self.logger.info("no_prebuilt_index_found")
     
     def index_resume(self,
                     resume_data: Dict[str, Any],
@@ -152,14 +227,16 @@ class MatchingEngine:
         
         return job_data
     
+    @timed(logger=get_logger(__name__), event="find_matches")
     def find_matches(self,
                     job_data: Dict[str, Any],
                     top_k: int = 50,
                     min_score: Optional[float] = None,
                     filters: Optional[Dict[str, Any]] = None,
-                    scoring_weights: Optional[Dict[str, float]] = None) -> List[Dict[str, Any]]:
+                    scoring_weights: Optional[Dict[str, float]] = None,
+                    use_cache: bool = None) -> List[Dict[str, Any]]:
         """
-        Find matching candidates for a job
+        Find matching candidates for a job with caching support
         
         Args:
             job_data: Parsed job description data
@@ -167,18 +244,43 @@ class MatchingEngine:
             min_score: Minimum match score threshold
             filters: Optional filters (experience, skills, education, quality)
             scoring_weights: Custom scoring weights (semantic, skills, experience, education)
+            use_cache: Override cache enable setting (default: use self.enable_cache)
             
         Returns:
             List of ranked candidates with match details
         """
+        # Determine if cache should be used
+        if use_cache is None:
+            use_cache = self.enable_cache
+        
         # Convert JobDescription object to dict if needed
         if hasattr(job_data, 'to_dict'):
             job_data = job_data.to_dict()
         
-        print(f"\n🔍 Finding matches for: {job_data.get('title', 'Unknown Job')}")
+        # Try to get from cache
+        if use_cache and self.match_cache is not None:
+            cached_result = self.match_cache.get(job_data, top_k=top_k, filters=filters)
+            if cached_result is not None:
+                self.logger.info("Cache hit for job", extra={
+                    "job_title": job_data.get('title', 'Unknown'),
+                    "top_k": top_k,
+                    "cached_matches": len(cached_result)
+                })
+                self.metrics.record("match_cache_hit", 1.0)
+                return cached_result
+            else:
+                self.logger.debug("Cache miss for job", extra={
+                    "job_title": job_data.get('title', 'Unknown')
+                })
+                self.metrics.record("match_cache_miss", 1.0)
+        
+        self.logger.info("Finding matches for job", extra={
+            "job_title": job_data.get('title', 'Unknown Job'),
+            "top_k": top_k
+        })
         
         # Step 1: Semantic search to get initial candidates
-        print(f"   Step 1: Semantic search (top {top_k} candidates)...")
+        self.logger.info("Step 1: Semantic search", extra={"top_k": top_k})
         candidates = self.semantic_search.search_for_job(
             job_data=job_data,
             k=top_k,
@@ -186,13 +288,15 @@ class MatchingEngine:
         )
         
         if not candidates:
-            print("   ⚠️  No candidates found matching filters")
+            self.logger.warning("No candidates found matching filters")
             return []
         
-        print(f"   ✅ Found {len(candidates)} candidates from semantic search")
+        self.logger.info(f"Found candidates from semantic search", extra={
+            "candidates_count": len(candidates)
+        })
         
         # Step 2: Multi-factor scoring
-        print("   Step 2: Multi-factor scoring...")
+        self.logger.info("Step 2: Multi-factor scoring")
         
         # Use custom weights if provided
         if scoring_weights:
@@ -212,7 +316,7 @@ class MatchingEngine:
             experience_pred = {'level': None, 'confidence': 0.0}
             try:
                 if self.experience_classifier:
-                    experience_pred = self.experience_classifier.predict(candidate.get('experience', ''))
+                    experience_pred = self.experience_classifier.predict(candidate.get('experience', []))
             except Exception:
                 experience_pred = {'level': None, 'confidence': 0.0}
             
@@ -251,27 +355,70 @@ class MatchingEngine:
             
             scored_candidates.append(scored_candidate)
         
-        print(f"   ✅ Scored {len(scored_candidates)} candidates")
+        self.logger.info(f"Scored candidates", extra={
+            "candidates_scored": len(scored_candidates)
+        })
         
         # Step 3: Ranking
-        print("   Step 3: Ranking candidates...")
+        self.logger.info("Step 3: Ranking candidates")
         ranked_candidates = self.ranker.rank_candidates(
             scored_candidates,
             min_score=min_score
         )
         
-        print(f"   ✅ Ranked {len(ranked_candidates)} candidates")
+        self.logger.info(f"Ranked candidates", extra={
+            "candidates_ranked": len(ranked_candidates)
+        })
         
-        # Step 4: Generate explanations for top candidates
-        print("   Step 4: Generating explanations...")
+        # Step 4: Generate explanations for top candidates using EnhancedMatchExplainer
+        self.logger.info("Step 4: Generating enhanced explanations with recommendations")
         for i, candidate in enumerate(ranked_candidates[:10]):  # Top 10 only
-            explanation = self.explainer.explain_match(candidate['match_details'])
-            candidate['explanation'] = explanation
+            try:
+                # Prepare match data for enhanced explainer
+                # The enhanced explainer expects a dict with: final_score, scores, details
+                match_details = candidate.get('match_details', {})
+                
+                # Check if we have the required fields
+                if 'final_score' in match_details and 'scores' in match_details and 'details' in match_details:
+                    # Generate comprehensive explanation with enhanced explainer
+                    enhanced_explanation = self.enhanced_explainer.explain_match(match_details)
+                    candidate['explanation'] = enhanced_explanation
+                    
+                    # Log the quality of explanations
+                    self.logger.debug(f"Generated enhanced explanation for candidate {i+1}", extra={
+                        "recommendation": enhanced_explanation.get('hiring_recommendation'),
+                        "confidence": enhanced_explanation.get('confidence', {}).get('level')
+                    })
+                else:
+                    # Fallback to basic explainer if structure doesn't match
+                    self.logger.debug(f"Using basic explainer for candidate {i+1} - missing required fields")
+                    explanation = self.explainer.explain_match(match_details)
+                    candidate['explanation'] = explanation
+                    
+            except Exception as e:
+                # Fallback to basic explainer if enhanced fails
+                self.logger.warning(f"Enhanced explanation failed for candidate {i+1}: {str(e)}, using basic explainer")
+                try:
+                    explanation = self.explainer.explain_match(candidate['match_details'])
+                    candidate['explanation'] = explanation
+                except Exception as e2:
+                    self.logger.error(f"Both explainers failed for candidate {i+1}: {str(e2)}")
+                    candidate['explanation'] = {'summary': 'Explanation unavailable', 'recommendations': []}
         
         # Update stats
         self.stats['matches_generated'] += len(ranked_candidates)
         
-        print(f"\n✅ Matching complete! Found {len(ranked_candidates)} candidates")
+        # Store in cache
+        if use_cache and self.match_cache is not None:
+            self.match_cache.put(job_data, ranked_candidates, top_k=top_k, filters=filters)
+            self.logger.info("Cached match results", extra={
+                "job_title": job_data.get('title', 'Unknown'),
+                "matches_cached": len(ranked_candidates)
+            })
+        
+        self.logger.info("Matching complete", extra={
+            "total_matches": len(ranked_candidates)
+        })
         
         return ranked_candidates
     
@@ -350,6 +497,42 @@ class MatchingEngine:
             'indexed_resumes': self.vector_store.size(),
             'semantic_search_stats': self.semantic_search.stats()
         }
+    
+    def get_embedding_cache_stats(self) -> Dict[str, Any]:
+        """Get embedding cache statistics"""
+        return self.embedding_generator.get_cache_stats()
+    
+    def get_match_cache_stats(self) -> Dict[str, Any]:
+        """Get match result cache statistics"""
+        if self.match_cache is not None:
+            return self.match_cache.get_stats()
+        return {"cache_enabled": False}
+    
+    def clear_caches(self):
+        """Clear all caches (embedding + match results)"""
+        self.embedding_generator.clear_cache()
+        if self.match_cache is not None:
+            self.match_cache.clear()
+            self.logger.info("Match cache cleared")
+        self.logger.info("All caches cleared")
+    
+    def save_caches(self):
+        """Save all caches to disk"""
+        self.embedding_generator.save_cache()
+        if self.match_cache is not None:
+            cache_path = str(Path("data/cache/match_cache.pkl"))
+            self.match_cache.save_cache_to_disk(cache_path)
+            self.logger.info(f"Match cache saved to {cache_path}")
+        self.logger.info("All caches saved")
+    
+    def load_caches(self):
+        """Load all caches from disk"""
+        self.embedding_generator.load_cache()
+        if self.match_cache is not None:
+            cache_path = str(Path("data/cache/match_cache.pkl"))
+            self.match_cache.load_cache_from_disk(cache_path)
+            self.logger.info(f"Match cache loaded from {cache_path}")
+        self.logger.info("All caches loaded")
     
     def save_state(self, name: str = 'matching_engine'):
         """
@@ -523,9 +706,27 @@ if __name__ == "__main__":
         print(f"   Scores: {comparison['candidates'][0]['match_score']:.1f} vs {comparison['candidates'][1]['match_score']:.1f}")
         print(f"   Best: {comparison['best_candidate']['name']}")
     
-    # Test 4: Get stats
+    # Test 4: Get cache stats
     print("\n" + "=" * 70)
-    print("\n4️⃣ Test: Engine statistics")
+    print("\n4️⃣ Test: Cache statistics")
+    
+    embedding_stats = engine.get_embedding_cache_stats()
+    match_stats = engine.get_match_cache_stats()
+    print(f"\n   📊 Embedding Cache Stats:")
+    print(f"      Hits: {embedding_stats.get('hits', 0)}")
+    print(f"      Misses: {embedding_stats.get('misses', 0)}")
+    print(f"      Hit Rate: {embedding_stats.get('hit_rate', 0):.1%}")
+    print(f"      Size: {embedding_stats.get('size', 0)}")
+    
+    print(f"\n   📊 Match Cache Stats:")
+    print(f"      Hits: {match_stats.get('hits', 0)}")
+    print(f"      Misses: {match_stats.get('misses', 0)}")
+    print(f"      Hit Rate: {match_stats.get('hit_rate', 0):.1%}")
+    print(f"      Size: {match_stats.get('size', 0)}")
+    
+    # Test 5: Get stats
+    print("\n" + "=" * 70)
+    print("\n5️⃣ Test: Engine statistics")
     
     stats = engine.get_stats()
     print(f"\n   📊 Engine Stats:")
@@ -534,9 +735,9 @@ if __name__ == "__main__":
     print(f"      Matches generated: {stats['matches_generated']}")
     print(f"      Last updated: {stats['last_updated']}")
     
-    # Test 5: Save state
+    # Test 6: Save state
     print("\n" + "=" * 70)
-    print("\n5️⃣ Test: Save/Load state")
+    print("\n6️⃣ Test: Save/Load state")
     
     engine.save_state('test_engine')
     
